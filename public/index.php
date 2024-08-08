@@ -10,6 +10,17 @@
  * Buy me a coffee: https://buymeacoffee.com/inazo
  */
 
+
+ $lang = 'fr';
+
+ $translation = [
+
+    'fr' => 
+        [
+            'title_form' => 'Compiler une application'
+        ]
+ ];
+
  ?>
 
 <!DOCTYPE html>
@@ -46,13 +57,26 @@
     <div class="container">
       <div class="row">
         <div class="one-half column">
-          <h1 class="hero-heading">Compil your application</h1>
+          <h1 class="hero-heading"><?php echo $translation[ $lang ][ 'title_form' ]; ?></h1>
+
           <form action="" method="post">
-            <label>URL du dépôt git : </label><input type="text" name="git_url" />
-            <label>Firmware cible : </label><select name="firmware_target"><option value="1">Official</option><option value="2">Momentum</option></select>
-            <label>Firmware version (latest of) : </label><select name="git_branch"><option value="1">Release</option><option value="2">Dev</option></select>
+            <label for="git_url">URL du dépôt git : </label>
+            <input type="text" name="git_url" id="git_url" />
+            
+            <label for="firmware_target">Firmware cible : </label>
+            <select name="firmware_target" id="firmware_target">
+                    <option value="1">Official</option>
+                    <option value="2">Momentum</option>
+            </select>
+            <label for="git_branch">Firmware version (latest of) : </label>
+            <select name="git_branch" id="git_branch">
+                <option value="1">Release</option>
+                <option value="2">Dev</option>
+            </select>
+
+            <input class="button button-primary" type="submit" name="compil" value="Launch compil!" />
           </form>
-          <a class="button button-primary" href="https://demo-asvs.keikai.eu" target="_blank">Launch compil!</a>
+          
         </div>        
       </div>
     </div>
