@@ -46,13 +46,14 @@
     <div class="container">
       <div class="row">
         <div class="one-half column">
-          <h4 class="hero-heading">Stop using Excel for check ASVS. Let's used ASVS Assessments.</h4>
-          <a class="button button-primary" href="https://demo-asvs.keikai.eu" target="_blank">Try it!</a>
-        </div>
-        <div class="one-half column phones">
-          <img class="phone" src="images/laptop_1.png">
-          <img class="phone" src="images/laptop_2.png">
-        </div>
+          <h1 class="hero-heading">Compil your application</h1>
+          <form action="" method="post">
+            <label>URL du dépôt git : </label><input type="text" name="git_url" />
+            <label>Firmware cible : </label><select name="firmware_target"><option value="1">Official</option><option value="2">Momentum</option></select>
+            <label>Firmware version (latest of) : </label><select name="git_branch"><option value="1">Release</option><option value="2">Dev</option></select>
+          </form>
+          <a class="button button-primary" href="https://demo-asvs.keikai.eu" target="_blank">Launch compil!</a>
+        </div>        
       </div>
     </div>
   </div>
@@ -97,8 +98,8 @@
       
       <h3 class="section-heading">Follow me:</h3>
       <p>
-        <a href="https://twitter.com/bsmt_nevers" target="_blank"><img src="images/icons8-twitter-48.png" alt="Twitter" /></a>
-        <a href="https://www.youtube.com/@kanjian_fr" target="_blank"><img src="images/icons8-youtube-48.png" alt="Youtube" /></a>
+        <a href="https://twitter.com/bsmt_nevers" target="_blank"><img src="assets/images/icons8-twitter-48.png" alt="Twitter" /></a>
+        <a href="https://www.youtube.com/@kanjian_fr" target="_blank"><img src="assets/images/icons8-youtube-48.png" alt="Youtube" /></a>
       </p>
       <p>
         <a id="showLegalMentions" href="legal.php">Legal mentions</a>
