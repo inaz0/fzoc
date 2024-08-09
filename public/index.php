@@ -32,7 +32,7 @@ $translation = [
     ]
 ];
 
-$bdd_connexion = new fzccoPDO( $bdd_host, $bdd_username, $bdd_name, $bdd_password );
+$bdd_connexion = new fzcoPDO( $bdd_host, $bdd_username, $bdd_name, $bdd_password );
 
 ?>
 
