@@ -65,6 +65,8 @@ try{
 
     $all_firmware_req->execute();
     $all_firmware_res = $all_firmware_req->fetchAll();
+
+    var_dump($all_firmware_res);
 }
 catch(PDOException $e){
 
