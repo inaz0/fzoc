@@ -5,7 +5,7 @@
 !app/logs/.gitkeep
 
 #config file
-.env
+config.php
 
 # Email spool folder
 /app/spool/*
