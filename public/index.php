@@ -10,7 +10,7 @@
  * Buy me a coffee: https://buymeacoffee.com/inazo
  */
 
-require_once('config.php');
+require_once('../config.php');
 
 class fzcoPDO extends PDO
 {
