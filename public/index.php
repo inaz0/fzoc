@@ -47,6 +47,38 @@ catch (PDOException $e){
     die();
 }
 
+//-- on va lister les firmwares actifs
+$all_firmware_req = $bdd_connexion->prepare('
+    SELECT 
+
+        * 
+    
+    FROM fzco_firmware 
+    
+    INNER JOIN fzco_depend ON depend_firmware_id = firmware_id
+    INNER JOIN fzco_firmware_version ON depend_firmware_version_id = firmware_version_id
+
+    WHERE firmware_is_active=1
+    ');
+
+try{
+
+    $all_firmware_req->execute();
+    $all_firmware_res = $all_firmware_req->fetchAll();
+}
+catch(PDOException $e){
+
+    if( $debug === true ){
+
+        echo $e->getMessage();
+    }
+
+    echo 'No firmware avaible';
+
+    die();
+}
+
+
 ?>
 
 <!DOCTYPE html>
