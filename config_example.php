@@ -1,10 +1,10 @@
 <?php
 
 //-- Database configuration
-$bdd_username = 'fzco_dev';
+$bdd_username = 'fzco';
 $bdd_password = 'xxx';
 $bdd_name     = 'fzco';
-$bdd_host     = 'localhost';
+$bdd_host     = '127.0.0.1';
 $bdd_port     = 3306;
 
 $is_maintenace_mode = false;

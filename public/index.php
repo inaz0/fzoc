@@ -58,15 +58,20 @@ $all_firmware_req = $bdd_connexion->prepare('
     INNER JOIN fzco_depend ON depend_firmware_id = firmware_id
     INNER JOIN fzco_firmware_version ON depend_firmware_version_id = firmware_version_id
 
-    WHERE firmware_is_active=1
+    WHERE firmware_is_active=1 AND firmware_version_is_active=1
     ');
+
+$firmwareListForSelect = '';
 
 try{
 
     $all_firmware_req->execute();
     $all_firmware_res = $all_firmware_req->fetchAll();
 
-    var_dump($all_firmware_res);
+    foreach( $all_firmware_res ?? [] as $keyFirm => $valueFirm ){
+
+      $firmwareListForSelect .= '<option value="'.$valueFirm['firmware_id'].'">'.$valueFirm['firmware_name'].'</option>';
+    }
 }
 catch(PDOException $e){
 
@@ -75,7 +80,7 @@ catch(PDOException $e){
         echo $e->getMessage();
     }
 
-    echo 'No firmware avaible';
+    echo 'No firmware available';
 
     die();
 }
@@ -87,26 +92,15 @@ catch(PDOException $e){
 <html lang="fr">
 <head>
 
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
   <title>FlipperZero online compilator</title>
-
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="assets/css/normalize.css">
   <link rel="stylesheet" href="assets/css/skeleton.css">
   <link rel="stylesheet" href="assets/css/custom.css">
 
-
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="../../dist/images/favicon.png">
-
 </head>
 <body>
 
@@ -125,8 +119,7 @@ catch(PDOException $e){
             
             <label for="firmware_target">Firmware cible : </label>
             <select name="firmware_target" id="firmware_target">
-                    <option value="1">Official</option>
-                    <option value="2">Momentum</option>
+                    <?php echo $firmwareListForSelect; ?>
             </select>
             <label for="git_branch">Firmware version (latest of) : </label>
             <select name="git_branch" id="git_branch">
@@ -191,8 +184,5 @@ catch(PDOException $e){
     </div>
   </div>
 
-
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 </html>
