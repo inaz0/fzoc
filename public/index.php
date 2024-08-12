@@ -61,7 +61,8 @@ $all_firmware_req = $bdd_connexion->prepare('
     WHERE firmware_is_active=1 AND firmware_version_is_active=1
     ');
 
-$firmwareListForSelect = '';
+$firmware_list_for_select    = '';
+$firmware_allready_in_select = '';
 
 try{
 
@@ -70,7 +71,11 @@ try{
 
     foreach( $all_firmware_res ?? [] as $keyFirm => $valueFirm ){
 
-      $firmwareListForSelect .= '<option value="'.$valueFirm['firmware_id'].'">'.$valueFirm['firmware_name'].'</option>';
+        if( !array_key_exists( $valueFirm['firmware_id'], $firmware_allready_in_select ) ){
+
+            $firmware_list_for_select .= '<option value="'.$valueFirm['firmware_id'].'">'.$valueFirm['firmware_name'].'</option>';
+            $firmware_allready_in_select[ $valueFirm['firmware_id'] ];
+        }        
     }
 }
 catch(PDOException $e){
@@ -119,7 +124,7 @@ catch(PDOException $e){
             
             <label for="firmware_target">Firmware cible : </label>
             <select name="firmware_target" id="firmware_target">
-                    <?php echo $firmwareListForSelect; ?>
+                    <?php echo $firmware_list_for_select; ?>
             </select>
             <label for="git_branch">Firmware version (latest of) : </label>
             <select name="git_branch" id="git_branch">
