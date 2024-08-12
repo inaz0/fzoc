@@ -119,13 +119,16 @@ catch(PDOException $e){
           <h1 class="hero-heading"><?php echo $translation[ $lang ][ 'title_form' ]; ?></h1>
 
           <form action="" method="post">
-            <label for="git_url">URL du dépôt git : </label>
-            <input type="text" name="git_url" id="git_url" />
-            
-            <label for="firmware_target">Firmware cible : </label>
-            <select name="firmware_target" id="firmware_target">
-                    <?php echo $firmware_list_for_select; ?>
-            </select>
+            <div class="container">
+                <label for="git_url">URL du dépôt git : </label>
+                <input type="text" name="git_url" id="git_url" />
+            </div>
+            <div class="container">
+                <label for="firmware_target">Firmware cible : </label>
+                <select name="firmware_target" id="firmware_target">
+                        <?php echo $firmware_list_for_select; ?>
+                </select>
+            </div>
             <label for="git_branch">Firmware version (latest of) : </label>
             <select name="git_branch" id="git_branch">
                 <option value="1">Release</option>
