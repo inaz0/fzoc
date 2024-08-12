@@ -62,19 +62,19 @@ $all_firmware_req = $bdd_connexion->prepare('
     ');
 
 $firmware_list_for_select    = '';
-$firmware_allready_in_select = '';
+$firmware_allready_in_select = [];
 
 try{
 
     $all_firmware_req->execute();
     $all_firmware_res = $all_firmware_req->fetchAll();
 
-    foreach( $all_firmware_res ?? [] as $keyFirm => $valueFirm ){
+    foreach( $all_firmware_res ?? [] as $key_firm => $value_firm ){
 
-        if( !array_key_exists( $valueFirm['firmware_id'], $firmware_allready_in_select ) ){
+        if( !array_key_exists( $value_firm['firmware_id'], $firmware_allready_in_select ) ){
 
-            $firmware_list_for_select .= '<option value="'.$valueFirm['firmware_id'].'">'.$valueFirm['firmware_name'].'</option>';
-            $firmware_allready_in_select[ $valueFirm['firmware_id'] ];
+            $firmware_list_for_select .= '<option value="'.$value_firm['firmware_id'].'">'.$value_firm['firmware_name'].'</option>';
+            $firmware_allready_in_select[ $value_firm['firmware_id'] ];
         }        
     }
 }
