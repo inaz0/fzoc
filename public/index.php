@@ -115,7 +115,7 @@ catch(PDOException $e){
   <div class="section hero">
     <div class="container">
       <div class="row">
-        <div class="one-half column">
+        <div class="">
           <h1 class="hero-heading"><?php echo $translation[ $lang ][ 'title_form' ]; ?></h1>
 
           <form action="" method="post">
