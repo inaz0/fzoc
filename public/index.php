@@ -74,7 +74,7 @@ try{
         if( !array_key_exists( $value_firm['firmware_id'], $firmware_allready_in_select ) ){
 
             $firmware_list_for_select .= '<option value="'.$value_firm['firmware_id'].'">'.$value_firm['firmware_name'].'</option>';
-            $firmware_allready_in_select[ $value_firm['firmware_id'] ];
+            $firmware_allready_in_select[ $value_firm['firmware_id'] ] = 1;
         }        
     }
 }
