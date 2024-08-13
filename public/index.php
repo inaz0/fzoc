@@ -173,7 +173,7 @@ if( $form_is_valid === true ){
     $curl = curl_init();
 
     $array_url_base = ['/(https:\/\/github\.com)\/(.*)(\.git)/iu', '/(https:\/\/gitlab\.com\/.*)(\.git)/'];
-    $array_url_raw  = ['https://raw.githubusercontent.com/$2/application.fam', '$1/-/raw/main/application.fam'];
+    $array_url_raw  = ['https://raw.githubusercontent.com/$2/master/application.fam', '$1/-/raw/main/application.fam'];
     $raw_url = preg_replace( $array_url_base, $array_url_raw, $_POST['git_url'], 1);
 
     // fixe l'URL et les autres options appropriées
