@@ -170,6 +170,24 @@ catch(PDOException $e){
 if( $form_is_valid === true ){
 
     //-- 1 récupérer le .fam et le contrôler
+    $curl = curl_init();
+
+    $array_url_base = ['https://github.com', '.git'];
+    $array_url_raw  = ['https://raw.githubusercontent.com', '/-/raw/main/application.fam'];
+    $raw_url = str_replace( $array_url_base, $array_url_raw, 1 );
+
+    // fixe l'URL et les autres options appropriées
+    $options_curl = array(
+        CURLOPT_URL => $raw_url,
+        CURLOPT_HEADER => false
+    );
+
+    curl_setopt_array( $curl, $options_curl );
+
+    // attrape l'URL et la passe au navigateur
+    $response_curl = curl_exec($curl);
+
+    var_dump($response_curl);
 
     //-- 2 contrôler que le repo est présent ou non en base
 
