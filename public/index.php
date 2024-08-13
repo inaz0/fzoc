@@ -174,7 +174,7 @@ if( $form_is_valid === true ){
 
     $array_url_base = ['https://github.com', '.git'];
     $array_url_raw  = ['https://raw.githubusercontent.com', '/-/raw/main/application.fam'];
-    $raw_url = str_replace( $array_url_base, $array_url_raw, $_POST['git_url']);
+    $raw_url = preg_replace( $array_url_base, $array_url_raw, $_POST['git_url'], 1);
 
     // fixe l'URL et les autres options appropriées
     $options_curl = array(
