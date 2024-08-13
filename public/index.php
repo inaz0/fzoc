@@ -35,7 +35,8 @@ $translation = [
         'button_compil'    => 'Démarrer la compilation !',
         'error'            => 
         [
-            'git_url_error' => 'L\'url du dépôt GitHub ou GitLab n\'est pas conforme. (ex. : https://github.com/inaz0/fzoc.git )'
+            'git_url_error'     => 'L\'url du dépôt GitHub ou GitLab n\'est pas conforme. (ex. : https://github.com/inaz0/fzoc.git )',
+            'error_other_field' => 'Vous n\'avez pas rempli tous les champs obligatoire.'
         ]
     ],
     'en' => 
@@ -47,7 +48,8 @@ $translation = [
         'button_compil'    => 'Start compilation!',
         'error'            => 
         [
-            'git_url_error' => 'The GitHub or GitLab URL was not conform. (ex. : https://github.com/inaz0/fzoc.git )'
+            'git_url_error' => 'The GitHub or GitLab URL was not conform. (ex. : https://github.com/inaz0/fzoc.git )',
+            'error_other_field' => 'Missing mandatory fields.'
         ]
     ]
 ];
@@ -136,15 +138,19 @@ try{
                     //-- on pourra ensuite traiter nos données
                     $form_is_valid = true;
                 }
+                else{
+
+                    $message .= PHP_EOL.$translation['fr']['error']['error_other_field'];    
+                }
             }
             else{
 
-                $message = $translation['fr']['error']['git_url_error'];    
+                $message = $translation['fr']['error']['git_url_error'].__LINE__;    
             }
         }
         else{
 
-            $message = $translation['fr']['error']['git_url_error'];
+            $message = $translation['fr']['error']['git_url_error'].__LINE__;
         }
     }
 }
