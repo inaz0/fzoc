@@ -183,6 +183,7 @@ if( $form_is_valid === true ){
     );
 
     var_dump( $raw_url );
+    die();
 
     curl_setopt_array( $curl, $options_curl );
 
