@@ -26,9 +26,21 @@ class fzcoPDO extends PDO
 $lang = 'fr';
 
 $translation = [
-  'fr' => 
+    'fr' =>
     [
-        'title_form' => 'Compiler une application'
+        'title_form'       => 'Compiler une application',
+        'git_url'          => 'URL du dépôt git : ',
+        'target_firmware'  => 'Firmware cible : ',
+        'version_firmware' => 'Version du firmware (la dernière) : ',
+        'button_compil'    => 'Démarrer la compilation !'
+    ],
+    'en' => 
+    [
+        'title_form'       => 'Application compilation',
+        'git_url'          => 'URL of git repository: ',
+        'target_firmware'  => 'Target version: ',
+        'version_firmware' => 'Version firmware  (latest of): ',
+        'button_compil'    => 'Start compilation!'
     ]
 ];
 
@@ -120,18 +132,18 @@ catch(PDOException $e){
 
           <form action="" method="post">
             
-                <label for="git_url">URL du dépôt git : </label>
+                <label for="git_url"><?php echo $translation[ $lang ][ 'git_url' ]; ?></label>
                 <input type="text" name="git_url" id="git_url" />
             
                 <div class="row">
                     <div class="six columns">
-                        <label for="firmware_target">Firmware cible : </label>
+                        <label for="firmware_target"><?php echo $translation[ $lang ][ 'target_firmware' ]; ?></label>
                         <select name="firmware_target" id="firmware_target">
                             <?php echo $firmware_list_for_select; ?>
                         </select>
                     </div>
                     <div class="six columns">
-                        <label for="git_branch">Firmware version (latest of) : </label>
+                        <label for="git_branch"><?php echo $translation[ $lang ][ 'version_firmware' ]; ?></label>
                         <select name="git_branch" id="git_branch">
                             <option value="1">Release</option>
                             <option value="2">Dev</option>
@@ -142,7 +154,7 @@ catch(PDOException $e){
             </div>
             <div class="row">
                 <div class="one-third column value">&nbsp;</div>
-                <div class="one-third column value"><input class="button button-primary" type="submit" name="compil" value="Launch compil!" /></div>
+                <div class="one-third column value"><input class="button button-primary" type="submit" name="compil" value="<?php echo $translation[ $lang ][ 'button_compil' ]; ?>" /></div>
                 <div class="one-third column value">&nbsp;</div>
             </div>
           </form>
