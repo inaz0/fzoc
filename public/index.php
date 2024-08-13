@@ -127,7 +127,7 @@ try{
         //-- 1 on check l'url fourni
         if( filter_var( $_POST['git_url'] , FILTER_VALIDATE_URL) ){
 
-            if( preg_match( '/^https:\/\/(github|gitlab)\.com\/(.*)\.git/$iu', $_POST['git_url'] ) ){
+            if( preg_match( '/https:\/\/(github|gitlab)\.com\/(.*)\.git/iu', $_POST['git_url'] ) ){
 
                 $_POST['git_branch']      = intval($_POST['git_branch']);
                 $_POST['firmware_target'] = intval($_POST['firmware_target']);
