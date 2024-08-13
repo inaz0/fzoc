@@ -182,6 +182,8 @@ if( $form_is_valid === true ){
         CURLOPT_HEADER => false
     );
 
+    var_dump( $raw_url );
+
     curl_setopt_array( $curl, $options_curl );
 
     // attrape l'URL et la passe au navigateur
