@@ -23,6 +23,12 @@ input#git_url{
   background: url() #ee6c6c;
 }
 
+.message_success{
+
+  background: url() #6cee73;
+}
+
+
 /* Shared
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .button {

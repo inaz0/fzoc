@@ -192,8 +192,15 @@ catch(PDOException $e){
 
             if( !empty($message) ){
                 
+                $type_message = 'message_error';
+
+                if( $form_is_valid === true ){
+
+                    $type_message = 'message_success';
+                }
                 
-                echo '<div class="row">
+                echo '
+                <div class="row">
                     <div class="column message_box message_error">
                         '. $message .'
                     </div>
