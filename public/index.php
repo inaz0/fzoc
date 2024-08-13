@@ -29,15 +29,19 @@ $translation = [
     'fr' =>
     [
         'title_form'       => 'Compiler une application',
-        'git_url'          => 'URL du dépôt git : ',
+        'git_url'          => 'URL du dépôt git (Ex: https://github.com/inaz0/fzoc.git) : ',
         'target_firmware'  => 'Firmware cible : ',
         'version_firmware' => 'Version du firmware (la dernière) : ',
-        'button_compil'    => 'Démarrer la compilation !'
+        'button_compil'    => 'Démarrer la compilation !',
+        'error'            => 
+        [
+            'git_url_error' => 'L\'url du dépôt GitHub ou GitLab n\'est pas conforme. (Ex: https://github.com/inaz0/fzoc.git )'
+        ]
     ],
     'en' => 
     [
         'title_form'       => 'Application compilation',
-        'git_url'          => 'URL of git repository: ',
+        'git_url'          => 'URL of git repository (Ex: https://github.com/inaz0/fzoc.git) : ',
         'target_firmware'  => 'Target version: ',
         'version_firmware' => 'Version firmware  (latest of): ',
         'button_compil'    => 'Start compilation!'
@@ -98,6 +102,45 @@ catch(PDOException $e){
     }
 
     echo 'No firmware available';
+
+    die();
+}
+
+//-- stockage du message
+$message = '';
+
+//-- gestion des soumissions du formulaire
+//-- @todo add captcha cloudflare
+try{
+
+    if( count($_POST) > 0 && array_key_exists('git_url', $_POST) && array_key_exists('firmware_target', $_POST) && array_key_exists('git_branch', $_POST) && array_key_exists('compil', $_POST) ){
+
+        //-- 1 on check l'url fourni
+        if( filter_var( $_POST['git_url'] , FILTER_VALIDATE_URL) ){
+
+            if( preg_match( '/^https:\/\/(github|gitlab)\.com\/(.*)\.git/$iu', $_POST['git_url'] ) ){
+
+
+            }
+            else{
+
+                $message = $translation['fr']['error']['git_url_error'];    
+            }
+        }
+        else{
+
+            $message = $translation['fr']['error']['git_url_error'];
+        }
+    }
+}
+catch(PDOException $e){
+
+    if( $debug === true ){
+
+        echo $e->getMessage();
+    }
+
+    echo 'An error was occured.';
 
     die();
 }
