@@ -194,7 +194,7 @@ catch(PDOException $e){
                 
                 
                 echo '<div class="row">
-                    <div class="column">
+                    <div class="column message_box message_error">
                         '. $message .'
                     </div>
                 </div>';

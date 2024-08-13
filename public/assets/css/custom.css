@@ -6,6 +6,22 @@ input#git_url{
   width: 100%;
 }
 
+.message_box{
+
+  padding: 1em 2em;
+  border-radius: 15px;
+  border-style: inset;
+  border-width: 2px;
+  border-color: #3c3838;
+  font-size: 110%;
+  margin-bottom: 30px;
+  color: #f7f7f7;
+}
+
+.message_error{
+
+  background: url() #ee6c6c;
+}
 
 /* Shared
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
