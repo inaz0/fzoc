@@ -188,6 +188,20 @@ catch(PDOException $e){
         <div class="">
           <h1 class="hero-heading"><?php echo $translation[ $lang ][ 'title_form' ]; ?></h1>
 
+            <?php
+
+            if( !empty($message) ){
+                
+                
+                echo '<div class="row">
+                    <div class="column">
+                        '. $message .'
+                    </div>
+                </div>';
+            }
+
+            ?>
+
           <form action="" method="post">
             
                 <label for="git_url"><?php echo $translation[ $lang ][ 'git_url' ]; ?></label>
