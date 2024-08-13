@@ -172,6 +172,7 @@ if( $form_is_valid === true ){
     //-- 1 récupérer le .fam et le contrôler
     $curl = curl_init();
 
+    //-- on modifie les URL pour arriver en raw sur le fichier en fonction de github ou gitlab
     $array_url_base = ['/(https:\/\/github\.com)\/(.*)(\.git)/iu', '/(https:\/\/gitlab\.com\/.*)(\.git)/'];
     $array_url_raw  = ['https://raw.githubusercontent.com/$2/master/application.fam', '$1/-/raw/main/application.fam'];
     $raw_url = preg_replace( $array_url_base, $array_url_raw, $_POST['git_url'], 1);
@@ -187,6 +188,7 @@ if( $form_is_valid === true ){
     // attrape l'URL et la passe au navigateur
     $response_curl = curl_exec($curl);
 
+    //-- @todo traiter la réponse 20O ou autre et check la strcutre du fichier fam
     var_dump($response_curl);
 
     //-- 2 contrôler que le repo est présent ou non en base
