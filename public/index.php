@@ -140,10 +140,11 @@ catch(PDOException $e){
                 </div>
                 
             </div>
-            
-            <div class="one-third column value"></div>
-            <div class="one-third column value"><input class="button button-primary" type="submit" name="compil" value="Launch compil!" /></div>
-            <div class="one-third column value"></div>
+            <div class="row">
+                <div class="one-third column value">&nbsp;</div>
+                <div class="one-third column value"><input class="button button-primary" type="submit" name="compil" value="Launch compil!" /></div>
+                <div class="one-third column value">&nbsp;</div>
+            </div>
           </form>
           
         </div>        
