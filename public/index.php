@@ -145,12 +145,12 @@ try{
             }
             else{
 
-                $message = $translation['fr']['error']['git_url_error'].__LINE__;    
+                $message = $translation['fr']['error']['git_url_error'];    
             }
         }
         else{
 
-            $message = $translation['fr']['error']['git_url_error'].__LINE__;
+            $message = $translation['fr']['error']['git_url_error'];
         }
     }
 }
@@ -164,6 +164,20 @@ catch(PDOException $e){
     echo 'An error was occured.';
 
     die();
+}
+
+//-- on va pouvoir regarder si on traite ou pas la suite
+if( $form_is_valid === true ){
+
+    //-- 1 récupérer le .fam et le contrôler
+
+    //-- 2 contrôler que le repo est présent ou non en base
+
+    //-- 3 update le dépot
+
+    //-- 4 préparer les dossier
+
+    
 }
 
 
@@ -253,21 +267,18 @@ catch(PDOException $e){
     <div class="container">
       <div class="row">
         <div class="one-third column value">
-          <h2 class="value-multiplier">4.0.2</h2>
-          <h5 class="value-heading">Oldest version</h5>
-          <p class="value-description">Still avaible in our tool.</p>
+          <h2 class="value-multiplier">200</h2>
+          <h5 class="value-heading">Compilation ce mois-ci</h5>
         </div>
 
 	<div  class="one-third column value">
-          <h2 class="value-multiplier">See in action</h2>
-          <h5 class="value-heading">Take a look to our:</h5>
-	  <p><a  class="button button-primary" href="https://www.youtube.com/playlist?list=PLq_UnUtYZ15fUy2ilIvSS8ID1l9_XpjUW">Youtube videos</a></p>
+          <h2 class="value-multiplier">80 %</h2>
+          <h5 class="value-heading">Pour le firmware : Momentum</h5>
 	</div>
 
         <div class="one-third column value">
-          <h2 class="value-multiplier">4.0.3</h2>
-          <h5 class="value-heading">Current version</h5>
-          <p class="value-description">Recommended version.</p>
+          <h2 class="value-multiplier">20000</h2>
+          <h5 class="value-heading">Compilation depuis le début</h5>
         </div>
       </div>
     </div>
