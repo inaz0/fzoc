@@ -29,22 +29,26 @@ $translation = [
     'fr' =>
     [
         'title_form'       => 'Compiler une application',
-        'git_url'          => 'URL du dépôt git (Ex: https://github.com/inaz0/fzoc.git) : ',
+        'git_url'          => 'URL du dépôt git (ex. : https://github.com/inaz0/fzoc.git) : ',
         'target_firmware'  => 'Firmware cible : ',
         'version_firmware' => 'Version du firmware (la dernière) : ',
         'button_compil'    => 'Démarrer la compilation !',
         'error'            => 
         [
-            'git_url_error' => 'L\'url du dépôt GitHub ou GitLab n\'est pas conforme. (Ex: https://github.com/inaz0/fzoc.git )'
+            'git_url_error' => 'L\'url du dépôt GitHub ou GitLab n\'est pas conforme. (ex. : https://github.com/inaz0/fzoc.git )'
         ]
     ],
     'en' => 
     [
         'title_form'       => 'Application compilation',
-        'git_url'          => 'URL of git repository (Ex: https://github.com/inaz0/fzoc.git) : ',
+        'git_url'          => 'URL of git repository (ex: https://github.com/inaz0/fzoc.git) : ',
         'target_firmware'  => 'Target version: ',
         'version_firmware' => 'Version firmware  (latest of): ',
-        'button_compil'    => 'Start compilation!'
+        'button_compil'    => 'Start compilation!',
+        'error'            => 
+        [
+            'git_url_error' => 'The GitHub or GitLab URL was not conform. (ex. : https://github.com/inaz0/fzoc.git )'
+        ]
     ]
 ];
 
@@ -107,7 +111,10 @@ catch(PDOException $e){
 }
 
 //-- stockage du message
-$message = '';
+$message     = '';
+
+//-- par défaut le formulaire est considéré invalide
+$form_is_valid = false;
 
 //-- gestion des soumissions du formulaire
 //-- @todo add captcha cloudflare
@@ -120,7 +127,15 @@ try{
 
             if( preg_match( '/^https:\/\/(github|gitlab)\.com\/(.*)\.git/$iu', $_POST['git_url'] ) ){
 
+                $_POST['git_branch']      = intval($_POST['git_branch']);
+                $_POST['firmware_target'] = intval($_POST['firmware_target']);
 
+                //-- 2 plus simple on check les autres parametres
+                if( ( $_POST['git_branch'] === 1 || $_POST['git_branch'] === 2 ) && !empty($_POST['firmware_target']) ){
+
+                    //-- on pourra ensuite traiter nos données
+                    $form_is_valid = true;
+                }
             }
             else{
 
