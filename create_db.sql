@@ -17,7 +17,6 @@ CREATE TABLE IF NOT EXISTS `fzco_firmware_version` (
 	PRIMARY KEY (`firmware_version_id`)
 );
 
-
 CREATE TABLE IF NOT EXISTS `fzco_depend` (
 	`depend_firmware_id` int NOT NULL,
 	`depend_firmware_version_id` int NOT NULL,
@@ -41,14 +40,7 @@ CREATE TABLE IF NOT EXISTS `fzco_compiled` (
 	PRIMARY KEY (`compiled_firmware_version_id`, `compiled_application_id`)
 );
 
-
-
-
-
 ALTER TABLE `fzco_depend` ADD CONSTRAINT `fzco_depend_fk0` FOREIGN KEY (`depend_firmware_id`) REFERENCES `fzco_firmware`(`firmware_id`);
-
 ALTER TABLE `fzco_depend` ADD CONSTRAINT `fzco_depend_fk1` FOREIGN KEY (`depend_firmware_version_id`) REFERENCES `fzco_firmware_version`(`firmware_version_id`);
-
 ALTER TABLE `fzco_compiled` ADD CONSTRAINT `fzco_compiled_fk0` FOREIGN KEY (`compiled_firmware_version_id`) REFERENCES `fzco_firmware_version`(`firmware_version_id`);
-
 ALTER TABLE `fzco_compiled` ADD CONSTRAINT `fzco_compiled_fk1` FOREIGN KEY (`compiled_application_id`) REFERENCES `fzco_application`(`application_id`);

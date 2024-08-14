@@ -189,11 +189,7 @@ if( $form_is_valid === true ){
 
     //-- récupération du contenu
     $response_curl      = curl_exec($curl);
-    $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );
-    
-    // debug :
-    $pruge = $bdd_connexion->query( 'delete from fzco_application');
-    
+    $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );   
 
     //-- on ne veut que du 200
     if( $response_code_curl === 200 ){
@@ -228,6 +224,8 @@ if( $form_is_valid === true ){
 
                 if( is_array($sql_application_check_res) ){
 
+                    $destination_dir =  __DIR__.'/../gits/'.hash( 'md5', $_POST['git_url'] );
+
                     //-- création de l'application
                     if( count($sql_application_check_res) === 0 ){
 
@@ -237,23 +235,21 @@ if( $form_is_valid === true ){
 
                         $sql_add_application->execute( [ 'app_name' => $the_app_name, 'app_id' => $the_app_id, 'app_url_git' => $_POST['git_url'] ] );
 
-                        $application_id  = $bdd_connexion->lastInsertId();
-                        $destination_dir =  __DIR__.'/../gits/'.hash( 'md5', $_POST['git_url'] );
+                        $application_id = $bdd_connexion->lastInsertId();
 
                         //-- création d'un dossier pour cloner
                         mkdir( $destination_dir, '0755', true );
 
-                        $return = shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) );
-
-                        var_dump('cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) );
-                        var_dump($return);
+                        shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) );
                     }
                     else{
 
+                        //-- on va update le dépot de l'application
+                        shell_exec( 'cd '.escapeshellarg($destination_dir).' && git pull' );
                         $application_id = $sql_application_check_res[ 0 ];
                     }
 
-                    //-- on va update le dépot de l'application
+                    //-- lancer la compilation en nohup ou similaire
                 }
             }
             catch(PDOException $e){
@@ -269,11 +265,6 @@ if( $form_is_valid === true ){
             }
         }
     }
-
-    
-
-    //-- 3 update le dépot
-
     //-- 4 préparer les dossier
 
     
