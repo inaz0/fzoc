@@ -179,20 +179,19 @@ if( $form_is_valid === true ){
 
     // fixe l'URL et les autres options appropriées
     $options_curl = array(
-        CURLOPT_URL => $raw_url,
-        CURLOPT_HEADER => false,
-        CURLOPT_RETURNTRANSFER => true
+        CURLOPT_URL            => $raw_url,
+        CURLOPT_HEADER         => false,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_MAXREDIRS      => 0
     );
 
     curl_setopt_array( $curl, $options_curl );
 
-    // attrape l'URL et la passe au navigateur
+    //-- récupération du contenu
     $response_curl = curl_exec($curl);
-
-    //-- @todo traiter la réponse 20O ou autre et check la strcutre du fichier fam
     $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );
     
-    
+    //-- on ne veut que du 200
     if( $response_code_curl === 200 ){
 
         //-- on va checker la structure du fam
