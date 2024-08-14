@@ -198,7 +198,7 @@ if( $form_is_valid === true ){
         //-- on va checker la structure du fam
         if( preg_match_all( '/(\s*)?(App\()\s*(appid=")([a-z0-9_-]*)(",)\s*(name=")(.*)\s*(apptype=)(.*)\s*(entry_point=")(.*)[.\s]*/mi', $response_curl, $matches )){
 
-         //   var_dump($matches);
+            var_dump($matches);
         }
     }
 
