@@ -189,7 +189,7 @@ if( $form_is_valid === true ){
     $response_curl = curl_exec($curl);
 
     //-- @todo traiter la réponse 20O ou autre et check la strcutre du fichier fam
-    prin_r($response_curl);
+    print_r($response_curl);
     $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );
     
     var_dump(preg_match_all( '/(App\()\s*(appid=")([a-z0-9_-]*)(",)\s*(name=")(.*)\s*(apptype=)(.*)\s*(entry_point=")(.*)[.\s]*/mi', $response_curl, $matches ));
