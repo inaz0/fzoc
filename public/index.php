@@ -223,6 +223,18 @@ if( $form_is_valid === true ){
                 $sql_application_check_res = $sql_application_check->fetchAll();
 
                 var_dump($sql_application_check_res);
+                if( is_array($sql_application_check_res) ){
+
+                    //-- création de l'application
+                    if( count($sql_application_check_res) === 0 ){
+
+                        $sql_add_application = $bdd_connexion->prepare('
+                        INSERT INTO fzco_application (application_name, application_appid,application_url_git)
+                         VALUES ( :app_name, :app_id, :app_url_git )');
+
+                        $sql_add_application->execute( [ 'app_name' => $the_app_name, 'app_id' => $the_app_id, 'app_url_git' => $array_url_base ] );
+                    }
+                }
             }
             catch(PDOException $e){
 
