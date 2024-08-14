@@ -243,7 +243,9 @@ if( $form_is_valid === true ){
                         //-- création d'un dossier pour cloner
                         mkdir( __DIR__.'/../gits/'.$destination_dir, '0755', true );
 
-                        shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) );
+                        $return = shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) );
+
+                        var_dump($return);
                     }
                     else{
 
