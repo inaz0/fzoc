@@ -238,10 +238,10 @@ if( $form_is_valid === true ){
                         $sql_add_application->execute( [ 'app_name' => $the_app_name, 'app_id' => $the_app_id, 'app_url_git' => $_POST['git_url'] ] );
 
                         $application_id  = $bdd_connexion->lastInsertId();
-                        $destination_dir = hash( 'md5', $_POST['git_url'] );
+                        $destination_dir =  __DIR__.'/../gits/'.hash( 'md5', $_POST['git_url'] );
 
                         //-- création d'un dossier pour cloner
-                        mkdir( __DIR__.'/../gits/'.$destination_dir, '0755', true );
+                        mkdir( $destination_dir, '0755', true );
 
                         $return = shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) );
 
