@@ -193,6 +193,7 @@ if( $form_is_valid === true ){
     $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );
     
     var_dump(preg_match_all( '/(App\()\s*(appid=")([a-z0-9_-]*)(",)\s*(name=")(.*)\s*(apptype=)(.*)\s*(entry_point=")(.*)[.\s]*/mi', $response_curl, $matches ));
+    var_dump($matches);
     var_dump($response_code_curl);
     if( $response_code_curl === 200 ){
 
