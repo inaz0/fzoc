@@ -191,6 +191,9 @@ if( $form_is_valid === true ){
     $response_curl      = curl_exec($curl);
     $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );
     
+    // debug :
+    $sql_application_check->execute( 'delete from fzoc_application' );
+
     //-- on ne veut que du 200
     if( $response_code_curl === 200 ){
 
