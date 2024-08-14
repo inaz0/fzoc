@@ -245,6 +245,7 @@ if( $form_is_valid === true ){
 
                         $return = shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) );
 
+                        var_dump('cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) );
                         var_dump($return);
                     }
                     else{
