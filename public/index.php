@@ -219,7 +219,7 @@ if( $form_is_valid === true ){
 
             try{
 
-                $sql_application_check->execute( [ 'git_url' => $array_url_base ] );
+                $sql_application_check->execute( [ 'git_url' => $_POST[ 'git_url' ] ] );
                 $sql_application_check_res = $sql_application_check->fetchAll();
 
                 if( is_array($sql_application_check_res) ){
