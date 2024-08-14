@@ -192,8 +192,8 @@ if( $form_is_valid === true ){
     $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );
     
     // debug :
-     $pruge = $bdd_connexion->prepare( 'delete from fzco_application');
-    $pruge->execute( );
+    $pruge = $bdd_connexion->query( 'delete from fzco_application');
+    
 
     //-- on ne veut que du 200
     if( $response_code_curl === 200 ){
