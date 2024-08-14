@@ -232,7 +232,21 @@ if( $form_is_valid === true ){
                          VALUES ( :app_name, :app_id, :app_url_git )');
 
                         $sql_add_application->execute( [ 'app_name' => $the_app_name, 'app_id' => $the_app_id, 'app_url_git' => $_POST['git_url'] ] );
+
+                        $application_id  = $bdd_connexion->lastInsertId();
+                        $destination_dir = hash( 'md5', $_POST['git_url'] );
+
+                        //-- création d'un dossier pour cloner
+                        mkdir( __DIR__.'/../gits/'.$destination_dir );
+
+                        shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) );
                     }
+                    else{
+
+                        $application_id = $sql_application_check_res[ 0 ];
+                    }
+
+                    //-- on va update le dépot de l'application
                 }
             }
             catch(PDOException $e){
