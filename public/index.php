@@ -186,7 +186,7 @@ if( $form_is_valid === true ){
     curl_setopt_array( $curl, $options_curl );
 
     // attrape l'URL et la passe au navigateur
-    $response_curl = curl_exec($curl);
+//    $response_curl = curl_exec($curl);
 
     //-- @todo traiter la réponse 20O ou autre et check la strcutre du fichier fam
     $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );
