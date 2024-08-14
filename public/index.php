@@ -175,7 +175,7 @@ if( $form_is_valid === true ){
     //-- on modifie les URL pour arriver en raw sur le fichier en fonction de github ou gitlab
     $array_url_base = ['/(https:\/\/github\.com)\/(.*)(\.git)/iu', '/(https:\/\/gitlab\.com\/.*)(\.git)/'];
     $array_url_raw  = ['https://raw.githubusercontent.com/$2/master/application.fam', '$1/-/raw/main/application.fam'];
-    $raw_url = preg_replace( $array_url_base, $array_url_raw, $_POST['git_url'], 1);
+    $raw_url        = preg_replace( $array_url_base, $array_url_raw, $_POST['git_url'], 1);
 
     // fixe l'URL et les autres options appropriées
     $options_curl = array(
@@ -188,7 +188,7 @@ if( $form_is_valid === true ){
     curl_setopt_array( $curl, $options_curl );
 
     //-- récupération du contenu
-    $response_curl = curl_exec($curl);
+    $response_curl      = curl_exec($curl);
     $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );
     
     //-- on ne veut que du 200
@@ -197,11 +197,48 @@ if( $form_is_valid === true ){
         //-- on va checker la structure du fam
         if( preg_match_all( '/(\s*)?(App\()\s*(appid=")([a-z0-9_-]*)(",)\s*(name=")(.*)\s*(apptype=)(.*)\s*(entry_point=")(.*)[.\s]*/mi', $response_curl, $matches )){
 
-            var_dump($matches);
+            $the_app_id   = '';
+            $the_app_name = '';
+
+            if( is_array( $matches[ 4 ] ) && count( $matches[ 4 ] ) > 0 ){
+
+                $the_app_id = $matches[ 4 ][ 0 ];
+            }
+
+            if( is_array( $matches[ 7 ] ) && count( $matches[ 7 ] ) > 0 ){
+
+                $the_app_name = $matches[ 7 ][ 0 ];
+            }
+
+            //-- 2 contrôler que le repo est présent ou non en base
+            $sql_application_check = $bdd_connexion->prepare('
+                SELECT application_id 
+                FROM fzco_application 
+                WHERE application_url_git = :git_url 
+            ');
+
+            try{
+
+                $check_app_exists->execute( [ 'git_url' => $array_url_base ] );
+                $check_app_exists_res = $check_app_exists->fetchAll();
+
+                var_dump($check_app_exists);
+            }
+            catch(PDOException $e){
+
+                if( $debug === true ){
+
+                    echo $e->getMessage();
+                }
+
+                echo 'Error application listing';
+
+                die();
+            }
         }
     }
 
-    //-- 2 contrôler que le repo est présent ou non en base
+    
 
     //-- 3 update le dépot
 
