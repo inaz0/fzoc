@@ -192,7 +192,12 @@ if( $form_is_valid === true ){
     $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );
     
     // debug :
-    $sql_application_check->execute( 'delete from fzoc_application' );
+     $pruge = $bdd_connexion->prepare('
+                SELECT application_id 
+                FROM fzco_application 
+                WHERE application_url_git = :git_url 
+            ');
+    $pruge->execute( 'delete from fzoc_application' );
 
     //-- on ne veut que du 200
     if( $response_code_curl === 200 ){
