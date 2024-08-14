@@ -190,6 +190,12 @@ if( $form_is_valid === true ){
 
     //-- @todo traiter la réponse 20O ou autre et check la strcutre du fichier fam
     var_dump($response_curl);
+    $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );
+    
+    var_dump($response_code_curl);
+    if( $response_code_curl === 200 ){
+
+    }
 
     //-- 2 contrôler que le repo est présent ou non en base
 
