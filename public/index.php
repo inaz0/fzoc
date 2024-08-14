@@ -196,10 +196,10 @@ if( $form_is_valid === true ){
     if( $response_code_curl === 200 ){
 
         //-- on va checker la structure du fam
-        if( preg_match_all( '/(App\()\s*(appid=")([a-z0-9_-]*)(",)\s*(name=")(.*)\s*(apptype=)(.*)\s*(entry_point=")(.*)/', $response_curl, $matches )){
+        if( preg_match_all( '/(App\()\s*(appid=")([a-z0-9_-]*)(",)\s*(name=")(.*)\s*(apptype=)(.*)\s*(entry_point=")(.*)/m', $response_curl, $matches )){
 
             var_dump($matches);
-            
+
         }
     }
 
