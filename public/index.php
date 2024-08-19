@@ -269,7 +269,7 @@ if( $form_is_valid === true ){
                   
                         //-- on va ajouter la demande de compilation à la file d'attente
                         //-- @todo à compléter avec les infos firmware
-                        $content_of_dot_env = 'UFBT_HOME=/home/inazo/fz_'. $sql_firmware_info_res[ 0 ][ 'firmware_ufbt_path' ];
+                        $content_of_dot_env = '/home/inazo/fz_'. $sql_firmware_info_res[ 0 ][ 'firmware_ufbt_path' ];
 
                         //-- si la branch est la dev on change la branch à utiliser
                         if( $_POST[ 'git_branch' ] === 2 ){
