@@ -433,7 +433,9 @@ if( $form_is_valid === true ){
   <div class="container">
         <h3 class="section-heading">TABLE OF APP COMPIL</h3>
         <script type="text/javascript" >
-            let table = new DataTable('#list_of_applications');
+            let table = new DataTable('#list_of_applications', {
+                order:[[1,'desc']]
+            });
         </script>
         <table id="list_of_applications" class="stripe" style="width:100%;">
             <thead>
@@ -452,7 +454,7 @@ if( $form_is_valid === true ){
                 <tr>
                     <td>Row 2 Data 1</td>
                     <td>Row 2 Data 2</td>
-                    <td>Row 1 Data 2</td>
+                    <td>Row 2 Data 2</td>
                 </tr>
             </tbody>
         </table>
