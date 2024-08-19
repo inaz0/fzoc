@@ -462,7 +462,7 @@ if( $form_is_valid === true ){
                 <tr>
                     <td>Row 2 Data 1</td>
                     <td>Row 2 Data 2</td>
-                    <td>Row 2 Data 2</td>
+                    <td>Row 2 Data 5</td>
                 </tr>
             </tbody>
         </table>
