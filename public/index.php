@@ -485,7 +485,16 @@ if( $form_is_valid === true ){
                     { title: 'Status' },
                     { title: 'Firmware' },
                     { title: 'Download' }
-                ]
+                ],
+                columnDefs: [
+                {
+                    targets: 0,
+                    data: 'Download',
+                    render: function (data, type, row, meta) {
+                        return '<a href="' + data + '">Download</a>';
+                    }
+                }
+                ]  
             });
         });
         </script>

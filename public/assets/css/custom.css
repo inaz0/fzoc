@@ -14,7 +14,7 @@ input#git_url{
 
 table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-column.stripe > tbody > tr:nth-child(2n+1){
 
-  background-color: #ddd;
+  background-color: #868686;
 }
 
 .message_box{
