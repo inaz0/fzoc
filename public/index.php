@@ -276,7 +276,7 @@ if( $form_is_valid === true ){
                         if( $_POST[ 'git_branch' ] === 2 ){
 
                             $state_dir_of_ufbt .= '_dev' ;
-                            $ufbt_args          = '--branch=development';
+                            $ufbt_args          = '--branch=dev';
                         }
                         else{
 
