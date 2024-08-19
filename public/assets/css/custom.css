@@ -21,7 +21,7 @@ table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-colum
     display: inline-block;
 }
 
-tr:hover {
+tbody tr:hover {
     background: #999696 !important;
 }
 
