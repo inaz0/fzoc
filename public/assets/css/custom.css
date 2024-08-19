@@ -17,8 +17,14 @@ table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-colum
   background-color: #868686;
 }
 
-.status_datatable {
+.status_datatable{
     text-align: center !important; 
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 10%;
+}
+
+.status_datatable span{
     color: #fff;
     padding: 2px 5px;
     border-radius: 10%;
