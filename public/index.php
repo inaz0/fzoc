@@ -270,12 +270,17 @@ if( $form_is_valid === true ){
                   
                         //-- on va ajouter la demande de compilation à la file d'attente
                         //-- @todo à compléter avec les infos firmware
-                        $content_of_dot_env = '/home/inazo/fz_'. $sql_firmware_info_res[ 0 ][ 'firmware_ufbt_path' ];
+                        $state_dir_of_ufbt = '/home/inazo/fz_'. $sql_firmware_info_res[ 0 ][ 'firmware_ufbt_path' ];
 
                         //-- si la branch est la dev on change la branch à utiliser
                         if( $_POST[ 'git_branch' ] === 2 ){
 
-                            $ufbt_args = '--branch=dev';
+                            $state_dir_of_ufbt .= '_dev' ;
+                            $ufbt_args          = '--branch=dev';
+                        }
+                        else{
+
+                            $state_dir_of_ufbt .= '_release';
                         }
 
                         //-- list des commandes qui vont être jouées par le task runner, plus simple à maintenir et faire évoluer
@@ -283,9 +288,9 @@ if( $form_is_valid === true ){
                             'cd '.$path_to_ufbt,
                             'source bin/activate',
                             'cd '. $destination_dir .'/new ',
-                            'ufbt dotenv_create --state-dir '.$content_of_dot_env.' ',
-                          //  'ufbt update --index-url='. $sql_firmware_info_res[0][ 'firmware_url_update' ] .' ',
-                            'ufbt '. $ufbt_args .'',
+                            'ufbt dotenv_create --state-dir '.$state_dir_of_ufbt.' ',
+                            'ufbt update '. $ufbt_args .' --index-url='. $sql_firmware_info_res[0][ 'firmware_url_update' ] .' ',
+                            'ufbt ',
                             'mkdir -p '.$fap_path.$generate_part_dest_dir.'/ ',
                             'mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/',
                             'rm -rf '.$destination_dir.'/',
