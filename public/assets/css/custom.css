@@ -6,7 +6,11 @@ input#git_url{
   width: 100%;
 }
 
+.hero {
 
+  height: auto !important;
+  padding: 5em 0 !important;
+}
 
 .message_box{
 
