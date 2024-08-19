@@ -6,6 +6,11 @@ input#git_url{
   width: 100%;
 }
 
+.hero {
+  padding: 5em 0;
+  height: auto;
+}
+
 .message_box{
 
   padding: 1em 2em;
@@ -105,11 +110,6 @@ input#git_url{
   .section {
     padding: 12rem 0 11rem;
   }
-  .hero {
-    padding-bottom: 12rem;
-    text-align: left;
-    height: 165px;
-  }
   .phone {
     position: absolute;
     top: -1rem;
@@ -132,9 +132,7 @@ input#git_url{
 
 /* Bigger than 750 */
 @media (min-width: 750px) {
-  .hero {
-    height: 190px;
-  }
+
   .hero-heading {
     font-size: 2.6rem;
   }
@@ -167,9 +165,6 @@ input#git_url{
 @media (min-width: 1000px) {
   .section {
     padding: 20rem 0 19rem;
-  }
-  .hero {
-    padding: 15rem 0;
   }
   .hero-heading {
     font-size: 3.0rem;
