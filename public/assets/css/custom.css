@@ -25,6 +25,10 @@ tbody tr:hover {
     background: #999696 !important;
 }
 
+table.dataTable thead > tr > th.dt-orderable-asc:hover, table.dataTable thead > tr > th.dt-orderable-desc:hover, table.dataTable thead > tr > td.dt-orderable-asc:hover, table.dataTable thead > tr > td.dt-orderable-desc:hover{
+    outline: none;
+}
+
 .status_datatable{
     text-align: center !important; 
     color: #fff;
