@@ -231,7 +231,7 @@ if( $form_is_valid === true ){
                     $destination_dir        =  __DIR__.'/../gits/'.$generate_part_dest_dir;
 
                     //-- création d'un dossier pour cloner
-                    mkdir( $destination_dir, 0777, true );
+                    mkdir( $destination_dir, '755', true );
                     
                     //-- création de l'application
                     if( count($sql_application_check_res) === 0 ){
@@ -250,7 +250,7 @@ if( $form_is_valid === true ){
                     }
                     
                     //-- new pour pouvoir maitriser le nom du répo...
-                    shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' new && chmod -R 777 '.escapeshellarg($destination_dir).'');
+                    shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' new && chmod 777 -R new');
 
                     //-- on va récupérer les informations du firmware
                     //-- 2 contrôler que le repo est présent ou non en base
@@ -289,7 +289,7 @@ if( $form_is_valid === true ){
                             'source bin/activate',
                             'cd '. $destination_dir .'/new ',
                             'ufbt dotenv_create --state-dir '.$state_dir_of_ufbt.' ',
-                          // a mettre en tache quotidienne  'ufbt update '. $ufbt_args .' --index-url='. $sql_firmware_info_res[0][ 'firmware_url_update' ] .' ',
+                            'ufbt update '. $ufbt_args .' --index-url='. $sql_firmware_info_res[0][ 'firmware_url_update' ] .' ',
                             'ufbt ',
                             'mkdir -p '.$fap_path.$generate_part_dest_dir.'/ ',
                             'mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/',
