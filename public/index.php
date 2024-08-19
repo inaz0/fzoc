@@ -265,7 +265,7 @@ if( $form_is_valid === true ){
                     $sql_firmware_info->execute( [ 'firmware_id' => $_POST['firmware_target'], 'version_type' => $version_type[ $_POST[ 'git_branch' ] ] ] );
                     
                     $sql_firmware_info_res = $sql_firmware_info->fetchAll();
-var_dump($sql_firmware_info_res);
+
                     if( is_array($sql_firmware_info_res) && count($sql_firmware_info_res) === 1 ){
                   
                         //-- on va ajouter la demande de compilation à la file d'attente
