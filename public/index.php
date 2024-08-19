@@ -467,7 +467,7 @@ if( $form_is_valid === true ){
         ?>
 
         <script type="text/javascript" >
-            $( document ).ready(function() {
+        $( document ).ready(function() {
             let table = new DataTable('#list_of_applications', {
                 order:[[1,'desc']],
                 paging: true,
@@ -475,7 +475,7 @@ if( $form_is_valid === true ){
                 ordering: true,
                 pageLength: 50,
                 pagingType: 'simple_numbers',
-                lengthChange: false
+                lengthChange: false,
                 data: [
                     <?php echo implode( ',', $data_for_datatable ); ?>
                 ],
@@ -489,9 +489,7 @@ if( $form_is_valid === true ){
             });
         });
         </script>
-        <table id="list_of_applications" class="stripe" style="width:100%;">
-            
-        </table>
+        <table id="list_of_applications" class="stripe" style="width:100%;"></table>
     </div>
     
   </div>
