@@ -292,8 +292,6 @@ if( $form_is_valid === true ){
 
                         file_put_contents($task_list. '/'. str_replace('/','_',$generate_part_dest_dir) .'.sh', implode(' && ', $task_detail ) );
 
-                     //   file_put_contents($task_list. '/'. str_replace('/','_',$generate_part_dest_dir) .'.sh', 'cd '.$path_to_ufbt.' && source bin/activate && cd '. $destination_dir .'/new && ufbt dotenv_create --state-dir '.$content_of_dot_env.' && ufbt update --index-url='. $sql_firmware_info_res[0][ 'firmware_url_update' ] .' && ufbt '. $ufbt_args .' && mkdir -p '.$fap_path.$generate_part_dest_dir.'/ && mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/' );
-
                         //-- on change les droits pour que le task runner puisse le consommer
                         chmod( $task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 0755);
 
@@ -379,7 +377,7 @@ if( $form_is_valid === true ){
                 
                 echo '
                 <div class="row">
-                    <div class="column message_box message_error">
+                    <div class="column message_box '. $type_message .'">
                         '. $message .'
                     </div>
                 </div>';
