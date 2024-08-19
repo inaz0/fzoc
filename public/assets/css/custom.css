@@ -19,11 +19,29 @@ table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-colum
 
 .status_datatable {
     text-align: center !important; 
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 10%;
 }
 
 .status_datatable .pending{
     background-color: #ee7c47;
-    color: #fff;
+}
+
+.status_datatable .error{
+    background-color: #ee4c47;
+}
+
+.status_datatable .success{
+    background-color: #47ee71;
+}
+
+.status_datatable .deleted{
+    background-color: #a9b1b0;
+}
+
+.status_datatable .impossible{
+    background-color: #586362;
 }
 
 .message_box{
