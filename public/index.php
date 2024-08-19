@@ -250,17 +250,21 @@ if( $form_is_valid === true ){
                     //-- new pour pouvoir maitriser le nom du répo...
                     shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' new && chmod 777 -R new');
 
-                    //-- lancer la compilation en nohup ou similaire
+                    //-- on va ajouter la demande de compilation à la file d'attente
                     //-- @todo à compléter avec les infos firmware
-                    ///-- a lancer en tache toutes les X minutes / secondes en bash avec un liste des action à réaliser
                     $content_of_dot_env = 'UFBT_HOME=/home/inazo/fz_momentum';
 
-                    file_put_contents($task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.'/new && echo "'.$content_of_dot_env.'" > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && ufbt ' );
+                    file_put_contents($task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.'/new && echo "'.$content_of_dot_env.'" > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && ufbt && mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.'/'.$generate_part_dest_dir.'/' );
 
                     //-- on change les droits pour que le task runner puisse le consommer
                     chmod( $task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 0755);
 
                     //-- il faut insert en base que l'action va se jouer
+                    $sql_add_compiled = $bdd_connexion->prepare('
+                    INSERT INTO fzco_compiled (compiled_firmware_version_id, compiled_application_id,compiled_date,compiled_path_fap,compiled_status)
+                     VALUES ( :compiled_firmware_version_id, :compiled_application_id, :compiled_date, :compiled_path_fap, "pending" )');
+
+                    $sql_add_compiled->execute( [ 'compiled_firmware_version_id' => $the_app_name, 'compiled_date' => date('Y-m-d H:i:s', $starting_time_process), 'compiled_path_fap' => $generate_part_dest_dir ] );
                 }
             }
             catch(PDOException $e){

@@ -13,7 +13,9 @@ foreach( $pending_task ?? [] as $task_waiting ){
 
         if( rename( $task_list.$task_waiting, $task_list.'running/'.$task_waiting ) ) {
 
-            shell_exec( 'bash '.$task_list.'running/'.$task_waiting .' > '.$task_list.'result/'.str_replace('.sh','',$task_waiting).'result');
+            shell_exec( 'bash '.$task_list.'running/'.$task_waiting .' > '.$task_list.'result/'.str_replace('.sh','',$task_waiting).'.result');
+
+            //-- on récupère le contenu du resutl si on trouve "Found nothing to build" on le met en "build impossible"
         }
         else{
 

@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `fzco_compiled` (
 	`compiled_application_id` int NOT NULL,
 	`compiled_date` date NOT NULL,
 	`compiled_path_fap` varchar(255) NOT NULL,
-	`compiled_status`  ENUM('pending','error', 'success','deleted')  NOT NULL,
+	`compiled_status`  ENUM('pending','error', 'success','deleted', 'impossible')  NOT NULL,
 	PRIMARY KEY (`compiled_firmware_version_id`, `compiled_application_id`)
 );
 
