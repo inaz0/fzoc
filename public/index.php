@@ -258,7 +258,7 @@ if( $form_is_valid === true ){
                     file_put_contents($task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.'/new && echo "'.$content_of_dot_env.'" > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && ufbt' );
 
                     //-- on change les droits pour que le task runner puisse le consommer
-                    chmod( $task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 755);
+                    chmod( $task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 0755);
 
                     //-- il faut insert en base que l'action va se jouer
                 }
