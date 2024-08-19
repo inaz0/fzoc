@@ -435,7 +435,7 @@ if( $form_is_valid === true ){
         <script type="text/javascript" >
             let table = new DataTable('#list_of_applications');
         </script>
-        <table id="list_of_applications">
+        <table id="list_of_applications" class="cell-border compact stripe">
             <thead>
                 <tr>
                     <th>App ID</th>
