@@ -456,7 +456,7 @@ if( $form_is_valid === true ){
                     [
                         "'. $an_app[ 'application_name' ] .'",
                         "'. $an_app[ 'compiled_date' ] .'",
-                        "'. $an_app[ 'compiled_status' ].',
+                        "'. $an_app[ 'compiled_status' ].'",
                         "firmware",
                         "Download" 
                     ]
