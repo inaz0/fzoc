@@ -287,7 +287,8 @@ if( $form_is_valid === true ){
                           //  'ufbt update --index-url='. $sql_firmware_info_res[0][ 'firmware_url_update' ] .' ',
                             'ufbt '. $ufbt_args .'',
                             'mkdir -p '.$fap_path.$generate_part_dest_dir.'/ ',
-                            'mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/'
+                            'mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/',
+                            'rm -rf '.$destination_dir.'/',
                         ];
 
                         file_put_contents($task_list. '/'. str_replace('/','_',$generate_part_dest_dir) .'.sh', implode(' && ', $task_detail ) );
