@@ -11,9 +11,9 @@ foreach( $pending_task ?? [] as $task_waiting ){
 
     if( !is_dir( $task_list.$task_waiting ) ){
 
-        if( rename( $task_list.$task_waiting, $task_list.'running/'.$task_waiting.'.sh' ) ) {
+        if( rename( $task_list.$task_waiting, $task_list.'running/'.$task_waiting ) ) {
 
-            shell_exec( $task_list.'./running/'.$task_waiting.'.sh' );
+            shell_exec( $task_list.'./running/'.$task_waiting );
         }
         else{
 
