@@ -433,9 +433,11 @@ if( $form_is_valid === true ){
   <div class="container">
         <h3 class="section-heading">TABLE OF APP COMPIL</h3>
         <script type="text/javascript" >
+            $( document ).ready(function() {
             let table = new DataTable('#list_of_applications', {
                 order:[[1,'desc']]
             });
+        });
         </script>
         <table id="list_of_applications" class="stripe" style="width:100%;">
             <thead>
