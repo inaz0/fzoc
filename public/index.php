@@ -247,12 +247,14 @@ if( $form_is_valid === true ){
                         $application_id = $sql_application_check_res[ 0 ];
                     }
                     
-                    shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) );
+                    shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) . $destination_dir );
 
                     //-- lancer la compilation en nohup ou similaire
                     //-- @todo à compléter avec les infos firmware
                     $content_of_dot_env = 'UFBT_HOME=/home/inazo/fz_momentum'.PHP_EOL;
                     shell_exec( 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.' && cat '.$content_of_dot_env.' > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && nohup ufbt' );
+
+                    echo 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.' && cat '.$content_of_dot_env.' > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && nohup ufbt';
 
                     //-- ne pas oublier de lancer un clean des répertoire après et de déplacer le fap dans le public
                 }
