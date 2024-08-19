@@ -13,7 +13,6 @@ foreach( $pending_task ?? [] as $task_waiting ){
 
         if( rename( $task_list.$task_waiting, $task_list.'running/'.$task_waiting.'.sh' ) ) {
 
-            chmod( $task_list.'running/'.$task_waiting.'.sh', 755);
             shell_exec( $task_list.'./running/'.$task_waiting.'.sh' );
         }
         else{
