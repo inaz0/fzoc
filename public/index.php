@@ -489,10 +489,15 @@ if( $form_is_valid === true ){
                 columnDefs: [
                 {
                     targets: 4,
+                    className: 'download_datatable',
                     render: function (data, type, row, meta) {
-                        console.log( data, type, row, meta )
+                        
                         return '<a href="' + data + '">Download</a>';
                     }
+                },
+                {
+                    className: 'status_datatable',
+                    targets: 2
                 }
                 ]  
             });
