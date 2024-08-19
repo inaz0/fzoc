@@ -435,7 +435,28 @@ if( $form_is_valid === true ){
         <script type="text/javascript" >
             let table = new DataTable('#list_of_applications');
         </script>
-      <div id="list_of_applications"></div>
+        <table id="list_of_applications">
+            <thead>
+                <tr>
+                    <th>App ID</th>
+                    <th>App name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Row 1 Data 1</td>
+                    <td>Row 1 Data 2</td>
+                    <td>Row 1 Data 2</td>
+                </tr>
+                <tr>
+                    <td>Row 2 Data 1</td>
+                    <td>Row 2 Data 2</td>
+                    <td>Row 1 Data 2</td>
+                </tr>
+            </tbody>
+
+        </table>
     </div>
     
   </div>
