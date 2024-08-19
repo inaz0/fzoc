@@ -484,11 +484,11 @@ if( $form_is_valid === true ){
                     { title: 'Date' },
                     { title: 'Status' },
                     { title: 'Firmware' },
-                    { data:'download', title: 'Download' }
+                    { title: 'Download' }
                 ],
                 columnDefs: [
                 {
-                    targets: 0,
+                    targets: 4,
                     data: 'download',
                     render: function (data, type, row, meta) {
                         return '<a href="' + data + '">Download</a>';
