@@ -426,6 +426,15 @@ if( $form_is_valid === true ){
   </div>
 
   <div class="section values">
+  <div class="container">
+      <h3 class="section-heading">TABLE OF APP COMPIL</h3>
+      <p class="section-description">Got a try with our demo version below:</p>
+      <a class="button button-primary" href="https://demo-asvs.keikai.eu" target="_blank">Go to demo</a>
+    </div>
+    
+  </div>
+
+  <div class="section get-help">
     <div class="container">
       <div class="row">
         <div class="one-third column value">
@@ -443,14 +452,6 @@ if( $form_is_valid === true ){
           <h5 class="value-heading">Compilation depuis le début</h5>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="section get-help">
-    <div class="container">
-      <h3 class="section-heading">TABLE OF APP COMPIL</h3>
-      <p class="section-description">Got a try with our demo version below:</p>
-      <a class="button button-primary" href="https://demo-asvs.keikai.eu" target="_blank">Go to demo</a>
     </div>
   </div>
 
