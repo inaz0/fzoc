@@ -489,8 +489,8 @@ if( $form_is_valid === true ){
                 columnDefs: [
                 {
                     targets: 4,
-                    data: 'download',
                     render: function (data, type, row, meta) {
+                        console.log( data, type, row, meta )
                         return '<a href="' + data + '">Download</a>';
                     }
                 }
