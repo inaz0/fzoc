@@ -432,6 +432,40 @@ if( $form_is_valid === true ){
   <div class="section values">
   <div class="container">
         <h3 class="section-heading">TABLE OF APP COMPIL</h3>
+
+        <?php
+
+        //-- récupération de la liste des applications
+        $sql_all_application_compiled = $bdd_connexion->prepare('
+            SELECT * 
+            FROM fzco_application 
+            INNER JOIN fzco_compiled ON fzco_application.compiled_application_id = fzco_application.application_id
+        ');
+
+        $sql_all_application_compiled->execute();
+        
+        $sql_all_application_compiled_res = $sql_all_application_compiled->fetchAll();
+
+        $data_for_datatable = [];
+
+        if( is_array( $sql_all_application_compiled_res ) && count( $sql_all_application_compiled_res ) > 0 ){
+
+            foreach( $sql_all_application_compiled_res as $an_app ){
+
+                $data_for_datatable[] = '
+                    [
+                        "'. $an_app[ 'application_name' ] .'",
+                        "'. $an_app[ 'compiled_date' ] .'",
+                        "'. $an_app[ 'compiled_status' ].',
+                        "firmware",
+                        "Download" 
+                    ]
+                ';
+            }
+        }
+
+        ?>
+
         <script type="text/javascript" >
             $( document ).ready(function() {
             let table = new DataTable('#list_of_applications', {
@@ -442,28 +476,24 @@ if( $form_is_valid === true ){
                 pageLength: 50,
                 pagingType: 'simple_numbers',
                 lengthChange: false
+                data: [
+                    <?php echo implode( ',', $data_for_datatable ); ?>
+                ]
             });
         });
         </script>
         <table id="list_of_applications" class="stripe" style="width:100%;">
             <thead>
                 <tr>
-                    <th>App ID</th>
                     <th>App name</th>
+                    <th>Date</th>
                     <th>Status</th>
+                    <th>Firmware</th>
+                    <th>Download</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Row 1 Data 1</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 2</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 2 Data 2</td>
-                    <td>Row 2 Data 5</td>
-                </tr>
+             
             </tbody>
         </table>
     </div>
