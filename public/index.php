@@ -227,7 +227,6 @@ if( $form_is_valid === true ){
                     $destination_dir =  __DIR__.'/../gits/'.hash( 'md5', $_POST['git_url'] ).'/'.time();
 
                     //-- création d'un dossier pour cloner
-                //    umask(0002);
                     mkdir( $destination_dir, '755', true );
                     
                     //-- création de l'application
@@ -246,12 +245,13 @@ if( $form_is_valid === true ){
                         $application_id = $sql_application_check_res[ 0 ];
                     }
                     
+                    //-- new pour pouvoir maitriser le nom du répo...
                     shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' new');
 
                     //-- lancer la compilation en nohup ou similaire
                     //-- @todo à compléter avec les infos firmware
                     $content_of_dot_env = 'UFBT_HOME=/home/inazo/fz_momentum'.PHP_EOL;
-                    shell_exec( 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.' && cat '.$content_of_dot_env.' > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && nohup ufbt' );
+                    echo shell_exec( 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.' && cat '.$content_of_dot_env.' > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && nohup ufbt' );
 
                     echo 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.' && cat '.$content_of_dot_env.' > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && nohup ufbt';
 
