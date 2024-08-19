@@ -195,7 +195,7 @@ if( $form_is_valid === true ){
     if( $response_code_curl === 200 ){
 
         //-- on va checker la structure du fam
-        if( preg_match_all( '/(\s*)?(App\()\s*(appid=")([a-z0-9_-]*)(",)\s*(name=")(.*)(",)(.*)\s*(apptype=)(.*)\s*(entry_point=")(.*)[.\s]*/mi', $response_curl, $matches )){
+        if( preg_match_all( '/(\s*)?(App\()\s*(appid=")([a-z0-9_-]*)(",)\s*(name=")(.*)(",)(.*)\s*(apptype=)(.*)\s*(entry_point=")([.\s]*)[.\s]*/mi', $response_curl, $matches )){
 
             $the_app_id   = '';
             $the_app_name = '';
@@ -251,7 +251,7 @@ if( $form_is_valid === true ){
                     //-- lancer la compilation en nohup ou similaire
                     //-- @todo à compléter avec les infos firmware
                     $content_of_dot_env = 'UFBT_HOME=/home/inazo/fz_momentum'.PHP_EOL;
-                    echo shell_exec( 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.'/new && echo "'.$content_of_dot_env.'" > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && nohup ufbt' );
+                    shell_exec( 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.'/new && echo "'.$content_of_dot_env.'" > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && nohup ufbt' );
 
                     echo  'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.'/new && echo "'.$content_of_dot_env.'" > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && nohup ufbt' ;
 
