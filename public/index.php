@@ -227,8 +227,8 @@ if( $form_is_valid === true ){
                     $destination_dir =  __DIR__.'/../gits/'.hash( 'md5', $_POST['git_url'] ).'/'.time();
 
                     //-- création d'un dossier pour cloner
-                    umask(0002);
-                    mkdir( $destination_dir, '0755', true );
+                //    umask(0002);
+                    mkdir( $destination_dir, '0000', true );
                     
                     //-- création de l'application
                     if( count($sql_application_check_res) === 0 ){
