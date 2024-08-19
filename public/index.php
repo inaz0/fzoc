@@ -231,7 +231,7 @@ if( $form_is_valid === true ){
                     $destination_dir        =  __DIR__.'/../gits/'.$generate_part_dest_dir;
 
                     //-- création d'un dossier pour cloner
-                    mkdir( $destination_dir, 0755, true );
+                    mkdir( $destination_dir, 0777, true );
                     
                     //-- création de l'application
                     if( count($sql_application_check_res) === 0 ){
