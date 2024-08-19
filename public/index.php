@@ -224,7 +224,9 @@ if( $form_is_valid === true ){
 
                 if( is_array($sql_application_check_res) ){
 
-                    $destination_dir =  __DIR__.'/../gits/'.hash( 'md5', $_POST['git_url'] ).'/'.time();
+                    $starting_time_process  = time();
+                    $generate_part_dest_dir = hash( 'md5', $_POST['git_url'] ).'/'.$starting_time_process;
+                    $destination_dir        =  __DIR__.'/../gits/'.$generate_part_dest_dir;
 
                     //-- création d'un dossier pour cloner
                     mkdir( $destination_dir, '755', true );
@@ -252,10 +254,10 @@ if( $form_is_valid === true ){
                     //-- @todo à compléter avec les infos firmware
                     ///-- a lancer en tache toutes les X minutes / secondes en bash avec un liste des action à réaliser
                     $content_of_dot_env = 'UFBT_HOME=/home/inazo/fz_momentum'.PHP_EOL;
-                    
-                    file_put_contents($task_list.'/'.str_replace('/','_',$destination_dir), 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.'/new && echo "'.$content_of_dot_env.'" > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && ufbt' );
 
-                    //-- ne pas oublier de lancer un clean des répertoire après et de déplacer le fap dans le public
+                    file_put_contents($task_list.'/'.str_replace('/','_',$generate_part_dest_dir), 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.'/new && echo "'.$content_of_dot_env.'" > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && ufbt' );
+
+                    //-- il faut insert en base que l'action va se jouer
                 }
             }
             catch(PDOException $e){
