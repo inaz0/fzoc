@@ -250,7 +250,7 @@ if( $form_is_valid === true ){
                     }
                     
                     //-- new pour pouvoir maitriser le nom du répo...
-                    shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' new && chmod 777 -R '.escapeshellarg($destination_dir).'');
+                    shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' new && chmod -R 777 '.escapeshellarg($destination_dir).'');
 
                     //-- on va récupérer les informations du firmware
                     //-- 2 contrôler que le repo est présent ou non en base
