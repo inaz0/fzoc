@@ -478,23 +478,19 @@ if( $form_is_valid === true ){
                 lengthChange: false
                 data: [
                     <?php echo implode( ',', $data_for_datatable ); ?>
+                ],
+                columns: [
+                    { title: 'App Name' },
+                    { title: 'Date' },
+                    { title: 'Status' },
+                    { title: 'Firmware' },
+                    { title: 'Download' }
                 ]
             });
         });
         </script>
         <table id="list_of_applications" class="stripe" style="width:100%;">
-            <thead>
-                <tr>
-                    <th>App name</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Firmware</th>
-                    <th>Download</th>
-                </tr>
-            </thead>
-            <tbody>
-             
-            </tbody>
+            
         </table>
     </div>
     
