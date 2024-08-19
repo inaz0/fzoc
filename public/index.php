@@ -245,7 +245,7 @@ if( $form_is_valid === true ){
                         $application_id = $sql_application_check_res[ 0 ];
                     }
                     
-                    shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' .');
+                    shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' ./');
 
                     //-- lancer la compilation en nohup ou similaire
                     //-- @todo à compléter avec les infos firmware
