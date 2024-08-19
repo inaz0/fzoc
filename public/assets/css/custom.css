@@ -25,7 +25,8 @@ input#git_url{
 
 .message_success{
 
-  background: url() #6cee73;
+  background: url() #4ba250;
+  color:#262525;
 }
 
 
