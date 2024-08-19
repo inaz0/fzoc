@@ -293,6 +293,7 @@ if( $form_is_valid === true ){
                             'ufbt ',
                             'mkdir -p '.$fap_path.$generate_part_dest_dir.'/ ',
                             'mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/',
+                            'chmod -R 777 '.$destination_dir.'/',
                             'rm -rf '.$destination_dir.'/',
                         ];
 
