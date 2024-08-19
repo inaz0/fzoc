@@ -254,7 +254,7 @@ if( $form_is_valid === true ){
                     //-- @todo à compléter avec les infos firmware
                     $content_of_dot_env = 'UFBT_HOME=/home/inazo/fz_momentum';
 
-                    file_put_contents($task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.'/new && echo "'.$content_of_dot_env.'" > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && ufbt && mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.'/'.$generate_part_dest_dir.'/' );
+                    file_put_contents($task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.'/new && echo "'.$content_of_dot_env.'" > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && ufbt && mkdir -p '.$fap_path.$generate_part_dest_dir.'/ && mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/' );
 
                     //-- on change les droits pour que le task runner puisse le consommer
                     chmod( $task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 0755);

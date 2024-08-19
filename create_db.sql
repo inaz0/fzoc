@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `fzco_compiled` (
 	`compiled_date` datetime NOT NULL,
 	`compiled_path_fap` varchar(255) NOT NULL,
 	`compiled_status`  ENUM('pending','error', 'success','deleted', 'impossible')  NOT NULL,
-	PRIMARY KEY (`compiled_firmware_version_id`, `compiled_application_id`)
+	PRIMARY KEY (`compiled_firmware_version_id`, `compiled_application_id`, `compiled_date` )
 );
 
 ALTER TABLE `fzco_depend` ADD CONSTRAINT `fzco_depend_fk0` FOREIGN KEY (`depend_firmware_id`) REFERENCES `fzco_firmware`(`firmware_id`);
