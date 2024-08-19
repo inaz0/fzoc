@@ -439,7 +439,7 @@ if( $form_is_valid === true ){
         $sql_all_application_compiled = $bdd_connexion->prepare('
             SELECT * 
             FROM fzco_application 
-            INNER JOIN fzco_compiled ON fzco_application.compiled_application_id = fzco_application.application_id
+            INNER JOIN fzco_compiled ON fzco_compiled.compiled_application_id = fzco_application.application_id
         ');
 
         $sql_all_application_compiled->execute();
