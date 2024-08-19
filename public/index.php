@@ -359,7 +359,7 @@ if( $form_is_valid === true ){
   <link rel="stylesheet" href="assets/css/dataTables.dataTables.min.css">
   
   <script type="text/javascript" src="assets/js/jquery-3.7.1.min.js"></script>
-  <script type="text/javascript" src="assets/js/dataTables.min.js" defer></script>
+  <script type="text/javascript" src="assets/js/dataTables.min.js" ></script>
 
   <link rel="icon" type="image/png" href="../../dist/images/favicon.png">
 </head>
@@ -432,7 +432,7 @@ if( $form_is_valid === true ){
   <div class="section values">
   <div class="container">
         <h3 class="section-heading">TABLE OF APP COMPIL</h3>
-        <script type="text/javascript">
+        <script type="text/javascript" >
             let table = new DataTable('#list_of_applications');
         </script>
       <div id="list_of_applications"></div>
