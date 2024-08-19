@@ -17,6 +17,15 @@ table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-colum
   background-color: #868686;
 }
 
+.status_datatable {
+    text-align: center !important; 
+}
+
+.status_datatable .pending{
+    background-color: #ee7c47;
+    color: #fff;
+}
+
 .message_box{
 
   padding: 1em 2em;
