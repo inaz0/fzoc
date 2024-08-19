@@ -266,7 +266,7 @@ if( $form_is_valid === true ){
 
                     $sql_add_compiled->execute( [ 
                         'compiled_firmware_version_id' => $_POST['firmware_target'],
-                        'compiled_application_id'      => $application_id,
+                        'compiled_application_id'      => $application_id[0],
                         'compiled_date'                => date('Y-m-d H:i:s', $starting_time_process), 
                         'compiled_path_fap'            => $generate_part_dest_dir 
                         ] );
