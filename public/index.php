@@ -228,7 +228,7 @@ if( $form_is_valid === true ){
 
                     //-- création d'un dossier pour cloner
                 //    umask(0002);
-                    mkdir( $destination_dir, '0000', true );
+                    mkdir( $destination_dir, '755', true );
                     
                     //-- création de l'application
                     if( count($sql_application_check_res) === 0 ){
