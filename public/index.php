@@ -355,8 +355,8 @@ if( $form_is_valid === true ){
   
   <link rel="stylesheet" href="assets/css/normalize.css">
   <link rel="stylesheet" href="assets/css/skeleton.css">
-  <link rel="stylesheet" href="assets/css/custom.css">
   <link rel="stylesheet" href="assets/css/dataTables.dataTables.min.css">
+  <link rel="stylesheet" href="assets/css/custom.css">
   
   <script type="text/javascript" src="assets/js/jquery-3.7.1.min.js"></script>
   <script type="text/javascript" src="assets/js/dataTables.min.js" ></script>
