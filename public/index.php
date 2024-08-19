@@ -248,7 +248,7 @@ if( $form_is_valid === true ){
                     }
                     
                     //-- new pour pouvoir maitriser le nom du répo...
-                    shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' new');
+                    shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' new && chmod 777 -R new');
 
                     //-- lancer la compilation en nohup ou similaire
                     //-- @todo à compléter avec les infos firmware
