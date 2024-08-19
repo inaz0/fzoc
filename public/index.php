@@ -258,7 +258,7 @@ if( $form_is_valid === true ){
                         SELECT * 
                         FROM fzco_firmware 
                         INNER JOIN fzco_depend ON depend_firmware_id = fzco_firmware.firmware_id
-                        INNER JOIN fzco_firmware_version ON fzco_depend.depend_firmware_version_id = fzco_firmware_version.firmware_version_id
+                        INNER JOIN fzco_firmware_version ON fzco_depend.depend_firmware_version_id = fzco_firmware_version.firmware_version_id 
                         WHERE firmware_id = :firmware_id AND firmware_vesion_type = :version_type AND firmware_version_is_active = 1 AND firmware_is_active = 1
                     ');
 
