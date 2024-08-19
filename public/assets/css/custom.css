@@ -12,6 +12,10 @@ input#git_url{
   padding: 5em 0 !important;
 }
 
+.section.values {
+    padding: 5em 0 !important;
+}
+
 table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-column.stripe > tbody > tr:nth-child(2n+1){
 
   background-color: #68461a;
