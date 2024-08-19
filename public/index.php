@@ -438,7 +438,9 @@ if( $form_is_valid === true ){
                 order:[[1,'desc']],
                 paging: true,
                 searching: true,
-                ordering: true
+                ordering: true,
+                pageLength: false,
+                pagingType: 'simple_numbers'
             });
         });
         </script>
