@@ -9,7 +9,14 @@ unset( $pending_task[0], $pending_task[1]);
 
 foreach( $pending_task ?? [] as $task_waiting ){
 
-    rename( $task_list.$task_waiting, 'running/'.$task_waiting.'.sh' );
-    chmod('running/'.$task_waiting.'.sh', 755);
-    shell_exec( './running/'.$task_waiting.'.sh' );
+    if( rename( $task_list.$task_waiting, 'running/'.$task_waiting.'.sh' ) ) {
+
+        chmod('running/'.$task_waiting.'.sh', 755);
+        shell_exec( './running/'.$task_waiting.'.sh' );
+    }
+    else{
+
+        echo 'error move';
+    }
+    
 }
