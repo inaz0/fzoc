@@ -23,9 +23,9 @@ class fzcoPDO extends PDO
     }
 }
 
-$lang = 'fr';
-
-$translation = [
+$lang         = 'fr';
+$version_type = [ 1 => 'release', 2 => 'dev' ];
+$translation  = [
     'fr' =>
     [
         'title_form'       => 'Compiler une application',
@@ -37,7 +37,8 @@ $translation = [
         [
             'git_url_error'     => 'L\'url du dépôt GitHub ou GitLab n\'est pas conforme. (ex. : https://github.com/inaz0/fzoc.git )',
             'error_other_field' => 'Vous n\'avez pas rempli tous les champs obligatoire.'
-        ]
+        ],
+        'success'          => 'La compilation va bientôt commencer rafraichissez la page régulièrement pour voir le résultat apparaitre ci-dessous.'
     ],
     'en' => 
     [
@@ -50,7 +51,8 @@ $translation = [
         [
             'git_url_error' => 'The GitHub or GitLab URL was not conform. (ex. : https://github.com/inaz0/fzoc.git )',
             'error_other_field' => 'Missing mandatory fields.'
-        ]
+        ],
+        'success'          => 'The compilation will start soon, refresh the page regularly to see the result appear below.'
     ]
 ];
 
@@ -250,26 +252,53 @@ if( $form_is_valid === true ){
                     //-- new pour pouvoir maitriser le nom du répo...
                     shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' new && chmod 777 -R new');
 
-                    //-- on va ajouter la demande de compilation à la file d'attente
-                    //-- @todo à compléter avec les infos firmware
-                    $content_of_dot_env = 'UFBT_HOME=/home/inazo/fz_momentum';
+                    //-- on va récupérer les informations du firmware
+                    //-- 2 contrôler que le repo est présent ou non en base
+                    $sql_firmware_info = $bdd_connexion->prepare('
+                        SELECT * 
+                        FROM fzco_firmware 
+                        INNER JOIN fzco_firmware_version ON fzco_firmware_version.firmware_version_id = fzco_firmware.firmware_id
+                        WHERE firmware_id = :firmware_id AND firmware_vesion_type = :version_type AND firmware_version_is_active = 1 AND firmware_is_active = 1
+                    ');
 
-                    file_put_contents($task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.'/new && echo "'.$content_of_dot_env.'" > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && ufbt && mkdir -p '.$fap_path.$generate_part_dest_dir.'/ && mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/' );
+                    $sql_firmware_info->execute( [ 'firmware_id' => $_POST['firmware_target'], 'version_type' => $version_type[ $_POST[ 'git_branch' ] ] ] );
+                    
+                    $sql_firmware_info_res = $sql_application_check->fetchAll();
 
-                    //-- on change les droits pour que le task runner puisse le consommer
-                    chmod( $task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 0755);
+                    if( is_array($sql_firmware_info_res) && count($sql_firmware_info_res) === 1 ){
+                  
+                        //-- on va ajouter la demande de compilation à la file d'attente
+                        //-- @todo à compléter avec les infos firmware
+                        $content_of_dot_env = 'UFBT_HOME=/home/inazo/fz_'. $sql_firmware_info_res[ 0 ][ 'firmware_ufbt_path' ];
 
-                    //-- il faut insert en base que l'action va se jouer
-                    $sql_add_compiled = $bdd_connexion->prepare('
-                    INSERT INTO fzco_compiled (compiled_firmware_version_id, compiled_application_id,compiled_date,compiled_path_fap,compiled_status)
-                     VALUES ( :compiled_firmware_version_id, :compiled_application_id, :compiled_date, :compiled_path_fap, "pending" )');
+                        //-- si la branch est la dev on change la branch à utiliser
+                        if( $_POST[ 'git_branch' ] === 2 ){
 
-                    $sql_add_compiled->execute( [ 
-                        'compiled_firmware_version_id' => $_POST['firmware_target'],
-                        'compiled_application_id'      => $application_id[0],
-                        'compiled_date'                => date('Y-m-d H:i:s', $starting_time_process), 
-                        'compiled_path_fap'            => $generate_part_dest_dir 
-                        ] );
+                            $ufbt_args = '--branch=dev';
+                        }
+
+                        file_put_contents($task_list. '/'. str_replace('/','_',$generate_part_dest_dir) .'.sh', 'cd '.$path_to_ufbt.' && source bin/activate && cd '. $destination_dir .'/new && echo "'.$content_of_dot_env.'" > .env && ufbt update --index-url='. $sql_firmware_info_res[0][ 'firmware_url_update' ] .' && ufbt '. $ufbt_args .' && mkdir -p '.$fap_path.$generate_part_dest_dir.'/ && mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/' );
+
+                        //-- on change les droits pour que le task runner puisse le consommer
+                        chmod( $task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 0755);
+
+                        //-- il faut insert en base que l'action va se jouer
+                        $sql_add_compiled = $bdd_connexion->prepare('
+                        INSERT INTO fzco_compiled (compiled_firmware_version_id, compiled_application_id,compiled_date,compiled_path_fap,compiled_status)
+                        VALUES ( :compiled_firmware_version_id, :compiled_application_id, :compiled_date, :compiled_path_fap, "pending" )');
+
+                        //@todo reprendre le bon id du firmware
+                        $sql_add_compiled->execute( [ 
+                            'compiled_firmware_version_id' => $sql_firmware_info_res[ 0 ][ 'firmware_version_id' ],
+                            'compiled_application_id'      => $application_id[ 0 ],
+                            'compiled_date'                => date('Y-m-d H:i:s', $starting_time_process), 
+                            'compiled_path_fap'            => $generate_part_dest_dir 
+                            ] );
+
+                    }
+                    //@todo mettre le message que la compile va bientot commmencer
+
+                    $message = $translation[ $lang ][ 'success' ];
                 }
             }
             catch(PDOException $e){
