@@ -21,6 +21,10 @@ table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-colum
     display: inline-block;
 }
 
+tr:hover {
+    background: #999696 !important;
+}
+
 .status_datatable{
     text-align: center !important; 
     color: #fff;
