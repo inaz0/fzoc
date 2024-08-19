@@ -250,7 +250,7 @@ if( $form_is_valid === true ){
                     }
                     
                     //-- new pour pouvoir maitriser le nom du répo...
-                    shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' new && chmod 777 -R new');
+                    shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' new && chmod 777 -R ../../new');
 
                     //-- on va récupérer les informations du firmware
                     //-- 2 contrôler que le repo est présent ou non en base
@@ -293,7 +293,6 @@ if( $form_is_valid === true ){
                             'ufbt ',
                             'mkdir -p '.$fap_path.$generate_part_dest_dir.'/ ',
                             'mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/',
-                            'chmod -R 777 '.$destination_dir.'/',
                             'rm -rf '.$destination_dir.'/',
                         ];
 
