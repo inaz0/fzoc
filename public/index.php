@@ -270,6 +270,10 @@ if( $form_is_valid === true ){
                 die();
             }
         }
+        else{
+
+            echo 'error fam';
+        }
     }
     //-- 4 préparer les dossier
 
