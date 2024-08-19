@@ -439,8 +439,9 @@ if( $form_is_valid === true ){
                 paging: true,
                 searching: true,
                 ordering: true,
-                pageLength: false,
-                pagingType: 'simple_numbers'
+                pageLength: 50,
+                pagingType: 'simple_numbers',
+                lengthChange: false
             });
         });
         </script>
