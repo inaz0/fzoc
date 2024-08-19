@@ -14,7 +14,11 @@ input#git_url{
 
 table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-column.stripe > tbody > tr:nth-child(2n+1){
 
-  background-color: #868686;
+  background-color: #68461a;
+}
+
+.dt-search label{
+    display: inline-block;
 }
 
 .status_datatable{
