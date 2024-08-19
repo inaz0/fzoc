@@ -239,8 +239,6 @@ if( $form_is_valid === true ){
                         $sql_add_application->execute( [ 'app_name' => $the_app_name, 'app_id' => $the_app_id, 'app_url_git' => $_POST['git_url'] ] );
 
                         $application_id = $bdd_connexion->lastInsertId();
-
-                        shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) );
                     }
                     else{
 
