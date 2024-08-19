@@ -224,7 +224,7 @@ if( $form_is_valid === true ){
 
                 if( is_array($sql_application_check_res) ){
 
-                    $destination_dir =  __DIR__.'/../gits/'.hash( 'md5', $_POST['git_url'] );
+                    $destination_dir =  __DIR__.'/../gits/'.hash( 'md5', $_POST['git_url'] ).'/'.time().'/';
 
                     //-- création de l'application
                     if( count($sql_application_check_res) === 0 ){
@@ -250,6 +250,11 @@ if( $form_is_valid === true ){
                     }
 
                     //-- lancer la compilation en nohup ou similaire
+                    //-- @todo à compléter avec les infos firmware
+                    $content_of_dot_env = 'UFBT_HOME=/home/inazo/fz_momentum'.PHP_EOL;
+                    shell_exec( 'cd '.$path_to_ufbt.' && source bin/activate && cd '.$destination_dir.' && cat '.$content_of_dot_env.' > .env && ufbt update --index-url=https://up.momentum-fw.dev/firmware/directory.json && nohup ufbt' );
+
+                    //-- ne pas oublier de lancer un clean des répertoire après et de déplacer le fap dans le public
                 }
             }
             catch(PDOException $e){
