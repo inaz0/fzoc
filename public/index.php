@@ -278,6 +278,7 @@ var_dump($sql_firmware_info_res);
                             $ufbt_args = '--branch=dev';
                         }
 
+                        //-- list des commandes qui vont être jouées par le task runner, plus simple à maintenir et faire évoluer
                         $task_detail = [
                             'cd '.$path_to_ufbt,
                             'source bin/activate',
@@ -311,8 +312,8 @@ var_dump($sql_firmware_info_res);
 
                     }
                     //@todo mettre le message que la compile va bientot commmencer
-
-                    $message = $translation[ $lang ][ 'success' ];
+                    $form_is_valid = true;
+                    $message       = $translation[ $lang ][ 'success' ];
                 }
             }
             catch(PDOException $e){
