@@ -15,4 +15,7 @@ $debug              = false;
 //-- ufbt configuration
 $path_to_ufbt = __DIR__.'/ufbt/';
 
+//-- task list
+$task_list = __DIR__.'/tasks/';
+
 ?>
