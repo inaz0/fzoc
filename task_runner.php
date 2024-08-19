@@ -13,7 +13,7 @@ foreach( $pending_task ?? [] as $task_waiting ){
 
         if( rename( $task_list.$task_waiting, $task_list.'running/'.$task_waiting ) ) {
 
-            $output = shell_exec( 'bash '.$task_list.'running/'.$task_waiting .' > '.$task_waiting.'result');
+            shell_exec( 'bash '.$task_list.'running/'.$task_waiting .' > '.$task_list.'result/'.str_replace('.sh','',$task_waiting).'result');
         }
         else{
 
