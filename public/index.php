@@ -264,7 +264,12 @@ if( $form_is_valid === true ){
                     INSERT INTO fzco_compiled (compiled_firmware_version_id, compiled_application_id,compiled_date,compiled_path_fap,compiled_status)
                      VALUES ( :compiled_firmware_version_id, :compiled_application_id, :compiled_date, :compiled_path_fap, "pending" )');
 
-                    $sql_add_compiled->execute( [ 'compiled_firmware_version_id' => $the_app_name, 'compiled_date' => date('Y-m-d H:i:s', $starting_time_process), 'compiled_path_fap' => $generate_part_dest_dir ] );
+                    $sql_add_compiled->execute( [ 
+                        'compiled_firmware_version_id' => $_POST['firmware_target'],
+                        'compiled_application_id'      => $application_id,
+                        'compiled_date'                => date('Y-m-d H:i:s', $starting_time_process), 
+                        'compiled_path_fap'            => $generate_part_dest_dir 
+                        ] );
                 }
             }
             catch(PDOException $e){
