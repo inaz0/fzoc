@@ -473,7 +473,7 @@ if( $form_is_valid === true ){
                 paging: true,
                 searching: true,
                 ordering: true,
-                pageLength: 50,
+                pageLength: 25,
                 pagingType: 'simple_numbers',
                 lengthChange: false,
                 data: [
