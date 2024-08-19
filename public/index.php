@@ -199,7 +199,7 @@ if( $form_is_valid === true ){
 
             $the_app_id   = '';
             $the_app_name = '';
-
+var_dump($matches);
             if( is_array( $matches[ 4 ] ) && count( $matches[ 4 ] ) > 0 ){
 
                 $the_app_id = $matches[ 4 ][ 0 ];
