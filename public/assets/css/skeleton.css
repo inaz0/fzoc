@@ -122,7 +122,7 @@ html {
   font-size: 62.5%; }
   @font-face {
  font-family: "Raleway";
- src: url("../assets/fonts/raleway-regular-webfont.woff2") format("woff2"), url("../assets/fonts/raleway-regular-webfont.woff") format("woff");
+ src: url("../fonts/raleway-regular-webfont.woff2") format("woff2"), url("../fonts/raleway-regular-webfont.woff") format("woff");
 }
   
 body {
