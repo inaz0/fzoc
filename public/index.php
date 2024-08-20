@@ -41,6 +41,7 @@ $translation  = [
         'success'          => 'La compilation va bientôt commencer rafraichissez la page régulièrement pour voir le résultat apparaitre ci-dessous.',
         'title_table_app'  => 'Applications compilées',
         'date_format'      => 'd/m/Y<b\r>H\hi',
+        'compilation_since_start' => 'Compilation depuis le début',
 
     ],
     'en' => 
@@ -58,6 +59,7 @@ $translation  = [
         'success'          => 'The compilation will start soon, refresh the page regularly to see the result appear below.',
         'title_table_app'  => 'Compiled applications',
         'date_format'      => 'Y-m-d H:i:s',
+        'compilation_since_start' => 'Compilation from the beginning',
     ]
 ];
 
@@ -454,9 +456,15 @@ if( $form_is_valid === true ){
         
         $sql_all_application_compiled_res = $sql_all_application_compiled->fetchAll();
 
-        $data_for_datatable = [];
+        $data_for_datatable         = [];
+        $nb_application_since_start = 0;
+        $nb_application_this_month  = 0;
+        $nb_most_firmware           = 0;
+        $most_firmware_name         = 0;
 
         if( is_array( $sql_all_application_compiled_res ) && count( $sql_all_application_compiled_res ) > 0 ){
+
+            $nb_application_since_start = count( $sql_all_application_compiled_res );
 
             foreach( $sql_all_application_compiled_res as $an_app ){
 
@@ -530,8 +538,8 @@ if( $form_is_valid === true ){
 	</div>
 
         <div class="one-third column value">
-          <h2 class="value-multiplier">20000</h2>
-          <h5 class="value-heading">Compilation depuis le début</h5>
+          <h2 class="value-multiplier"><?php echo $nb_application_since_start; ?></h2>
+          <h5 class="value-heading"><?php echo $translation[ 'fr' ][ 'compilation_since_start' ]; ?></h5>
         </div>
       </div>
     </div>
