@@ -71,7 +71,8 @@ a.link_for_download:before{
     display: inline-block;
     width: 40px;
     height: 40px;
-    z-index: 1000;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 tbody tr:hover {
