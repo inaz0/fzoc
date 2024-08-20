@@ -18,7 +18,8 @@ input#git_url{
 
 table.dataTable.stripe > tbody > tr{
 
-    background-color: #ddd;
+    background-color: #c8c7c7;
+    color:#202020;
 }
 
 .dt-paging-button{
@@ -33,7 +34,7 @@ table.dataTable.stripe > tbody > tr{
 
 table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-column.stripe > tbody > tr:nth-child(2n+1){
 
-  background-color: #c0bcb6;
+  background-color: #d9d5d0;
 }
 
 .dt-search label{
