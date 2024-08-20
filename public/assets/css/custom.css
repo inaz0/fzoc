@@ -58,24 +58,15 @@ table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-colum
 
 a.link_for_download{
 
-    color: #62c395;
-    font-weight: bold !important;
-    font-size: 120%;
-    font-family: 'Courier New', Courier, monospace;
+    color: #2f2f2f;
     width: auto;
     line-height: 40px !important;
     display: inline-flex;
-
-    text-shadow: 1px 1px 2px #755f5f;
 }
 
 
 a.link_for_download:hover{
 
-    color: #62c395;
-    font-weight: bold !important;
-    font-size: 120%;
-    font-family: 'Courier New', Courier, monospace;
     width: auto;
     line-height: 40px !important;
     display: inline-flex;
