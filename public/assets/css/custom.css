@@ -20,6 +20,10 @@ table.dataTable.stripe > tbody > tr{
 
     background-color: #c8c7c7;
     color:#202020;
+    
+}
+
+table.daTable > tbody *{
     line-height: 1em !important;
 }
 
