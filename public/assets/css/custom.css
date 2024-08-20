@@ -53,6 +53,7 @@ table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-colum
 
 .dt-search label{
     display: inline-block;
+    margin-right: 10px;
 }
 
 tbody tr:hover {

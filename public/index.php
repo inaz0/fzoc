@@ -474,7 +474,7 @@ if( $form_is_valid === true ){
                         "'. date( $translation[ 'fr' ][ 'date_format' ] , strtotime( $an_app[ 'compiled_date' ] ) ) .'",
                         "<span class=\"'. $an_app[ 'compiled_status' ].'\">'. $an_app[ 'compiled_status' ].'</span>",
                         "'. $an_app[ 'firmware_name' ] .'<br /><span class=\"secondary_info\">'. $an_app[ 'firmware_version_name' ] .' - '. $an_app[ 'firmware_vesion_type' ] .'</span>",
-                        "Download" 
+                        "'. $an_app[ 'compiled_path_fap' ] .'/'. $an_app[ 'application_appid' ] .'.fap" 
                     ]
                 ';
             }
@@ -508,7 +508,7 @@ if( $form_is_valid === true ){
                     className: 'download_datatable',
                     render: function (data, type, row, meta) {
                         
-                        return '<a href="' + data + '">Download</a>';
+                        return '<a href="faps/' + data + '">Download</a>';
                     }
                 },
                 {
