@@ -517,8 +517,7 @@ if( $form_is_valid === true ){
                     className: 'download_datatable',
                     render: function (data, type, row, meta) {
 
-                        console.log(data)
-                        if( data !== null ) {
+                        if( data !== '' ) {
 
                             return '<a href="faps/' + data + '">Download</a>';
                         }
