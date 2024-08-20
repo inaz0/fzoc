@@ -16,9 +16,24 @@ input#git_url{
     padding: 5em 0 !important;
 }
 
+table.dataTable.stripe > tbody > tr{
+
+    background-color: #ddd;
+}
+
+.dt-paging-button{
+
+    padding: 0px !important;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 80%;
+}
+
 table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-column.stripe > tbody > tr:nth-child(2n+1){
 
-  background-color: #68461a;
+  background-color: #c0bcb6;
 }
 
 .dt-search label{
