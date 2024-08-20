@@ -60,7 +60,7 @@ a.link_for_download{
 
     color: #2f2f2f;
     width: auto;
-    line-height: 40px !important;
+    line-height: 28px !important;
     display: inline-flex;
 }
 
@@ -68,7 +68,7 @@ a.link_for_download{
 a.link_for_download:hover{
 
     width: auto;
-    line-height: 40px !important;
+    line-height: 28px !important;
     display: inline-flex;
     text-decoration: none;
 }
@@ -78,8 +78,8 @@ a.link_for_download:before{
     content: " ";
     background-image: url(../images/download.png);
     display: inline-block;
-    width: 33px;
-    height: 33px;
+    width: 25px;
+    height: 25px;
     background-size: contain;
     background-repeat: no-repeat;
 }
