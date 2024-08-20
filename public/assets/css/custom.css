@@ -24,6 +24,13 @@ table.dataTable.stripe > tbody > tr{
 }
 
 
+table.dataTable.stripe > tbody > tr > td{
+
+    line-height: 1.2em !important;
+}
+
+
+
 .dt-paging-button{
 
     padding: 0px !important;
