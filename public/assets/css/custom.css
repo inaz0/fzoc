@@ -68,6 +68,9 @@ a.link_for_download:before{
 
     content: " ";
     background-image: url(../images/download.png);
+    display: block;
+    width: 40px;
+    height: 40px;
 }
 
 tbody tr:hover {
