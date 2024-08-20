@@ -84,7 +84,7 @@ table.dataTable thead > tr > th.dt-orderable-asc:hover, table.dataTable thead > 
 }
 
 .status_datatable .success{
-    background-color: #47ee71;
+    background-color: #12c43f;;
 }
 
 .status_datatable .deleted{
