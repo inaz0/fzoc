@@ -473,7 +473,7 @@ if( $form_is_valid === true ){
                         "'. $an_app[ 'application_name' ] .'",
                         "'. date( $translation[ 'fr' ][ 'date_format' ] , strtotime( $an_app[ 'compiled_date' ] ) ) .'",
                         "<span class=\"'. $an_app[ 'compiled_status' ].'\">'. $an_app[ 'compiled_status' ].'</span>",
-                        "'. $an_app[ 'firmware_name' ] .'<br /><span class=\"secondary_info\">V. '. $an_app[ 'firmware_version_name' ] .'<br />'. $an_app[ 'firmware_vesion_type' ] .'</span>",
+                        "'. $an_app[ 'firmware_name' ] .'<br /><span class=\"secondary_info\">'. $an_app[ 'firmware_version_name' ] .' - '. $an_app[ 'firmware_vesion_type' ] .'</span>",
                         "Download" 
                     ]
                 ';
