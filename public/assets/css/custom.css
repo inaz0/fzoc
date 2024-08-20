@@ -37,6 +37,11 @@ table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-colum
   background-color: #d9d5d0;
 }
 
+.secondary_info{
+
+    font-size: 60%;
+}
+
 .dt-search label{
     display: inline-block;
 }
