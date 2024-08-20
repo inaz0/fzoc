@@ -62,8 +62,24 @@ a.link_for_download{
     font-weight: bold !important;
     font-size: 120%;
     font-family: 'Courier New', Courier, monospace;
-    height: 40px;
     width: auto;
+    line-height: 40px !important;
+    display: inline-flex;
+
+    text-shadow: 1px 1px 2px #755f5f;
+}
+
+
+a.link_for_download:hover{
+
+    color: #62c395;
+    font-weight: bold !important;
+    font-size: 120%;
+    font-family: 'Courier New', Courier, monospace;
+    width: auto;
+    line-height: 40px !important;
+    display: inline-flex;
+    text-decoration: none;
 }
 
 a.link_for_download:before{
@@ -71,8 +87,8 @@ a.link_for_download:before{
     content: " ";
     background-image: url(../images/download.png);
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    width: 33px;
+    height: 33px;
     background-size: contain;
     background-repeat: no-repeat;
 }
