@@ -468,13 +468,22 @@ if( $form_is_valid === true ){
 
             foreach( $sql_all_application_compiled_res as $an_app ){
 
+                if( $an_app[ 'compiled_status' ] === 'success' ){
+
+                    $link_for_dl = $an_app[ 'compiled_path_fap' ] .'/'. $an_app[ 'application_appid' ] .'.fap';
+                }
+                else{
+
+                    $link_for_dl = null;
+                }
+
                 $data_for_datatable[] = '
                     [
                         "'. $an_app[ 'application_name' ] .'",
                         "'. date( $translation[ 'fr' ][ 'date_format' ] , strtotime( $an_app[ 'compiled_date' ] ) ) .'",
                         "<span class=\"'. $an_app[ 'compiled_status' ].'\">'. $an_app[ 'compiled_status' ].'</span>",
                         "'. $an_app[ 'firmware_name' ] .'<br /><span class=\"secondary_info\">'. $an_app[ 'firmware_version_name' ] .' - '. $an_app[ 'firmware_vesion_type' ] .'</span>",
-                        "'. $an_app[ 'compiled_path_fap' ] .'/'. $an_app[ 'application_appid' ] .'.fap" 
+                        "'. $link_for_dl. '" 
                     ]
                 ';
             }
@@ -508,7 +517,14 @@ if( $form_is_valid === true ){
                     className: 'download_datatable',
                     render: function (data, type, row, meta) {
                         
-                        return '<a href="faps/' + data + '">Download</a>';
+                        if( data !== null ) {
+
+                            return '<a href="faps/' + data + '">Download</a>';
+                        }
+                        else{
+
+                            return '';
+                        }
                     }
                 },
                 {
