@@ -40,6 +40,7 @@ $translation  = [
         ],
         'success'          => 'La compilation va bientôt commencer rafraichissez la page régulièrement pour voir le résultat apparaitre ci-dessous.',
         'title_table_app'  => 'Applications compilées',
+        'date_format'      => 'd-m-Y H:i:s',
 
     ],
     'en' => 
@@ -56,6 +57,7 @@ $translation  = [
         ],
         'success'          => 'The compilation will start soon, refresh the page regularly to see the result appear below.',
         'title_table_app'  => 'Compiled applications',
+        'date_format'      => 'Y-m-d H:i:s',
     ]
 ];
 
@@ -461,7 +463,7 @@ if( $form_is_valid === true ){
                 $data_for_datatable[] = '
                     [
                         "'. $an_app[ 'application_name' ] .'",
-                        "'. $an_app[ 'compiled_date' ] .'",
+                        "'. date( $translation[ 'fr' ][ 'date_format' ] , strtotime( $an_app[ 'compiled_date' ] ) ) .'",
                         "<span class=\"'. $an_app[ 'compiled_status' ].'\">'. $an_app[ 'compiled_status' ].'</span>",
                         "'. $an_app[ 'firmware_name' ] .'<br /><span class=\"secondary_info\">V. '. $an_app[ 'firmware_version_name' ] .'<br />'. $an_app[ 'firmware_vesion_type' ] .'</span>",
                         "Download" 

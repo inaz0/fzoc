@@ -20,6 +20,7 @@ table.dataTable.stripe > tbody > tr{
 
     background-color: #c8c7c7;
     color:#202020;
+    line-height: 1em !important;
 }
 
 .dt-paging-button{
@@ -38,8 +39,8 @@ table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-colum
 }
 
 .secondary_info{
-
-    font-size: 60%;
+    color: #393636;
+    font-size: 70%;
 }
 
 .dt-search label{
