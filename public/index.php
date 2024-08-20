@@ -40,7 +40,7 @@ $translation  = [
         ],
         'success'          => 'La compilation va bientôt commencer rafraichissez la page régulièrement pour voir le résultat apparaitre ci-dessous.',
         'title_table_app'  => 'Applications compilées',
-        'date_format'      => 'd-m-Y H:i:s',
+        'date_format'      => 'd/m/Y H\hi',
 
     ],
     'en' => 
