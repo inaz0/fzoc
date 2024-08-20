@@ -32,7 +32,8 @@
 	    Computer image credit:<a href='https://fr.freepik.com/psd/ordinateur'>Ordinateur PSD créé par rawpixel.com - fr.freepik.com</a><br />
 	
 	    Twitter logo: <a target="_blank" href="https://icons8.com/icon/13963/twitter">Twitter</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
-	    Youtube logo: <a target="_blank" href="https://icons8.com/icon/13983/youtube">YouTube</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+	    Youtube logo: <a target="_blank" href="https://icons8.com/icon/13983/youtube">YouTube</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
+        Download logo: <a target="_blank" href="https://icons8.com/icon/103169/downloading-updates">Download</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
     </p>    
            </div>
         </div>
