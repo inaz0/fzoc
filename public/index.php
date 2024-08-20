@@ -519,7 +519,7 @@ if( $form_is_valid === true ){
 
                         if( data !== '' ) {
 
-                            return '<a href="faps/' + data + '"><img src="assets/images/download.png" alt="download this app" /> Download</a>';
+                            return '<a href="faps/' + data + '" class="link_for_download">Download</a>';
                         }
                         else{
 
