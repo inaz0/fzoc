@@ -38,7 +38,9 @@ $translation  = [
             'git_url_error'     => 'L\'url du dépôt GitHub ou GitLab n\'est pas conforme. (ex. : https://github.com/inaz0/fzoc.git )',
             'error_other_field' => 'Vous n\'avez pas rempli tous les champs obligatoire.'
         ],
-        'success'          => 'La compilation va bientôt commencer rafraichissez la page régulièrement pour voir le résultat apparaitre ci-dessous.'
+        'success'          => 'La compilation va bientôt commencer rafraichissez la page régulièrement pour voir le résultat apparaitre ci-dessous.',
+        'title_table_app'  => 'Applications compilées',
+
     ],
     'en' => 
     [
@@ -52,7 +54,8 @@ $translation  = [
             'git_url_error' => 'The GitHub or GitLab URL was not conform. (ex. : https://github.com/inaz0/fzoc.git )',
             'error_other_field' => 'Missing mandatory fields.'
         ],
-        'success'          => 'The compilation will start soon, refresh the page regularly to see the result appear below.'
+        'success'          => 'The compilation will start soon, refresh the page regularly to see the result appear below.',
+        'title_table_app'  => 'Compiled applications',
     ]
 ];
 
@@ -431,7 +434,7 @@ if( $form_is_valid === true ){
 
   <div class="section values">
   <div class="container">
-        <h3 class="section-heading">TABLE OF APP COMPIL</h3>
+        <h3 class="section-heading"><?php echo $translation[ 'fr' ][ 'title_table_app' ]; ?></h3>
 
         <?php
 
@@ -440,6 +443,9 @@ if( $form_is_valid === true ){
             SELECT * 
             FROM fzco_application 
             INNER JOIN fzco_compiled ON fzco_compiled.compiled_application_id = fzco_application.application_id
+            INNER JOIN fzco_firmware_version ON fzco_firmware_version.firmware_version_id = fzco_compiled.compiled_firmware_version_id
+            INNER JOIN fzco_depend ON fzco_depend.depend_firmware_version_id = fzco_firmware_version.firmware_version_id
+            INNER JOIN fzco_firmware ON fzco_firmware.firmware_id = fzco_depend.depend_firmware_id
         ');
 
         $sql_all_application_compiled->execute();
@@ -457,7 +463,7 @@ if( $form_is_valid === true ){
                         "'. $an_app[ 'application_name' ] .'",
                         "'. $an_app[ 'compiled_date' ] .'",
                         "<span class=\"'. $an_app[ 'compiled_status' ].'\">'. $an_app[ 'compiled_status' ].'</span>",
-                        "firmware",
+                        "'. $an_app[ 'firmware_name' ] .'<br />V. '. $an_app[ 'firmware_version_name' ] .'<br />'. $an_app[ 'firmware_vesion_type' ] .'",
                         "Download" 
                     ]
                 ';
