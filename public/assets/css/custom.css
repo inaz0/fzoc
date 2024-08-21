@@ -355,6 +355,7 @@ text-align: right;
   }
   .hero {
     padding: 15rem 0;
+    padding-top: 6.3rem !important;
   }
   .hero-heading {
     font-size: 3.0rem;
