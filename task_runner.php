@@ -36,6 +36,7 @@ foreach( $pending_task ?? [] as $task_waiting ){
                 $sql_update_compiled->execute( ['new_status' => 'success', 'compiled_path' => $correct_compiled_path ] );
             }
 
+            //-- on supprime le répertoire clonné il n'est plus utile
             shell_exec( 'rm -rf gits/'.$correct_compiled_path );
         }
         else{

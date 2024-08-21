@@ -275,7 +275,7 @@ if( $form_is_valid === true ){
                             'ufbt ',
                             'mkdir -p '.$fap_path.$generate_part_dest_dir.'/ ',
                             'mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/',
-                            'rm -rf '.$destination_dir.'/',
+                            //'rm -rf '.$destination_dir.'/',
                         ];
 
                         file_put_contents($task_list. '/'. str_replace('/','_',$generate_part_dest_dir) .'.sh', implode(' && ', $task_detail ) );
@@ -319,11 +319,7 @@ if( $form_is_valid === true ){
             echo 'error fam';
         }
     }
-    //-- 4 préparer les dossier
-
-    
 }
-
 
 ?>
 
@@ -511,6 +507,12 @@ if( $form_is_valid === true ){
         });
         </script>
         <table id="list_of_applications" class="stripe" style="width:100%;"></table>
+        <p class="legend_explain">Légende des status : 
+        <span class="impossible">impossible</span> : de compiler l'application, en général c'est un app_id déjà intégré au firmware officiel<br />
+        <span class="deleted">deleted</span> : le fap a été supprimé automatiquement au bout de 30 jours.<br />
+        <span class="success">success</span> : le fap a été compilé, il est téléchargeable durant 30 jours.<br />
+        <span class="pending">pending</span> : la compilation est en cours.<br />
+        </p>
     </div>
     
   </div>
