@@ -24,14 +24,16 @@ foreach( $pending_task ?? [] as $task_waiting ){
 
             $sql_update_compiled = $bdd_connexion->prepare( $sql_update_compiled_query );
 
-            $check_result = file_get_contents( $result_file );
+            $check_result          = file_get_contents( $result_file );
+            $correct_compiled_path = str_replace( ['_', '.txt'], ['/',''] , $task_waiting );
+
             if( preg_match('/Found nothing to build/iu', $check_result) ){
 
-                $sql_update_compiled->execute( ['new_status' => 'impossible', 'compiled_path' => str_replace( '_', '/', $task_waiting ) ] );
+                $sql_update_compiled->execute( ['new_status' => 'impossible', 'compiled_path' => $correct_compiled_path ] );
             } 
             else{
 
-                $sql_update_compiled->execute( ['new_status' => 'success', 'compiled_path' => str_replace( '_', '/', $task_waiting ) ] );
+                $sql_update_compiled->execute( ['new_status' => 'success', 'compiled_path' => $correct_compiled_path ] );
             }
         }
         else{
