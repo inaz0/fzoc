@@ -48,6 +48,11 @@ $translation  = [
             'download' => 'Téléchargement',
             'search'   => 'Rechercher une application : ',
             'info'     => 'Affichage de _START_ à _END_ sur _TOTAL_ entrée(s)'
+        ],
+        'bottom_site'  => [
+            'title_subscribe' => 'Soutenez le projet !',
+            'follow_me'       => 'Suivez-moi !',
+            'link_legal'      => 'Mentions légales'
         ]
 
     ],
@@ -84,6 +89,11 @@ $translation  = [
             'download' => 'Download',
             'search'   => 'Search an application: ',
             'info'     => 'Showing _START_ to _END_ of _TOTAL_ _ENTRIES-TOTAL_'
+        ],
+        'bottom_site'  => [
+            'title_subscribe' => 'Support the project!',
+            'follow_me'       => 'Follow me!',
+            'link_legal'      => 'Legal mentions'
         ]
     ]
 ];
@@ -115,7 +125,7 @@ try{
 
         if( !array_key_exists( $value_firm['firmware_id'], $firmware_allready_in_select ) ){
 
-            $firmware_list_for_select .= '<option value="'.$value_firm['firmware_id'].'">'.$value_firm['firmware_name'].'</option>';
+            $firmware_list_for_select .= '<option value="'.$value_firm['firmware_id'].'">'.$value_firm['firmware_name'].' - '. $value_firm['firmware_version_name'] .'</option>';
             $firmware_allready_in_select[ $value_firm['firmware_id'] ] = 1;
         }        
     }
@@ -467,13 +477,36 @@ if( $form_is_valid === true ){
         $nb_application_since_start = 0;
         $nb_application_this_month  = 0;
         $nb_most_firmware           = 0;
-        $most_firmware_name         = 0;
+        $most_firmware_name         = '';
 
+        $sql_most_firmware = $bdd_connexion->prepare('
+            SELECT 
+            COUNT(*) as nb_compil,
+            firmware_name
+            FROM fzco_application 
+            INNER JOIN fzco_compiled ON fzco_compiled.compiled_application_id = fzco_application.application_id
+            INNER JOIN fzco_firmware_version ON fzco_firmware_version.firmware_version_id = fzco_compiled.compiled_firmware_version_id
+            INNER JOIN fzco_depend ON fzco_depend.depend_firmware_version_id = fzco_firmware_version.firmware_version_id
+            INNER JOIN fzco_firmware ON fzco_firmware.firmware_id = fzco_depend.depend_firmware_id
+            GROUP BY firmware_id
+            ORDER BY nb_compil
+            LIMIT 1
+        ');
+
+        $sql_most_firmware_res = $sql_most_firmware->execute();
+var_dump($sql_most_firmware);
         if( is_array( $sql_all_application_compiled_res ) && count( $sql_all_application_compiled_res ) > 0 ){
 
             $nb_application_since_start = count( $sql_all_application_compiled_res );
 
+            $current_month_date = date('Y-m');
+
             foreach( $sql_all_application_compiled_res as $an_app ){
+
+                if( $current_month_date === date( 'Y-m' , strtotime( $an_app[ 'compiled_date' ] ) ) ){
+
+                    $nb_application_this_month++;
+                }
 
                 if( $an_app[ 'compiled_status' ] === 'success' ){
 
@@ -562,7 +595,7 @@ if( $form_is_valid === true ){
     <div class="container">
       <div class="row">
         <div class="one-third column value">
-          <h2 class="value-multiplier">200</h2>
+          <h2 class="value-multiplier"><?php echo $nb_application_this_month; ?></h2>
           <h5 class="value-heading">Compilation ce mois-ci</h5>
         </div>
 
@@ -578,20 +611,19 @@ if( $form_is_valid === true ){
       </div>
     </div>
   </div>
-
+  
   <div class="section categories">
     <div class="container">
-      <h3 class="section-heading">Want to support?</h3>
-      <p class="section-description">Pay what you want, just paid a coffee here:</p>
+      <h3 class="section-heading"><?php echo $translation[ 'fr' ][ 'bottom_site' ][ 'title_subscribe' ]; ?></h3>
       <p><a id="byMeACoffee" class="button button-primary" href="https://www.buymeacoffee.com/inazo" target="_blank">By me a coffee</a></p>
       
-      <h3 class="section-heading">Follow me:</h3>
+      <h3 class="section-heading"><?php echo $translation[ 'fr' ][ 'bottom_site' ][ 'follow_me' ]; ?></h3>
       <p>
         <a href="https://twitter.com/bsmt_nevers" target="_blank"><img src="assets/images/icons8-twitter-48.png" alt="Twitter" /></a>
         <a href="https://www.youtube.com/@kanjian_fr" target="_blank"><img src="assets/images/icons8-youtube-48.png" alt="Youtube" /></a>
       </p>
       <p>
-        <a id="showLegalMentions" href="legal.php">Legal mentions</a>
+        <a id="showLegalMentions" href="legal.php"><?php echo $translation[ 'fr' ][ 'bottom_site' ][ 'link_legal' ]; ?></a>
       </p>
     </div>
   </div>
