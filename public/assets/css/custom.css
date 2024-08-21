@@ -117,13 +117,13 @@ text-align: right;
 
 .lang a.current::before{
 
-  content:'>'
+  content:'\u25B8'
 }
 
 
 .lang a.current::after{
 
-  content:'<'
+  content:'\u25C2'
 }
 
 
