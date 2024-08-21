@@ -100,6 +100,33 @@ table.dataTable thead > tr > th.dt-orderable-asc:hover, table.dataTable thead > 
 .lang{
 text-align: right;
 }
+
+.lang a{
+
+  color:#262525;
+  text-decoration: underline;
+}
+
+
+.lang a:hover{
+
+  color:#1EAEDB;
+  text-decoration: none;
+}
+
+
+.lang a.current::before{
+
+  content:'>'
+}
+
+
+.lang a.current::after{
+
+  content:'<'
+}
+
+
 .status_datatable{
     text-align: center !important; 
     color: #fff;
