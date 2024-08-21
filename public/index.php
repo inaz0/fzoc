@@ -188,7 +188,7 @@ $form_is_valid = false;
 try{
 
     if( count($_POST) > 0 && array_key_exists('git_url', $_POST) && array_key_exists('firmware_target', $_POST) && array_key_exists('git_branch', $_POST) && array_key_exists('compil', $_POST) ){
-var_dump( $_POST );
+
         //-- 0 si on a cloudflare turnstile d'activé on va contrôler
         if( $is_active_cloudflaire_turnstile === true ){
 
@@ -215,6 +215,14 @@ var_dump( $_POST );
             $response_curl      = curl_exec($curl);
             $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );   
             var_dump( $response_curl );
+            if( $response_code_curl === 200 ){
+
+                $response_challenge = json_decode( $response_curl );
+                if( $response_challenge->success === true ){
+
+                    $captcha_is_solved = true;
+                }
+            }
         }
         else{
 
