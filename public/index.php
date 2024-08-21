@@ -418,6 +418,22 @@ if( $form_is_valid === true ){
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
+
+  <div class="section get-help">
+    <div class="container">
+      <div class="row">
+        <div class="one-third column value">
+          <h1 >FlipperZero Online Compilator</h1>
+        </div>
+        <div  class="one-third column value">
+        </div>
+        <div class="one-third column value">
+          @kanjian_fr
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="section hero">
     <div class="container">
       <div class="row">
