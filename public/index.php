@@ -206,7 +206,7 @@ var_dump( $_POST );
                 CURLOPT_HEADER         => false,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_MAXREDIRS      => 0,
-                CURLOPT_POSTFIELDS     => http_build_query($post)
+                CURLOPT_POSTFIELDS     => http_build_query($post_data)
             );
 
             curl_setopt_array( $curl, $options_curl );
