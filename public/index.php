@@ -27,10 +27,19 @@ $translation  = [
             'git_url_error'     => 'L\'url du dépôt GitHub ou GitLab n\'est pas conforme. (ex. : https://github.com/inaz0/fzoc.git )',
             'error_other_field' => 'Vous n\'avez pas rempli tous les champs obligatoire.'
         ],
-        'success'          => 'La compilation va bientôt commencer rafraichissez la page régulièrement pour voir le résultat apparaitre ci-dessous.',
-        'title_table_app'  => 'Applications compilées',
-        'date_format'      => 'd/m/Y<b\r>H\hi',
+        'success'                 => 'La compilation va bientôt commencer rafraichissez la page régulièrement pour voir le résultat apparaitre ci-dessous.',
+        'title_table_app'         => 'Applications compilées',
+        'date_format'             => 'd/m/Y<b\r>H\hi',
         'compilation_since_start' => 'Compilation depuis le début',
+        'legend'                  => [
+
+            'title'             => 'Légende des status :',
+            'status_pending'    => 'la compilation est en cours.',
+            'status_success'    => 'le fap a été compilé, il est téléchargeable durant 30 jours.',
+            'status_deleted'    => 'le fap a été supprimé automatiquement au bout de 30 jours.',
+            'status_impossible' => 'Impossible de compiler l\'application, en général c\'est un app_id déjà intégré au firmware officiel.',
+        
+        ]
 
     ],
     'en' => 
@@ -45,10 +54,19 @@ $translation  = [
             'git_url_error' => 'The GitHub or GitLab URL was not conform. (ex. : https://github.com/inaz0/fzoc.git )',
             'error_other_field' => 'Missing mandatory fields.'
         ],
-        'success'          => 'The compilation will start soon, refresh the page regularly to see the result appear below.',
-        'title_table_app'  => 'Compiled applications',
-        'date_format'      => 'Y-m-d H:i:s',
+        'success'                 => 'The compilation will start soon, refresh the page regularly to see the result appear below.',
+        'title_table_app'         => 'Compiled applications',
+        'date_format'             => 'Y-m-d H:i:s',
         'compilation_since_start' => 'Compilation from the beginning',
+        'legend'                  => [
+
+            'title'             => 'Status legend:',
+            'status_pending'    => 'compilation is in progress.',
+            'status_success'    => 'the fap has been compiled, it is downloadable for 30 days.',
+            'status_deleted'    => 'the fap was automatically deleted after 30 days.',
+            'status_impossible' => 'Unable to compile the application, usually it is an app_id already integrated into the official firmware.',
+        
+        ]
     ]
 ];
 
@@ -507,12 +525,12 @@ if( $form_is_valid === true ){
         });
         </script>
         <table id="list_of_applications" class="stripe" style="width:100%;"></table>
-        <p class="legend_explain status_datatable">Légende des status : <br />
+        <p class="legend_explain status_datatable"><?php echo $translation[ 'fr' ][ 'legend' ][ 'title' ]; ?><br />
             
-            <span class="pending">pending</span> : la compilation est en cours.<br />
-            <span class="success">success</span> : le fap a été compilé, il est téléchargeable durant 30 jours.<br />
-            <span class="deleted">deleted</span> : le fap a été supprimé automatiquement au bout de 30 jours.<br />
-            <span class="impossible">impossible</span> : de compiler l'application, en général c'est un app_id déjà intégré au firmware officiel<br />
+            <span class="pending">pending</span> : <?php echo $translation[ 'fr' ][ 'legend' ][ 'status_pending' ]; ?><br />
+            <span class="success">success</span> : <?php echo $translation[ 'fr' ][ 'legend' ][ 'status_success' ]; ?><br />
+            <span class="deleted">deleted</span> : <?php echo $translation[ 'fr' ][ 'legend' ][ 'status_deleted' ]; ?><br />
+            <span class="impossible">impossible</span> : <?php echo $translation[ 'fr' ][ 'legend' ][ 'status_impossible' ]; ?><br />
         </p>
     </div>
     
