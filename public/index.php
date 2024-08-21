@@ -18,6 +18,7 @@ $is_en_current = '';
 
 $cloudflare_turnstile = '';
 $cloudflare_api       = '<script type="text/javascript" src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>';
+$captcha_is_solved    = false;
 
 if( $is_active_cloudflaire_turnstile === true ){
 
@@ -187,9 +188,41 @@ $form_is_valid = false;
 try{
 
     if( count($_POST) > 0 && array_key_exists('git_url', $_POST) && array_key_exists('firmware_target', $_POST) && array_key_exists('git_branch', $_POST) && array_key_exists('compil', $_POST) ){
+var_dump( $_POST );
+        //-- 0 si on a cloudflare turnstile d'activé on va contrôler
+        if( $is_active_cloudflaire_turnstile === true ){
+
+            //-- 1 récupérer le .fam et le contrôler
+            $curl = curl_init();
+
+            $post_data = [
+                'secret' => $cloudflare_turnstile_serverkey,
+                'response' => $_POST[ 'cf-turnstile-response' ]
+            ];
+
+            // fixe l'URL et les autres options appropriées
+            $options_curl = array(
+                CURLOPT_URL            => 'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+                CURLOPT_HEADER         => false,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_MAXREDIRS      => 0,
+                CURLOPT_POSTFIELDS     => http_build_query($post)
+            );
+
+            curl_setopt_array( $curl, $options_curl );
+
+            //-- récupération du contenu
+            $response_curl      = curl_exec($curl);
+            $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );   
+            var_dump( $response_curl );
+        }
+        else{
+
+            $captcha_is_solved = true;
+        }
 
         //-- 1 on check l'url fourni
-        if( filter_var( $_POST['git_url'] , FILTER_VALIDATE_URL) ){
+        if( filter_var( $_POST['git_url'] , FILTER_VALIDATE_URL) && $captcha_is_solved === true ){ 
 
             if( preg_match( '/https:\/\/(github|gitlab)\.com\/(.*)\.git/iu', $_POST['git_url'] ) ){
 
