@@ -33,12 +33,21 @@ $translation  = [
         'compilation_since_start' => 'Compilation depuis le début',
         'legend'                  => [
 
-            'title'             => 'Légende des status :',
+            'title'             => 'Légende des statuts :',
             'status_pending'    => 'la compilation est en cours.',
             'status_success'    => 'le fap a été compilé, il est téléchargeable durant 30 jours.',
             'status_deleted'    => 'le fap a été supprimé automatiquement au bout de 30 jours.',
             'status_impossible' => 'Impossible de compiler l\'application, en général c\'est un app_id déjà intégré au firmware officiel.',
         
+        ],
+        'data_table' => [
+            'app_name'  => 'Application',
+            'date'      => 'Date',
+            'status'    => 'Statut',
+            'firmware'  => 'Firmware',
+            'download'  => 'Téléchargement',
+            'search'    => 'Rechercher une application',
+            'info' => 'Affichage de _START_ à _END_ sur _TOTAL_ _ENTRIES-TOTAL_'
         ]
 
     ],
@@ -520,7 +529,10 @@ if( $form_is_valid === true ){
                     className: 'status_datatable',
                     targets: 2
                 }
-                ]  
+                ],
+                language: {
+                    info: <?php echo $translation[ 'fr' ][ 'data_table' ][ 'info' ]; ?>
+                }
             });
         });
         </script>
