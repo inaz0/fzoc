@@ -117,13 +117,20 @@ text-align: right;
 
 .lang a.current::before{
 
-  content:'\u25B8'
+  content:'\25B8';
+  margin-top: -2px;
+  display: inline;
+  position: absolute;
+  margin-right: 2px;
 }
 
 
 .lang a.current::after{
-
-  content:'\u25C2'
+  content: '\25C2';
+  margin-top: -2px;
+  display: inline;
+  position: absolute;
+  margin-left: 2px;
 }
 
 
