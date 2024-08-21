@@ -411,7 +411,7 @@ if( $form_is_valid === true ){
   <script type="text/javascript" src="assets/js/jquery-3.7.1.min.js"></script>
   <script type="text/javascript" src="assets/js/dataTables.min.js" ></script>
 
-  <link rel="icon" type="image/png" href="../../dist/images/favicon.png">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
 </head>
 <body>
 
