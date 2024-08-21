@@ -148,6 +148,7 @@ $all_firmware_req = $bdd_connexion->prepare('
     INNER JOIN fzco_firmware_version ON depend_firmware_version_id = firmware_version_id
 
     WHERE firmware_is_active=1 AND firmware_version_is_active=1
+    ORDER BY firmware_version_id DESC
     ');
 
 $firmware_list_for_select    = '';
