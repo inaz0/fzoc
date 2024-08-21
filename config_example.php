@@ -21,4 +21,6 @@ $task_list = __DIR__.'/tasks/';
 //-- path to fap
 $fap_path = __DIR__.'/public/faps/';
 
+require_once( 'class/fzcoPDO.class.php' );
+
 ?>
