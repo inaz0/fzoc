@@ -35,6 +35,8 @@ foreach( $pending_task ?? [] as $task_waiting ){
 
                 $sql_update_compiled->execute( ['new_status' => 'success', 'compiled_path' => $correct_compiled_path ] );
             }
+
+            shell_exec( 'rm -rf gits/'.$correct_compiled_path );
         }
         else{
 
