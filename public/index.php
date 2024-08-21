@@ -206,7 +206,8 @@ try{
                 CURLOPT_HEADER         => false,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_MAXREDIRS      => 0,
-                CURLOPT_POSTFIELDS     => $post_data
+                CURLOPT_POSTFIELDS     => $post_data,
+                CURLOPT_POST           => true
             );
 
             curl_setopt_array( $curl, $options_curl );
