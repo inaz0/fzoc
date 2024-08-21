@@ -41,13 +41,13 @@ $translation  = [
         
         ],
         'data_table' => [
-            'app_name'  => 'Application',
-            'date'      => 'Date',
-            'status'    => 'Statut',
-            'firmware'  => 'Firmware',
-            'download'  => 'Téléchargement',
-            'search'    => 'Rechercher une application',
-            'info' => 'Affichage de _START_ à _END_ sur _TOTAL_ entrée(s)'
+            'app_name' => 'Application',
+            'date'     => 'Date',
+            'status'   => 'Statut',
+            'firmware' => 'Firmware',
+            'download' => 'Téléchargement',
+            'search'   => 'Rechercher une application : ',
+            'info'     => 'Affichage de _START_ à _END_ sur _TOTAL_ entrée(s)'
         ]
 
     ],
@@ -75,6 +75,15 @@ $translation  = [
             'status_deleted'    => 'the fap was automatically deleted after 30 days.',
             'status_impossible' => 'Unable to compile the application, usually it is an app_id already integrated into the official firmware.',
         
+        ],
+        'data_table' => [
+            'app_name' => 'Application',
+            'date'     => 'Date',
+            'status'   => 'Status',
+            'firmware' => 'Firmware',
+            'download' => 'Download',
+            'search'   => 'Search an application: ',
+            'info'     => 'Showing _START_ to _END_ of _TOTAL_ _ENTRIES-TOTAL_'
         ]
     ]
 ];
@@ -503,11 +512,11 @@ if( $form_is_valid === true ){
                     <?php echo implode( ',', $data_for_datatable ); ?>
                 ],
                 columns: [
-                    { title: 'App Name' },
-                    { title: 'Date' },
-                    { title: 'Status' },
-                    { title: 'Firmware' },
-                    { title: 'Download' }
+                    { title: '<?php echo $translation[ 'fr' ][ 'data_table' ][ 'app_name' ]; ?>' },
+                    { title: '<?php echo $translation[ 'fr' ][ 'data_table' ][ 'date' ]; ?>' },
+                    { title: '<?php echo $translation[ 'fr' ][ 'data_table' ][ 'status' ]; ?>' },
+                    { title: '<?php echo $translation[ 'fr' ][ 'data_table' ][ 'firmware' ]; ?>' },
+                    { title: '<?php echo $translation[ 'fr' ][ 'data_table' ][ 'download' ]; ?>' }
                 ],
                 columnDefs: [
                 {
