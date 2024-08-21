@@ -21,6 +21,11 @@ $task_list = __DIR__.'/tasks/';
 //-- path to fap
 $fap_path = __DIR__.'/public/faps/';
 
+//-- cloudflare
+$is_active_cloudflaire_turnstile = true;
+$cloudflare_turnstile_sitekey    = 'fake_data';
+$cloudflare_turnstile_secretkey  = 'fake_data';
+
 require_once( 'class/fzcoPDO.class.php' );
 
 ?>

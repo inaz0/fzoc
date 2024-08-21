@@ -16,6 +16,14 @@ $lang          = 'fr';
 $is_fr_current = 'current';
 $is_en_current = '';
 
+$cloudflare_turnstile = '';
+$cloudflare_api       = '<script type="text/javascript" src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>';
+
+if( $is_active_cloudflaire_turnstile === true ){
+
+    $cloudflare_turnstile = '<div class="cf-turnstile" data-sitekey="'. $cloudflare_turnstile_sitekey .'"></div>';
+}
+
 if( !empty($_GET['lang']) ){
 
     switch( $_GET['lang'] ){
@@ -410,6 +418,7 @@ if( $form_is_valid === true ){
   
   <script type="text/javascript" src="assets/js/jquery-3.7.1.min.js"></script>
   <script type="text/javascript" src="assets/js/dataTables.min.js" ></script>
+  <?php echo $cloudflare_api; ?>
 
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
 </head>
@@ -464,6 +473,7 @@ if( $form_is_valid === true ){
                 <div class="one-third column value"><input class="button button-primary" type="submit" name="compil" value="<?php echo $translation[ $lang ][ 'button_compil' ]; ?>" /></div>
                 <div class="one-third column value">&nbsp;</div>
             </div>
+            <?php echo $cloudflare_turnstile; ?>
           </form>
                     
             <?php
