@@ -399,6 +399,7 @@ if( $form_is_valid === true ){
   <div class="section hero">
     <div class="container">
       <div class="row">
+        <div class="lang">FR | ENG</div>
         <div class="">
           <h1 class="hero-heading"><?php echo $translation[ $lang ][ 'title_form' ]; ?></h1>
 
