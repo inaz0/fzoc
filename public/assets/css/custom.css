@@ -3,11 +3,16 @@ FZOC
 */
 
 .header {
-  padding: 20px;
-  text-align: left;
+  padding: 20px !important;
+  text-align: left !important;
   line-height: 1em;
   background: #283d50;
   color: #f7f7f7;
+}
+
+.header_by{
+
+  background: url('../images/kanjian_blanc.png') no-repeat;
 }
 
 input#git_url{

@@ -424,7 +424,7 @@ if( $form_is_valid === true ){
       <div class="row">
         <div class="">
           <h1 class="hero-heading">FlipperZero Online Compilator</h1><br />
-          @kanjian_fr
+          <div class="header_by">By </div>
         </div>
       </div>
     </div>
