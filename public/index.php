@@ -469,11 +469,10 @@ if( $form_is_valid === true ){
                 
             </div>
             <div class="row">
-                <div class="one-third column value">&nbsp;</div>
+                <div class="one-third column value"><?php echo $cloudflare_turnstile; ?></div>
                 <div class="one-third column value"><input class="button button-primary" type="submit" name="compil" value="<?php echo $translation[ $lang ][ 'button_compil' ]; ?>" /></div>
                 <div class="one-third column value">&nbsp;</div>
             </div>
-            <?php echo $cloudflare_turnstile; ?>
           </form>
                     
             <?php
