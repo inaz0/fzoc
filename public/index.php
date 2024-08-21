@@ -672,10 +672,73 @@ if( $form_is_valid === true ){
         <a href="https://kanjianfr.etsy.com/" target="_blank"><img src="assets/images/icons8-etsy-48.png" alt="Etsy" /></a>
       </p>
       <p>
-        <a id="showLegalMentions" href="legal.php"><?php echo $translation[ $lang ][ 'bottom_site' ][ 'link_legal' ]; ?></a>
+        <a id="showLegalMentions"><?php echo $translation[ $lang ][ 'bottom_site' ][ 'link_legal' ]; ?></a>
       </p>
     </div>
   </div>
+
+  <script type="text/javascript">
+
+$( document ).ready(function() {
+	$( "#showLegalMentions" ).bind( "click", function() {
+	
+	
+	  let linkPosition = $( "#showLegalMentions" ).offset();  
+	
+	  $( "#legalMentions" ).last().offset({ top: (linkPosition.top*0.80), left: (linkPosition.left*0.15) });
+	  $("#legalMentions").show();
+	});
+	
+	$("#closeMe").bind( "click", function() {
+	
+	  $("#legalMentions").hide();
+	});
+});
+</script>
+
+
+<div id="legalMentions">
+    <div id="closeMe">X close</div>
+    <div class="container">
+      <div class="row">
+        <div class="one-half column">
+    
+    <h2>Legal mentions</h2>
+    
+    <p>
+	    Editor: Alexandre JOLY<br />
+	    58000 Nevers
+	</p>
+	
+	<p>
+        Hosting: OVH - Roubaix
+    </p>
+    
+    <p>
+        Contact: https://www.kanjian.fr/me-contacter
+    </p>
+    <h3>RGPD</h3>
+    
+    <p>No data was collected in this site, no cookie used, no external service used.</p>
+    
+    </div>
+        <div class="one-half column">
+    
+    <h3>Iconography</h3>
+    <p>
+	    Background image credit: <a href='https://fr.freepik.com/vecteurs/fond-minimaliste'>Fond minimaliste vecteur créé par freepik - fr.freepik.com</a><br />
+	    Computer image credit:<a href='https://fr.freepik.com/psd/ordinateur'>Ordinateur PSD créé par rawpixel.com - fr.freepik.com</a><br />
+	
+	    Twitter logo: <a target="_blank" href="https://icons8.com/icon/13963/twitter">Twitter</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
+	    Youtube logo: <a target="_blank" href="https://icons8.com/icon/13983/youtube">YouTube</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
+        Instagram logo : <a target="_blank" href="https://icons8.com/icon/Xy10Jcu1L2Su/instagram">Instagram</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
+        Etsy logo : <a target="_blank" href="https://icons8.com/icon/MQ-HLKLCGrJn/etsy">Etsy</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
+        Download logo: <a target="_blank" href="https://icons8.com/icon/103169/downloading-updates">Download</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+    </p>    
+           </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
