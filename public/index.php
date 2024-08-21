@@ -47,7 +47,7 @@ $translation  = [
             'firmware'  => 'Firmware',
             'download'  => 'Téléchargement',
             'search'    => 'Rechercher une application',
-            'info' => 'Affichage de _START_ à _END_ sur _TOTAL_ _ENTRIES-TOTAL_'
+            'info' => 'Affichage de _START_ à _END_ sur _TOTAL_ entrée(s)'
         ]
 
     ],
@@ -531,7 +531,8 @@ if( $form_is_valid === true ){
                 }
                 ],
                 language: {
-                    info: "<?php echo $translation[ 'fr' ][ 'data_table' ][ 'info' ]; ?>"
+                    info: "<?php echo $translation[ 'fr' ][ 'data_table' ][ 'info' ]; ?>",
+                    search: "<?php echo $translation[ 'fr' ][ 'data_table' ][ 'search' ]; ?>"
                 }
             });
         });
