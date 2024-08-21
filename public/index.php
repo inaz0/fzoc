@@ -526,7 +526,7 @@ if( $form_is_valid === true ){
 
                         if( data !== '' ) {
 
-                            return '<a href="faps/' + data + '" class="link_for_download">Download</a>';
+                            return '<a href="faps/' + data + '" class="link_for_download"><?php echo $translation[ 'fr' ][ 'data_table' ][ 'download' ]; ?></a>';
                         }
                         else{
 
