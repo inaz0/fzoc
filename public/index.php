@@ -196,7 +196,7 @@ try{
             $curl = curl_init();
 
             $post_data = [
-                'secret' => $cloudflare_turnstile_serverkey,
+                'secret' => $cloudflare_turnstile_secretkey,
                 'response' => $_POST[ 'cf-turnstile-response' ]
             ];
 
@@ -206,8 +206,9 @@ try{
                 CURLOPT_HEADER         => false,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_MAXREDIRS      => 0,
-                CURLOPT_POSTFIELDS     => $post_data,
-                CURLOPT_POST           => true
+                CURLOPT_POST           => true,
+                CURLOPT_POSTFIELDS     => $post_data
+                
             );
 
             curl_setopt_array( $curl, $options_curl );
