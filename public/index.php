@@ -670,6 +670,7 @@ if( $form_is_valid === true ){
         <a href="https://www.youtube.com/@kanjian_fr" target="_blank"><img src="assets/images/icons8-youtube-48.png" alt="Youtube" /></a>
         <a href="https://www.instagram.com/kanjian_fr/" target="_blank"><img src="assets/images/icons8-instagram-48.png" alt="Instagram" /></a>
         <a href="https://kanjianfr.etsy.com/" target="_blank"><img src="assets/images/icons8-etsy-48.png" alt="Etsy" /></a>
+        <a href="https://github.com/inaz0/" target="_blank"><img src="assets/images/icons8-github-48.png" alt="GitHub" /></a>
       </p>
       <p>
         <a id="showLegalMentions"><?php echo $translation[ $lang ][ 'bottom_site' ][ 'link_legal' ]; ?></a>
@@ -733,7 +734,8 @@ $( document ).ready(function() {
 	    Youtube logo: <a target="_blank" href="https://icons8.com/icon/13983/youtube">YouTube</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
         Instagram logo : <a target="_blank" href="https://icons8.com/icon/Xy10Jcu1L2Su/instagram">Instagram</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
         Etsy logo : <a target="_blank" href="https://icons8.com/icon/MQ-HLKLCGrJn/etsy">Etsy</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
-        Download logo: <a target="_blank" href="https://icons8.com/icon/103169/downloading-updates">Download</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+        Download logo: <a target="_blank" href="https://icons8.com/icon/103169/downloading-updates">Download</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
+        GitHub logo: <a target="_blank" href="https://icons8.com/icon/AZOZNnY73haj/github">GitHub</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
     </p>    
            </div>
         </div>
