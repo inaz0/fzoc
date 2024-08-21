@@ -97,6 +97,9 @@ table.dataTable thead > tr > th.dt-orderable-asc:hover, table.dataTable thead > 
   line-height: 40px;
 }
 
+.lang{
+text-align: right;
+}
 .status_datatable{
     text-align: center !important; 
     color: #fff;

@@ -12,7 +12,29 @@
 
 require_once('../config.php');
 
-$lang         = 'fr';
+$lang          = 'fr';
+$is_fr_current = 'current';
+$is_en_current = '';
+
+if( !empty($_GET['lang']) ){
+
+    switch( $_GET['lang'] ){
+
+        case 'en':
+            $lang          = 'en';
+            $is_en_current = 'current';
+            $is_fr_current = '';
+            break;
+        
+        default:
+
+            $lang          = 'fr';
+            $is_fr_current = 'current';
+            $is_en_current = '';
+            break;
+    }
+}
+
 $version_type = [ 1 => 'release', 2 => 'dev' ];
 $translation  = [
     'fr' =>
@@ -174,17 +196,17 @@ try{
                 }
                 else{
 
-                    $message .= PHP_EOL.$translation['fr']['error']['error_other_field'];    
+                    $message .= PHP_EOL.$translation[ $lang ]['error']['error_other_field'];    
                 }
             }
             else{
 
-                $message = $translation['fr']['error']['git_url_error'];    
+                $message = $translation[ $lang ]['error']['git_url_error'];    
             }
         }
         else{
 
-            $message = $translation['fr']['error']['git_url_error'];
+            $message = $translation[ $lang ]['error']['git_url_error'];
         }
     }
 }
@@ -399,7 +421,7 @@ if( $form_is_valid === true ){
   <div class="section hero">
     <div class="container">
       <div class="row">
-        <div class="lang">FR | ENG</div>
+        <div class="lang"><a href="?lang=fr" class="<?php echo $is_fr_current;?>">FR</a> | <a href="?lang=en" class="<?php echo $is_en_current;?>">EN</a></div>
         <div class="">
           <h1 class="hero-heading"><?php echo $translation[ $lang ][ 'title_form' ]; ?></h1>
 
@@ -460,7 +482,7 @@ if( $form_is_valid === true ){
 
   <div class="section values">
   <div class="container">
-        <h3 class="section-heading"><?php echo $translation[ 'fr' ][ 'title_table_app' ]; ?></h3>
+        <h3 class="section-heading"><?php echo $translation[ $lang ][ 'title_table_app' ]; ?></h3>
 
         <?php
 
@@ -509,7 +531,7 @@ if( $form_is_valid === true ){
                 $data_for_datatable[] = '
                     [
                         "'. $an_app[ 'application_name' ] .'",
-                        "'. date( $translation[ 'fr' ][ 'date_format' ] , strtotime( $an_app[ 'compiled_date' ] ) ) .'",
+                        "'. date( $translation[ $lang ][ 'date_format' ] , strtotime( $an_app[ 'compiled_date' ] ) ) .'",
                         "<span class=\"'. $an_app[ 'compiled_status' ].'\">'. $an_app[ 'compiled_status' ].'</span>",
                         "'. $an_app[ 'firmware_name' ] .'<br /><span class=\"secondary_info\">'. $an_app[ 'firmware_version_name' ] .' - '. $an_app[ 'firmware_vesion_type' ] .'</span>",
                         "'. $link_for_dl. '" 
@@ -560,11 +582,11 @@ if( $form_is_valid === true ){
                     <?php echo implode( ',', $data_for_datatable ); ?>
                 ],
                 columns: [
-                    { title: '<?php echo $translation[ 'fr' ][ 'data_table' ][ 'app_name' ]; ?>' },
-                    { title: '<?php echo $translation[ 'fr' ][ 'data_table' ][ 'date' ]; ?>' },
-                    { title: '<?php echo $translation[ 'fr' ][ 'data_table' ][ 'status' ]; ?>' },
-                    { title: '<?php echo $translation[ 'fr' ][ 'data_table' ][ 'firmware' ]; ?>' },
-                    { title: '<?php echo $translation[ 'fr' ][ 'data_table' ][ 'download' ]; ?>' }
+                    { title: '<?php echo $translation[ $lang ][ 'data_table' ][ 'app_name' ]; ?>' },
+                    { title: '<?php echo $translation[ $lang ][ 'data_table' ][ 'date' ]; ?>' },
+                    { title: '<?php echo $translation[ $lang ][ 'data_table' ][ 'status' ]; ?>' },
+                    { title: '<?php echo $translation[ $lang ][ 'data_table' ][ 'firmware' ]; ?>' },
+                    { title: '<?php echo $translation[ $lang ][ 'data_table' ][ 'download' ]; ?>' }
                 ],
                 columnDefs: [
                 {
@@ -574,7 +596,7 @@ if( $form_is_valid === true ){
 
                         if( data !== '' ) {
 
-                            return '<a href="faps/' + data + '" class="link_for_download"><?php echo $translation[ 'fr' ][ 'data_table' ][ 'download' ]; ?></a>';
+                            return '<a href="faps/' + data + '" class="link_for_download"><?php echo $translation[ $lang ][ 'data_table' ][ 'download' ]; ?></a>';
                         }
                         else{
 
@@ -588,19 +610,19 @@ if( $form_is_valid === true ){
                 }
                 ],
                 language: {
-                    info: "<?php echo $translation[ 'fr' ][ 'data_table' ][ 'info' ]; ?>",
-                    search: "<?php echo $translation[ 'fr' ][ 'data_table' ][ 'search' ]; ?>"
+                    info: "<?php echo $translation[ $lang ][ 'data_table' ][ 'info' ]; ?>",
+                    search: "<?php echo $translation[ $lang ][ 'data_table' ][ 'search' ]; ?>"
                 }
             });
         });
         </script>
         <table id="list_of_applications" class="stripe" style="width:100%;"></table>
-        <p class="legend_explain status_datatable"><?php echo $translation[ 'fr' ][ 'legend' ][ 'title' ]; ?><br />
+        <p class="legend_explain status_datatable"><?php echo $translation[ $lang ][ 'legend' ][ 'title' ]; ?><br />
             
-            <span class="pending">pending</span> : <?php echo $translation[ 'fr' ][ 'legend' ][ 'status_pending' ]; ?><br />
-            <span class="success">success</span> : <?php echo $translation[ 'fr' ][ 'legend' ][ 'status_success' ]; ?><br />
-            <span class="deleted">deleted</span> : <?php echo $translation[ 'fr' ][ 'legend' ][ 'status_deleted' ]; ?><br />
-            <span class="impossible">impossible</span> : <?php echo $translation[ 'fr' ][ 'legend' ][ 'status_impossible' ]; ?><br />
+            <span class="pending">pending</span> : <?php echo $translation[ $lang ][ 'legend' ][ 'status_pending' ]; ?><br />
+            <span class="success">success</span> : <?php echo $translation[ $lang ][ 'legend' ][ 'status_success' ]; ?><br />
+            <span class="deleted">deleted</span> : <?php echo $translation[ $lang ][ 'legend' ][ 'status_deleted' ]; ?><br />
+            <span class="impossible">impossible</span> : <?php echo $translation[ $lang ][ 'legend' ][ 'status_impossible' ]; ?><br />
         </p>
     </div>
     
@@ -611,15 +633,15 @@ if( $form_is_valid === true ){
       <div class="row">
         <div class="one-third column value">
           <h2 class="value-multiplier"><?php echo $nb_application_this_month; ?></h2>
-          <h5 class="value-heading"><?php echo $translation[ 'fr' ][ 'compilation_this_month' ]; ?></h5>
+          <h5 class="value-heading"><?php echo $translation[ $lang ][ 'compilation_this_month' ]; ?></h5>
         </div>
         <div  class="one-third column value">
             <h2 class="value-multiplier"><?php echo $nb_most_firmware; ?> %</h2>
-            <h5 class="value-heading"><?php echo $translation[ 'fr' ][ 'most_firmware' ]; ?> <?php echo $most_firmware_name; ?></h5>
+            <h5 class="value-heading"><?php echo $translation[ $lang ][ 'most_firmware' ]; ?> <?php echo $most_firmware_name; ?></h5>
         </div>
         <div class="one-third column value">
           <h2 class="value-multiplier"><?php echo $nb_application_since_start; ?></h2>
-          <h5 class="value-heading"><?php echo $translation[ 'fr' ][ 'compilation_since_start' ]; ?></h5>
+          <h5 class="value-heading"><?php echo $translation[ $lang ][ 'compilation_since_start' ]; ?></h5>
         </div>
       </div>
     </div>
@@ -627,16 +649,16 @@ if( $form_is_valid === true ){
   
   <div class="section categories">
     <div class="container">
-      <h3 class="section-heading"><?php echo $translation[ 'fr' ][ 'bottom_site' ][ 'title_subscribe' ]; ?></h3>
+      <h3 class="section-heading"><?php echo $translation[ $lang ][ 'bottom_site' ][ 'title_subscribe' ]; ?></h3>
       <p><a id="byMeACoffee" class="button button-primary" href="https://www.buymeacoffee.com/inazo" target="_blank">By me a coffee</a></p>
       
-      <h3 class="section-heading"><?php echo $translation[ 'fr' ][ 'bottom_site' ][ 'follow_me' ]; ?></h3>
+      <h3 class="section-heading"><?php echo $translation[ $lang ][ 'bottom_site' ][ 'follow_me' ]; ?></h3>
       <p>
         <a href="https://twitter.com/bsmt_nevers" target="_blank"><img src="assets/images/icons8-twitter-48.png" alt="Twitter" /></a>
         <a href="https://www.youtube.com/@kanjian_fr" target="_blank"><img src="assets/images/icons8-youtube-48.png" alt="Youtube" /></a>
       </p>
       <p>
-        <a id="showLegalMentions" href="legal.php"><?php echo $translation[ 'fr' ][ 'bottom_site' ][ 'link_legal' ]; ?></a>
+        <a id="showLegalMentions" href="legal.php"><?php echo $translation[ $lang ][ 'bottom_site' ][ 'link_legal' ]; ?></a>
       </p>
     </div>
   </div>
