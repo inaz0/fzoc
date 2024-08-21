@@ -56,7 +56,8 @@ $translation  = [
         'error'            => 
         [
             'git_url_error'     => 'L\'url du dépôt GitHub ou GitLab n\'est pas conforme. (ex. : https://github.com/inaz0/fzoc.git )',
-            'error_other_field' => 'Vous n\'avez pas rempli tous les champs obligatoire.'
+            'error_other_field' => 'Vous n\'avez pas rempli tous les champs obligatoire.',
+            'captcha_error'     => 'Vous devez valider le captcha.'
         ],
         'success'                 => 'La compilation va bientôt commencer rafraichissez la page régulièrement pour voir le résultat apparaitre ci-dessous.',
         'title_table_app'         => 'Applications compilées',
@@ -98,8 +99,9 @@ $translation  = [
         'button_compil'    => 'Start compilation!',
         'error'            => 
         [
-            'git_url_error' => 'The GitHub or GitLab URL was not conform. (ex. : https://github.com/inaz0/fzoc.git )',
-            'error_other_field' => 'Missing mandatory fields.'
+            'git_url_error'     => 'The GitHub or GitLab URL was not conform. (ex. : https://github.com/inaz0/fzoc.git )',
+            'error_other_field' => 'Missing mandatory fields.',
+            'captcha_error'     => 'You does to validate the captcha.'
         ],
         'success'                 => 'The compilation will start soon, refresh the page regularly to see the result appear below.',
         'title_table_app'         => 'Compiled applications',
@@ -216,7 +218,7 @@ try{
             //-- récupération du contenu
             $response_curl      = curl_exec($curl);
             $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );   
-            var_dump( $response_curl );
+            
             if( $response_code_curl === 200 ){
 
                 $response_challenge = json_decode( $response_curl );
@@ -257,7 +259,14 @@ try{
         }
         else{
 
-            $message = $translation[ $lang ]['error']['git_url_error'];
+            if( $captcha_is_solved === false ){
+
+                $message = $translation[ $lang ]['error']['captcha_error'];
+            }
+            else{
+
+                $message = $translation[ $lang ]['error']['git_url_error'];
+            }            
         }
     }
 }
