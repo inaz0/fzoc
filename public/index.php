@@ -537,7 +537,7 @@ if( $form_is_valid === true ){
 
             if( is_array( $sql_most_firmware_res ) && count( $sql_most_firmware_res ) === 1 ){
 
-                $nb_most_firmware   = ( ( $sql_most_firmware_res[ 0 ][ 'nb_compil' ] * 100 ) / $nb_application_since_start );
+                $nb_most_firmware   = ceil( ( $sql_most_firmware_res[ 0 ][ 'nb_compil' ] * 100 ) / $nb_application_since_start );
                 $most_firmware_name = $sql_most_firmware_res[ 0 ][ 'firmware_name' ];
             }
         }
