@@ -33,6 +33,8 @@
 	
 	    Twitter logo: <a target="_blank" href="https://icons8.com/icon/13963/twitter">Twitter</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
 	    Youtube logo: <a target="_blank" href="https://icons8.com/icon/13983/youtube">YouTube</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
+        Instagram logo : <a target="_blank" href="https://icons8.com/icon/Xy10Jcu1L2Su/instagram">Instagram</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
+        Etsy logo : <a target="_blank" href="https://icons8.com/icon/MQ-HLKLCGrJn/etsy">Etsy</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
         Download logo: <a target="_blank" href="https://icons8.com/icon/103169/downloading-updates">Download</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
     </p>    
            </div>

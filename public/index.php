@@ -668,6 +668,8 @@ if( $form_is_valid === true ){
       <p>
         <a href="https://twitter.com/bsmt_nevers" target="_blank"><img src="assets/images/icons8-twitter-48.png" alt="Twitter" /></a>
         <a href="https://www.youtube.com/@kanjian_fr" target="_blank"><img src="assets/images/icons8-youtube-48.png" alt="Youtube" /></a>
+        <a href="https://www.instagram.com/kanjian_fr/" target="_blank"><img src="assets/images/icons8-instagram-48.png" alt="Instagram" /></a>
+        <a href="https://kanjianfr.etsy.com/" target="_blank"><img src="assets/images/icons8-etsy-48.png" alt="Etsy" /></a>
       </p>
       <p>
         <a id="showLegalMentions" href="legal.php"><?php echo $translation[ $lang ][ 'bottom_site' ][ 'link_legal' ]; ?></a>
