@@ -13,6 +13,14 @@ FZOC
 .header_by{
 
   background: url('../images/kanjian_blanc.png') no-repeat;
+  background-size: contain;
+  width: 50%;
+  height: 40px;
+  background-position-x: 24px;
+  padding-top: 20px;
+  float: right;
+  top: -78px;
+  position: relative;
 }
 
 input#git_url{
