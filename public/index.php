@@ -483,31 +483,6 @@ if( $form_is_valid === true ){
         $nb_most_firmware           = 0;
         $most_firmware_name         = '';
 
-        $sql_most_firmware = $bdd_connexion->prepare('
-            SELECT 
-            COUNT(*) as nb_compil,
-            firmware_name
-            FROM fzco_application 
-            INNER JOIN fzco_compiled ON fzco_compiled.compiled_application_id = fzco_application.application_id
-            INNER JOIN fzco_firmware_version ON fzco_firmware_version.firmware_version_id = fzco_compiled.compiled_firmware_version_id
-            INNER JOIN fzco_depend ON fzco_depend.depend_firmware_version_id = fzco_firmware_version.firmware_version_id
-            INNER JOIN fzco_firmware ON fzco_firmware.firmware_id = fzco_depend.depend_firmware_id
-            GROUP BY firmware_id
-            ORDER BY nb_compil DESC
-            LIMIT 1
-        ');
-
-        if( $sql_most_firmware->execute() === true ){
-
-            $sql_most_firmware_res = $sql_most_firmware->fetchAll();
-
-            if( is_array( $sql_most_firmware_res ) && count( $sql_most_firmware_res ) === 1 ){
-
-                $nb_most_firmware   = ( ( $sql_most_firmware_res[ 0 ][ 'nb_compil' ] * 100 ) / $nb_application_since_start );
-                $most_firmware_name = $sql_most_firmware_res[ 0 ][ 'firmware_name' ];
-            }
-        }
-        
         if( is_array( $sql_all_application_compiled_res ) && count( $sql_all_application_compiled_res ) > 0 ){
 
             $nb_application_since_start = count( $sql_all_application_compiled_res );
@@ -541,6 +516,32 @@ if( $form_is_valid === true ){
                 ';
             }
         }
+
+        $sql_most_firmware = $bdd_connexion->prepare('
+        SELECT 
+        COUNT(*) as nb_compil,
+        firmware_name
+        FROM fzco_application 
+        INNER JOIN fzco_compiled ON fzco_compiled.compiled_application_id = fzco_application.application_id
+        INNER JOIN fzco_firmware_version ON fzco_firmware_version.firmware_version_id = fzco_compiled.compiled_firmware_version_id
+        INNER JOIN fzco_depend ON fzco_depend.depend_firmware_version_id = fzco_firmware_version.firmware_version_id
+        INNER JOIN fzco_firmware ON fzco_firmware.firmware_id = fzco_depend.depend_firmware_id
+        GROUP BY firmware_id
+        ORDER BY nb_compil DESC
+        LIMIT 1
+        ');
+
+        if( $sql_most_firmware->execute() === true ){
+
+            $sql_most_firmware_res = $sql_most_firmware->fetchAll();
+
+            if( is_array( $sql_most_firmware_res ) && count( $sql_most_firmware_res ) === 1 ){
+
+                $nb_most_firmware   = ( ( $sql_most_firmware_res[ 0 ][ 'nb_compil' ] * 100 ) / $nb_application_since_start );
+                $most_firmware_name = $sql_most_firmware_res[ 0 ][ 'firmware_name' ];
+            }
+        }
+        
 
         ?>
 
