@@ -25,9 +25,7 @@ foreach( $pending_task ?? [] as $task_waiting ){
             $sql_update_compiled = $bdd_connexion->prepare( $sql_update_compiled_query );
 
             $check_result          = file_get_contents( $result_file );
-            $correct_compiled_path = str_replace( ['_', '.txt'], ['/',''] , $task_waiting );
-
-            var_dump( $correct_compiled_path );
+            $correct_compiled_path = str_replace( ['_', '.sh'], ['/',''] , $task_waiting );
 
             if( preg_match('/Found nothing to build/iu', $check_result) ){
 
