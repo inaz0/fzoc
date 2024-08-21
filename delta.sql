@@ -65,3 +65,22 @@ INSERT INTO `fzco_firmware_version` VALUES (
 
 INSERT INTO `fzco_depend` VALUES (1,5);
 UPDATE fzco_firmware_version SET firmware_version_is_active = 0 WHERE firmware_version_id=1;
+
+-- ajout du firmware unleashed le 21-08-2024
+INSERT INTO `fzco_firmware` VALUES 
+(3,
+'Unleashed',
+'https://up.unleashedflip.com/directory.json',
+'https://github.com/DarkFlippers/unleashed-firmware/',
+1,
+'unleashed');
+
+INSERT INTO `fzco_firmware_version` VALUES (
+    6,
+	'2024-08-18 12:59:00',
+	'release',
+	'unlshd-077',
+	1
+);
+
+INSERT INTO `fzco_depend` VALUES (3,6);
