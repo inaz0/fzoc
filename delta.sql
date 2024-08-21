@@ -53,6 +53,8 @@ INSERT INTO `fzco_depend` VALUES (1,2);
 INSERT INTO `fzco_depend` VALUES (2,3);
 INSERT INTO `fzco_depend` VALUES (2,4);
 
+
+-- ajout de la version 105 du firmware officiel le 21-08-2024
 INSERT INTO `fzco_firmware_version` VALUES (
     5,
 	'2024-08-15 03:59:00',
