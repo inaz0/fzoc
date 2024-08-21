@@ -200,15 +200,13 @@ try{
                 'response' => $_POST[ 'cf-turnstile-response' ]
             ];
 
-            var_dump(http_build_query($post_data));
-
             // fixe l'URL et les autres options appropriées
             $options_curl = array(
                 CURLOPT_URL            => 'https://challenges.cloudflare.com/turnstile/v0/siteverify',
                 CURLOPT_HEADER         => false,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_MAXREDIRS      => 0,
-                CURLOPT_POSTFIELDS     => http_build_query($post_data)
+                CURLOPT_POSTFIELDS     => $post_data
             );
 
             curl_setopt_array( $curl, $options_curl );
