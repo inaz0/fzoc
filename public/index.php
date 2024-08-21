@@ -21,7 +21,7 @@ $cloudflare_api       = '<script type="text/javascript" src="https://challenges.
 
 if( $is_active_cloudflaire_turnstile === true ){
 
-    $cloudflare_turnstile = '<div class="cf-turnstile" data-size="compact" data-sitekey="'. $cloudflare_turnstile_sitekey .'"></div>';
+    $cloudflare_turnstile = '<div class="cf-turnstile" data-sitekey="'. $cloudflare_turnstile_sitekey .'"></div>';
 }
 
 if( !empty($_GET['lang']) ){
