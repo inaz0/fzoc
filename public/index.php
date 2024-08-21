@@ -419,11 +419,11 @@ if( $form_is_valid === true ){
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
 
-  <div class="section get-help">
+  <div class="section hero">
     <div class="container">
       <div class="row">
         <div class="one-third column value">
-          <h1 >FlipperZero Online Compilator</h1>
+          <h1 class="hero-heading">FlipperZero Online Compilator</h1>
         </div>
         <div  class="one-third column value">
         </div>
