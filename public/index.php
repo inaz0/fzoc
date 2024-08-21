@@ -288,6 +288,7 @@ if( $form_is_valid === true ){
     $response_curl      = curl_exec($curl);
     $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );   
 
+    curl_close( $curl );
     //-- on ne veut que du 200
     if( $response_code_curl === 200 ){
 
@@ -499,10 +500,12 @@ if( $form_is_valid === true ){
                         </select>   
                     </div>
                 </div>
+
+                <?php echo $cloudflare_turnstile; ?>
                 
             </div>
             <div class="row">
-                <div class="one-third column value"><?php echo $cloudflare_turnstile; ?></div>
+                <div class="one-third column value">&nbsp;</div>
                 <div class="one-third column value"><input class="button button-primary" type="submit" name="compil" value="<?php echo $translation[ $lang ][ 'button_compil' ]; ?>" /></div>
                 <div class="one-third column value">&nbsp;</div>
             </div>
