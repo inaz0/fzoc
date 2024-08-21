@@ -92,6 +92,11 @@ table.dataTable thead > tr > th.dt-orderable-asc:hover, table.dataTable thead > 
     outline: none !important;
 }
 
+.legend_explain.status_datatable {
+  text-align: left !important;
+  line-height: 40px;
+}
+
 .status_datatable{
     text-align: center !important; 
     color: #fff;

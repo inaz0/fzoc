@@ -508,10 +508,11 @@ if( $form_is_valid === true ){
         </script>
         <table id="list_of_applications" class="stripe" style="width:100%;"></table>
         <p class="legend_explain status_datatable">Légende des status : <br />
-        <span class="impossible">impossible</span> : de compiler l'application, en général c'est un app_id déjà intégré au firmware officiel<br />
-        <span class="deleted">deleted</span> : le fap a été supprimé automatiquement au bout de 30 jours.<br />
-        <span class="success">success</span> : le fap a été compilé, il est téléchargeable durant 30 jours.<br />
-        <span class="pending">pending</span> : la compilation est en cours.<br />
+            
+            <span class="pending">pending</span> : la compilation est en cours.<br />
+            <span class="success">success</span> : le fap a été compilé, il est téléchargeable durant 30 jours.<br />
+            <span class="deleted">deleted</span> : le fap a été supprimé automatiquement au bout de 30 jours.<br />
+            <span class="impossible">impossible</span> : de compiler l'application, en général c'est un app_id déjà intégré au firmware officiel<br />
         </p>
     </div>
     
