@@ -493,11 +493,9 @@ if( $form_is_valid === true ){
             LIMIT 1
         ');
 
-        $sql_most_firmware_res = $sql_most_firmware->execute();
-        
-        if( $sql_most_firmware_res === true ){
+        if( $sql_most_firmware->execute() === true ){
 
-            var_dump($sql_most_firmware_res->fetchAll());
+            var_dump($sql_most_firmware->fetchAll());
         }
         
         
