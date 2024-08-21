@@ -401,4 +401,12 @@ text-align: right;
 #showLegalMentions, #closeMe{
 	
 	cursor:pointer;
+  text-decoration: underline;
+}
+
+
+#showLegalMentions:hover, #closeMe:hover{
+	
+	cursor:pointer;
+  text-decoration: none;
 }
