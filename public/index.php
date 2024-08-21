@@ -30,6 +30,8 @@ $translation  = [
         'success'                 => 'La compilation va bientôt commencer rafraichissez la page régulièrement pour voir le résultat apparaitre ci-dessous.',
         'title_table_app'         => 'Applications compilées',
         'date_format'             => 'd/m/Y<b\r>H\hi',
+        'compilation_this_month'  => 'Compilation ce mois-ci',
+        'most_firmware'           => 'Le plus pour le firmware :',
         'compilation_since_start' => 'Compilation depuis le début',
         'legend'                  => [
 
@@ -71,6 +73,8 @@ $translation  = [
         'success'                 => 'The compilation will start soon, refresh the page regularly to see the result appear below.',
         'title_table_app'         => 'Compiled applications',
         'date_format'             => 'Y-m-d H:i:s',
+        'compilation_this_month'  => 'Compilation this month',
+        'most_firmware'           => 'The more for the firmware:',
         'compilation_since_start' => 'Compilation from the beginning',
         'legend'                  => [
 
@@ -497,13 +501,12 @@ if( $form_is_valid === true ){
 
             $sql_most_firmware_res = $sql_most_firmware->fetchAll();
 
-            if( is_array( $sql_firmware_info_res ) && count( $sql_firmware_info_res ) === 1 ){
+            if( is_array( $sql_most_firmware_res ) && count( $sql_most_firmware_res ) === 1 ){
 
-                $nb_most_firmware   = ( ( $sql_firmware_info_res[ 0 ][ 'nb_compil' ] * 100 ) / $nb_application_since_start );
-                $most_firmware_name = $sql_firmware_info_res[ 0 ][ 'firmware_name' ];
+                $nb_most_firmware   = ( ( $sql_most_firmware_res[ 0 ][ 'nb_compil' ] * 100 ) / $nb_application_since_start );
+                $most_firmware_name = $sql_most_firmware_res[ 0 ][ 'firmware_name' ];
             }
         }
-        
         
         if( is_array( $sql_all_application_compiled_res ) && count( $sql_all_application_compiled_res ) > 0 ){
 
@@ -606,14 +609,12 @@ if( $form_is_valid === true ){
       <div class="row">
         <div class="one-third column value">
           <h2 class="value-multiplier"><?php echo $nb_application_this_month; ?></h2>
-          <h5 class="value-heading">Compilation ce mois-ci</h5>
+          <h5 class="value-heading"><?php echo $translation[ 'fr' ][ 'compilation_this_month' ]; ?></h5>
         </div>
-
-	<div  class="one-third column value">
-          <h2 class="value-multiplier"><?php echo $nb_most_firmware; ?> %</h2>
-          <h5 class="value-heading">Pour le firmware : <?php echo $most_firmware_name; ?></h5>
-	</div>
-
+        <div  class="one-third column value">
+            <h2 class="value-multiplier"><?php echo $nb_most_firmware; ?> %</h2>
+            <h5 class="value-heading"><?php echo $translation[ 'fr' ][ 'most_firmware' ]; ?> <?php echo $most_firmware_name; ?></h5>
+        </div>
         <div class="one-third column value">
           <h2 class="value-multiplier"><?php echo $nb_application_since_start; ?></h2>
           <h5 class="value-heading"><?php echo $translation[ 'fr' ][ 'compilation_since_start' ]; ?></h5>
