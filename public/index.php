@@ -531,7 +531,7 @@ if( $form_is_valid === true ){
                 }
                 ],
                 language: {
-                    info: <?php echo $translation[ 'fr' ][ 'data_table' ][ 'info' ]; ?>
+                    info: "<?php echo $translation[ 'fr' ][ 'data_table' ][ 'info' ]; ?>"
                 }
             });
         });
