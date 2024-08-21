@@ -489,13 +489,19 @@ if( $form_is_valid === true ){
             INNER JOIN fzco_depend ON fzco_depend.depend_firmware_version_id = fzco_firmware_version.firmware_version_id
             INNER JOIN fzco_firmware ON fzco_firmware.firmware_id = fzco_depend.depend_firmware_id
             GROUP BY firmware_id
-            ORDER BY nb_compil
+            ORDER BY nb_compil DESC
             LIMIT 1
         ');
 
         if( $sql_most_firmware->execute() === true ){
 
-            var_dump($sql_most_firmware->fetchAll());
+            $sql_most_firmware_res = $sql_most_firmware->fetchAll();
+
+            if( is_array( $sql_firmware_info_res ) && count( $sql_firmware_info_res ) === 1 ){
+
+                $nb_most_firmware   = ( ( $sql_firmware_info_res[ 0 ][ 'nb_compil' ] * 100 ) / $nb_application_since_start );
+                $most_firmware_name = $sql_firmware_info_res[ 0 ][ 'firmware_name' ];
+            }
         }
         
         
@@ -604,8 +610,8 @@ if( $form_is_valid === true ){
         </div>
 
 	<div  class="one-third column value">
-          <h2 class="value-multiplier">80 %</h2>
-          <h5 class="value-heading">Pour le firmware : Momentum</h5>
+          <h2 class="value-multiplier"><?php echo $nb_most_firmware; ?> %</h2>
+          <h5 class="value-heading">Pour le firmware : <?php echo $most_firmware_name; ?></h5>
 	</div>
 
         <div class="one-third column value">
