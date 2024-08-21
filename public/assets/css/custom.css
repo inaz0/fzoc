@@ -2,6 +2,14 @@
 FZOC
 */
 
+section.header {
+  padding: 20px;
+  text-align: left;
+  line-height: 1em;
+  background: #283d50;
+  color: #f7f7f7;
+}
+
 input#git_url{
   width: 100%;
 }
