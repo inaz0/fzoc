@@ -114,6 +114,9 @@ text-align: right;
   text-decoration: none;
 }
 
+.lang a.current{
+  padding: 0 10px;
+}
 
 .lang a.current::before{
 
@@ -121,7 +124,7 @@ text-align: right;
   margin-top: -2px;
   display: inline;
   position: absolute;
-  margin-right: 2px;
+  margin-left: -9 px;
 }
 
 
