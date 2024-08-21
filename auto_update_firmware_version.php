@@ -14,7 +14,7 @@ $all_firmware_req = $bdd_connexion->prepare('
     INNER JOIN fzco_depend ON depend_firmware_id = firmware_id
     INNER JOIN fzco_firmware_version ON depend_firmware_version_id = firmware_version_id
 
-    WHERE firmware_is_active=1 AND firmware_version_is_active=1 AND firmware_version_type = "release"
+    WHERE firmware_is_active=1 AND firmware_version_is_active=1 AND firmware_vesion_type = "release"
     
     ');
 
