@@ -142,6 +142,9 @@ foreach( $all_firmware_res as $value_firm ){
                 }
             
             }
+            else{
+                echo 'no channels';
+            }
         }
         else{
             echo 'error'.__LINE__;
