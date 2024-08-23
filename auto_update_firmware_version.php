@@ -49,12 +49,13 @@ foreach( $all_firmware_res as $value_firm ){
             $task_file_for_udpate = $path_task_updates.'udapte_needed_'.time().'.sh';
 	
             if( property_exists($json_directory_data, 'channels') ){ 
-            
+                echo 'got channels';
                 foreach( $json_directory_data->channels as $value_json ){
                     
                     if( property_exists($value_json, 'id') ){ 
+                        echo 'id get';
                         if ( $value_json->id === 'release' ){
-
+                            echo 'id release';
                             if( property_exists($value_json, 'versions') ){
                                 
                                 if( is_array( $value_json->versions ) && count($value_json->versions) >0 && property_exists($value_json->versions[0], 'version') &&  property_exists($value_json->versions[0], 'timestamp') ){
