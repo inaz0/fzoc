@@ -99,7 +99,7 @@ foreach( $all_firmware_res as $value_firm ){
                                 }
                             }
                         }
-                        elseif ( $value_json->id === 'dev' ){
+                        elseif ( $value_json->id === 'development' ){
                             echo 'dev';
                             if( property_exists($value_json, 'versions') ){
                                 
