@@ -64,7 +64,7 @@ foreach( $all_firmware_res as $value_firm ){
                                     //-- check de la version courante si différente alors on désactive l'ancienne on insert la nouvelle en active + update ufbt
                                     if( $value_firm[ 'firmware_version_name' ] !== $value_json->versions[0]->version ){
                                     
-                                        $bdd_connexion->startTransaction();
+                                        $bdd_connexion->beginTransaction();
                                     
                                         try{
                                             
@@ -90,7 +90,7 @@ foreach( $all_firmware_res as $value_firm ){
                                                 echo $e->getMessage();
                                             }
                                             
-                                            $bdd_connexion->rollback();
+                                            $bdd_connexion->rollBack();
                                         }
                                         
                                         //-- lancer les update ufbt via un task runner dédié idem que pour les compils
@@ -100,12 +100,11 @@ foreach( $all_firmware_res as $value_firm ){
                             }
                         }
                         elseif ( $value_json->id === 'development' ){
-                            echo 'dev';
+
                             if( property_exists($value_json, 'versions') ){
                                 
                                 if( is_array( $value_json->versions ) && count($value_json->versions) > 0 && property_exists($value_json->versions[0], 'timestamp') ){
                                     
-                                    echo 'dev diff date';
                                     //-- check le timestamp rapport à celle en base, si non égal update la bdd + update de ufbt
                                     
                                     //-- on va récupérer les firmwares
@@ -146,12 +145,6 @@ foreach( $all_firmware_res as $value_firm ){
                 }
             
             }
-            else{
-                echo 'no channels';
-            }
-        }
-        else{
-            echo 'error'.__LINE__;
         }
     }
 }
