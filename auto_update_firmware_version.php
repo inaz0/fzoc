@@ -40,5 +40,107 @@ foreach( $all_firmware_res as $value_firm ){
     $response_curl      = curl_exec($curl);
     $response_code_curl = curl_getinfo( $curl, CURLINFO_RESPONSE_CODE );   
 
-    var_dump( $response_curl );
+    if( $response_code_curl === 200 ){
+
+        $json_directory_data = json_decode( $response_curl );
+
+        if( json_last_error() === JSON_ERROR_NONE ){
+
+            $task_file_for_udpate = $path_task_updates.'udapte_needed_'.time().'.sh';
+	
+            if( property_exists($json_dec, 'channels') ){ 
+            
+                foreach( $json_dec->channels as $value_json ){
+                    
+                    if( property_exists($value_json, 'id') ){ 
+                        if ( $value_json->id === 'release' ){
+
+                            if( property_exists($value_json, 'versions') ){
+                                
+                                if( is_array( $value_json->versions ) && count($value_json->versions) >0 && property_exists($value_json->versions[0], 'version') &&  property_exists($value_json->versions[0], 'timestamp') ){
+                                    
+                                    //-- check de la version courante si différente alors on désactive l'ancienne on insert la nouvelle en active + update ufbt
+                                    if( $value_firm[ 'firmware_version_name' ] !== $value_json->versions[0]->version ){
+                                    
+                                        $bdd_connexion->startTransaction();
+                                    
+                                        try{
+                                            
+                                            //-- désactive l'ancienne avant
+                                            $sql_deactivate_old_release_req = $bdd_connexion->prepare('
+                                            UPDATE fzco_firmware_version SET firmware_version_is_active=0 WHERE firmware_version_id=:firm_version_id
+                                            ');
+                                        
+                                            $sql_deactivate_old_release_req->execute( [ 'firm_version_id' => $value_firm[ 'firmware_version_id' ] ] );
+                                        
+                                            $sql_create_new_version_firmware_req = $bdd_connexion->prepare( '
+                                            INSERT INTO fzco_firmware_version (firmware_version_update_date, firmware_vesion_type, firmware_version_name, firmware_version_is_active) VALUES (:update_date,"release",:firm_name,1);
+                                            ' );
+                                            
+                                            $sql_create_new_version_firmware_req->execute( [ 'update_date' => date('Y-m-d H:i:s', $value_json->versions[0]->timestamp), 'firm_name' => $value_json->versions[0]->version ]  );
+                                            
+                                            $bdd_connexion->commit();
+                                        }
+                                        catch(PDOException $e){
+                                            
+                                            if( $debug === true ){
+                                                
+                                                echo $e->getMessage();
+                                            }
+                                            
+                                            $bdd_connexion->rollback();
+                                        }
+                                        
+                                        //-- lancer les update ufbt via un task runner dédié idem que pour les compils
+                                        file_put_contents($task_file_for_udpate, 'ufbt update --index-url='.$value_firm['firmware_url_update' ].PHP_EOL ,FILE_APPEND);
+                                    }
+                                }
+                            }
+                        }
+                        elseif ( $value_json->id === 'dev' ){
+                            
+                            if( property_exists($value_json, 'versions') ){
+                                
+                                if( is_array( $value_json->versions ) && count($value_json->versions) > 0 && property_exists($value_json->versions[0], 'timestamp') ){
+                                    
+                                    //-- check le timestamp rapport à celle en base, si non égal update la bdd + update de ufbt
+                                    
+                                    //-- on va récupérer les firmwares
+                                    $sql_dev_firmware_req = $bdd_connexion->prepare('
+                                        SELECT 
+
+                                            * 
+                                        
+                                        FROM fzco_firmware 
+                                        
+                                        INNER JOIN fzco_depend ON depend_firmware_id = firmware_id
+                                        INNER JOIN fzco_firmware_version ON depend_firmware_version_id = firmware_version_id
+
+                                        WHERE firmware_is_active=1 AND firmware_version_is_active=1 AND firmware_vesion_type = "dev"
+                                        AND firmware_id = :firm_id								
+                                        ');
+
+                                    $sql_dev_firmware_req->execute( ['firm_id' => $value_firm[ 'firmware_id' ] ]  );
+                                    $sql_dev_firmware_res = $sql_dev_firmware_req->fetchAll();
+                                    
+                                    if(  strtotime($sql_dev_firmware_res[0]['firmware_version_update_date']) !== $value_json->versions[0]->timestamp ){
+                                        
+                                        $sql_udpate_firmware_version_req = $bdd_connexion->prepare('
+                                           UPDATE fzco_firmware_version SET firmware_version_update_date=:firm_date WHERE firmware_version_id=:firm_version_id AND firmware_vesion_type="dev"
+                                        ');
+                                        
+                                        $sql_create_new_version_firmware_req->execute( [ 'firm_date' => date('Y-m-d H:i:s', $value_json->versions[0]->timestamp), 'firm_version_id' => $sql_dev_firmware_res[0]['firmware_version_id'] ]  );
+
+                                        //-- lancer les update ufbt via un task runner dédié idem que pour les compils
+                                        file_put_contents($task_file_for_udpate, 'ufbt update --channel=dev --index-url='.$value_firm['firmware_url_update' ].PHP_EOL ,FILE_APPEND);
+                                    }					
+                                }
+                            }
+                        }
+                    }
+                }
+            
+            }
+        }
+    }
 }

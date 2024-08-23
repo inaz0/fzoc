@@ -16,7 +16,8 @@ $debug              = false;
 $path_to_ufbt = __DIR__.'/ufbt/';
 
 //-- task list
-$task_list = __DIR__.'/tasks/';
+$task_list         = __DIR__.'/tasks/';
+$path_task_updates = __DIR__.'/tasks_update/'; 
 
 //-- path to fap
 $fap_path = __DIR__.'/public/faps/';
