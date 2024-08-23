@@ -142,5 +142,8 @@ foreach( $all_firmware_res as $value_firm ){
             
             }
         }
+        else{
+            echo 'error'.__LINE__;
+        }
     }
 }
