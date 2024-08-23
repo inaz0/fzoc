@@ -126,17 +126,19 @@ foreach( $all_firmware_res as $value_firm ){
                                     $sql_dev_firmware_req->execute( ['firm_id' => $value_firm[ 'firmware_id' ] ]  );
                                     $sql_dev_firmware_res = $sql_dev_firmware_req->fetchAll();
                                     
-                                    if(  strtotime($sql_dev_firmware_res[0]['firmware_version_update_date']) !== $value_json->versions[0]->timestamp ){
-                                        
-                                        $sql_udpate_firmware_version_req = $bdd_connexion->prepare('
-                                           UPDATE fzco_firmware_version SET firmware_version_update_date=:firm_date WHERE firmware_version_id=:firm_version_id AND firmware_vesion_type="dev"
-                                        ');
-                                        
-                                        $sql_udpate_firmware_version_req->execute( [ 'firm_date' => date('Y-m-d H:i:s', $value_json->versions[0]->timestamp), 'firm_version_id' => $sql_dev_firmware_res[0]['firmware_version_id'] ]  );
+                                    if( is_array( $sql_dev_firmware_res ) && count( $sql_dev_firmware_res ) > 0 ){
+                                        if(  strtotime($sql_dev_firmware_res[0]['firmware_version_update_date']) !== $value_json->versions[0]->timestamp ){
+                                            
+                                            $sql_udpate_firmware_version_req = $bdd_connexion->prepare('
+                                            UPDATE fzco_firmware_version SET firmware_version_update_date=:firm_date WHERE firmware_version_id=:firm_version_id AND firmware_vesion_type="dev"
+                                            ');
+                                            
+                                            $sql_udpate_firmware_version_req->execute( [ 'firm_date' => date('Y-m-d H:i:s', $value_json->versions[0]->timestamp), 'firm_version_id' => $sql_dev_firmware_res[0]['firmware_version_id'] ]  );
 
-                                        //-- lancer les update ufbt via un task runner dédié idem que pour les compils
-                                        file_put_contents($task_file_for_udpate, 'ufbt update --channel=dev --index-url='.$value_firm['firmware_url_update' ].PHP_EOL ,FILE_APPEND);
-                                    }					
+                                            //-- lancer les update ufbt via un task runner dédié idem que pour les compils
+                                            file_put_contents($task_file_for_udpate, 'ufbt update --channel=dev --index-url='.$value_firm['firmware_url_update' ].PHP_EOL ,FILE_APPEND);
+                                        }			
+                                    }		
                                 }
                             }
                         }
