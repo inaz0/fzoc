@@ -57,11 +57,13 @@ foreach( $all_firmware_res as $value_firm ){
                         if ( $value_json->id === 'release' ){
                             echo 'id release';
                             if( property_exists($value_json, 'versions') ){
-                                
+                                echo 'get version';
                                 if( is_array( $value_json->versions ) && count($value_json->versions) >0 && property_exists($value_json->versions[0], 'version') &&  property_exists($value_json->versions[0], 'timestamp') ){
                                     
                                     //-- check de la version courante si différente alors on désactive l'ancienne on insert la nouvelle en active + update ufbt
                                     if( $value_firm[ 'firmware_version_name' ] !== $value_json->versions[0]->version ){
+
+                                        echo 'version timestamp diff';
                                     
                                         $bdd_connexion->startTransaction();
                                     
