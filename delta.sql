@@ -83,4 +83,15 @@ INSERT INTO `fzco_firmware_version` VALUES (
 	1
 );
 
+
+INSERT INTO `fzco_firmware_version` VALUES (
+    7,
+	'2024-08-18 12:59:00',
+	'dev',
+	'unlshd-077',
+	1
+);
+
+
 INSERT INTO `fzco_depend` VALUES (3,6);
+INSERT INTO `fzco_depend` VALUES (3,7);
