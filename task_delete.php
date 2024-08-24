@@ -18,7 +18,7 @@ if( is_array( $sql_compiled_to_delete_res ) && count( $sql_compiled_to_delete_re
         try{
 
 
-            array_map('unlink', glob( $fap_path.$a_compil_to_delete[ 'compiled_path_fap' ] .'*.fap'));
+            var_dump(glob( $fap_path.$a_compil_to_delete[ 'compiled_path_fap' ] .'*.fap'));
             rmdir($fap_path.$a_compil_to_delete[ 'compiled_path_fap' ]);
 
             $sql_update_compiled_stm = $bdd_connexion->prepare( $sql_update_compiled_req );
