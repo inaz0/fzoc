@@ -19,8 +19,8 @@ if( is_array( $sql_compiled_to_delete_res ) && count( $sql_compiled_to_delete_re
 
             unlink($fap_path.$a_compil_to_delete[ 'compiled_path_fap' ]);
 
-            $sql_update_compiled_req = $bdd_connexion->prepare( $sql_update_compiled_req );
-            $sql_update_compiled_req->execute( [ 
+            $sql_update_compiled_stm = $bdd_connexion->prepare( $sql_update_compiled_req );
+            $sql_update_compiled_stm->execute( [ 
                 'firm_version' => $a_compil_to_delete[ 'compiled_firmware_version_id' ],
                 'app_id'       => $a_compil_to_delete[ 'compiled_application_id' ],
                 'comp_date'    => $a_compil_to_delete[ 'compiled_date' ]
