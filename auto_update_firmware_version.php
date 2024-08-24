@@ -81,6 +81,10 @@ foreach( $all_firmware_res as $value_firm ){
                                             
                                             $sql_create_new_version_firmware_req->execute( [ 'update_date' => date('Y-m-d H:i:s', $value_json->versions[0]->timestamp), 'firm_name' => $value_json->versions[0]->version ]  );
                                             
+                                            $sql_create_depend_stm = $bdd_connexion->prepare( 'INSERT INTO fzco_depend (depend_firmware_id, depend_firmware_version_id) VALUES (:firm_id, :firm_version_id);
+                                            ' );
+                                            $sql_create_depend_stm->execute( [ 'firm_id' => $value_firm['firmware_id'], 'firm_version_id' => $bdd_connexion->lastInsertId() ] );
+
                                             $bdd_connexion->commit();
                                         }
                                         catch(PDOException $e){
