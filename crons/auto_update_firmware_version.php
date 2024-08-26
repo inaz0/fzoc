@@ -14,7 +14,7 @@ $all_firmware_req = $bdd_connexion->prepare('
     INNER JOIN fzco_depend ON depend_firmware_id = firmware_id
     INNER JOIN fzco_firmware_version ON depend_firmware_version_id = firmware_version_id
 
-    WHERE firmware_is_active=1 AND firmware_version_is_active=1 AND firmware_vesion_type = "release"
+    WHERE firmware_is_active=1 AND firmware_version_is_active=1 AND firmware_version_type = "release"
     
     ');
 
@@ -76,7 +76,7 @@ foreach( $all_firmware_res as $value_firm ){
                                             $sql_deactivate_old_release_req->execute( [ 'firm_version_id' => $value_firm[ 'firmware_version_id' ] ] );
                                         
                                             $sql_create_new_version_firmware_req = $bdd_connexion->prepare( '
-                                            INSERT INTO fzco_firmware_version (firmware_version_update_date, firmware_vesion_type, firmware_version_name, firmware_version_is_active) VALUES (:update_date,"release",:firm_name,1);
+                                            INSERT INTO fzco_firmware_version (firmware_version_update_date, firmware_version_type, firmware_version_name, firmware_version_is_active) VALUES (:update_date,"release",:firm_name,1);
                                             ' );
                                             
                                             $sql_create_new_version_firmware_req->execute( [ 'update_date' => date('Y-m-d H:i:s', $value_json->versions[0]->timestamp), 'firm_name' => $value_json->versions[0]->version ]  );
@@ -98,7 +98,7 @@ foreach( $all_firmware_res as $value_firm ){
                                         }
                                         $state_dir_of_ufbt = '/home/inazo/fz_'. $value_firm[ 'firmware_ufbt_path' ].'_release';
                                         //-- lancer les update ufbt via un task runner dédié idem que pour les compils
-                                        file_put_contents($task_file_for_udpate, 'ufbt dotenv_create --state-dir '.$state_dir_of_ufbt.' && ufbt update --index-url='.$value_firm['firmware_url_update' ].' && rm .env '.PHP_EOL ,FILE_APPEND);
+                                        file_put_contents($task_file_for_udpate, 'cd '.$path_to_ufbt.' && source bin/activate && rm .env && ufbt dotenv_create --state-dir '.$state_dir_of_ufbt.' && ufbt update --index-url='.$value_firm['firmware_url_update' ].' && rm .env && deactivate'.PHP_EOL ,FILE_APPEND);
                                     }
                                 }
                             }
@@ -122,7 +122,7 @@ foreach( $all_firmware_res as $value_firm ){
                                         INNER JOIN fzco_depend ON depend_firmware_id = firmware_id
                                         INNER JOIN fzco_firmware_version ON depend_firmware_version_id = firmware_version_id
 
-                                        WHERE firmware_is_active=1 AND firmware_version_is_active=1 AND firmware_vesion_type = "dev"
+                                        WHERE firmware_is_active=1 AND firmware_version_is_active=1 AND firmware_version_type = "dev"
                                         AND firmware_id = :firm_id								
                                         ');
 
@@ -133,12 +133,13 @@ foreach( $all_firmware_res as $value_firm ){
                                         if(  strtotime($sql_dev_firmware_res[0]['firmware_version_update_date']) !== $value_json->versions[0]->timestamp ){
                                             
                                             $sql_udpate_firmware_version_req = $bdd_connexion->prepare('
-                                            UPDATE fzco_firmware_version SET firmware_version_update_date=:firm_date WHERE firmware_version_id=:firm_version_id AND firmware_vesion_type="dev"
+                                            UPDATE fzco_firmware_version SET firmware_version_update_date=:firm_date WHERE firmware_version_id=:firm_version_id AND firmware_version_type="dev"
                                             ');
                                             
                                             $sql_udpate_firmware_version_req->execute( [ 'firm_date' => date('Y-m-d H:i:s', $value_json->versions[0]->timestamp), 'firm_version_id' => $sql_dev_firmware_res[0]['firmware_version_id'] ]  );
 
                                             $state_dir_of_ufbt = '/home/inazo/fz_'. $value_firm[ 'firmware_ufbt_path' ].'_dev';
+
                                             //-- lancer les update ufbt via un task runner dédié idem que pour les compils
                                             file_put_contents($task_file_for_udpate, 'cd '.$path_to_ufbt.' && source bin/activate && rm .env && ufbt dotenv_create --state-dir '.$state_dir_of_ufbt.' && ufbt update --channel=dev --index-url='.$value_firm['firmware_url_update' ].' && rm .env && deactivate '.PHP_EOL ,FILE_APPEND);
                                         }			

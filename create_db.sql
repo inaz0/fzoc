@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS `fzco_firmware` (
 
 CREATE TABLE IF NOT EXISTS `fzco_firmware_version` (
 	`firmware_version_id` int AUTO_INCREMENT NOT NULL UNIQUE,
-	`firmware_version_update_date` date NOT NULL,
-	`firmware_vesion_type` ENUM('release','dev') NOT NULL,
+	`firmware_version_update_date` datetime NOT NULL,
+	`firmware_version_type` ENUM('release','dev') NOT NULL,
 	`firmware_version_name` varchar(255) NOT NULL,
 	`firmware_version_is_active` int NOT NULL,
 	PRIMARY KEY (`firmware_version_id`)

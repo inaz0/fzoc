@@ -161,7 +161,7 @@ try{
 
     foreach( $all_firmware_res ?? [] as $key_firm => $value_firm ){
 
-        if( !array_key_exists( $value_firm['firmware_id'], $firmware_allready_in_select ) && $value_firm[ 'firmware_vesion_type' ] === 'release' ){
+        if( !array_key_exists( $value_firm['firmware_id'], $firmware_allready_in_select ) && $value_firm[ 'firmware_version_type' ] === 'release' ){
 
             $firmware_list_for_select .= '<option value="'.$value_firm['firmware_id'].'">'.$value_firm['firmware_name'].' - '. $value_firm['firmware_version_name'] .'</option>';
             $firmware_allready_in_select[ $value_firm['firmware_id'] ] = 1;
@@ -375,7 +375,7 @@ if( $form_is_valid === true ){
                         FROM fzco_firmware 
                         INNER JOIN fzco_depend ON depend_firmware_id = fzco_firmware.firmware_id
                         INNER JOIN fzco_firmware_version ON fzco_depend.depend_firmware_version_id = fzco_firmware_version.firmware_version_id 
-                        WHERE firmware_id = :firmware_id AND firmware_vesion_type = :version_type AND firmware_version_is_active = 1 AND firmware_is_active = 1
+                        WHERE firmware_id = :firmware_id AND firmware_version_type = :version_type AND firmware_version_is_active = 1 AND firmware_is_active = 1
                     ');
 
                     $sql_firmware_info->execute( [ 'firmware_id' => $_POST['firmware_target'], 'version_type' => $version_type[ $_POST[ 'git_branch' ] ] ] );
@@ -610,7 +610,7 @@ if( $form_is_valid === true ){
                         "'. $an_app[ 'application_name' ] .'",
                         "'. date( $translation[ $lang ][ 'date_format' ] , strtotime( $an_app[ 'compiled_date' ] ) ) .'",
                         "<span class=\"'. $an_app[ 'compiled_status' ].'\">'. $an_app[ 'compiled_status' ].'</span>",
-                        "'. $an_app[ 'firmware_name' ] .'<br /><span class=\"secondary_info\">'. $an_app[ 'firmware_version_name' ] .' - '. $an_app[ 'firmware_vesion_type' ] .'</span>",
+                        "'. $an_app[ 'firmware_name' ] .'<br /><span class=\"secondary_info\">'. $an_app[ 'firmware_version_name' ] .' - '. $an_app[ 'firmware_version_type' ] .'</span>",
                         "'. $link_for_dl. '" 
                     ]
                 ';
