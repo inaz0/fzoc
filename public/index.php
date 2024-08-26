@@ -607,7 +607,7 @@ if( $form_is_valid === true ){
 
                 $data_for_datatable[] = '
                     [
-                        "'. $an_app[ 'application_name' ] .'<br /><span class=\"secondary_info\"><a href="'. $an_app[ 'firmware_git_url' ] .'" target="_blank">Git of apps</a></span>",
+                        "'. $an_app[ 'application_name' ] .'<br /><span class=\"secondary_info\"><a href="'. $an_app[ 'firmware_url_git' ] .'" target="_blank">Git of apps</a></span>",
                         "'. date( $translation[ $lang ][ 'date_format' ] , strtotime( $an_app[ 'compiled_date' ] ) ) .'",
                         "<span class=\"'. $an_app[ 'compiled_status' ].'\">'. $an_app[ 'compiled_status' ].'</span>",
                         "'. $an_app[ 'firmware_name' ] .'<br /><span class=\"secondary_info\">'. $an_app[ 'firmware_version_name' ] .' - '. $an_app[ 'firmware_version_type' ] .'</span>",
