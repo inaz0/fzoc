@@ -8,4 +8,4 @@
 #pour chaque lancer le activate avant
 #a la fin de chaque delete le fichier
 
-find ../tasks_update -type f -name *.sh -exec bash {} \;
+find ../tasks_update -type f -exec bash {} \;
