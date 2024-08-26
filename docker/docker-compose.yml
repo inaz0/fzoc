@@ -3,7 +3,7 @@ services:
 
     # Serveur d'application datalizr
     http:
-        image: ${BUILD_VAR_HTTP_IMAGE_REGISTRY_URL}/http:${BUILD_VAR_HTTP_IMAGE_VERSION}
+        image: docker/nginx
         restart: always
         volumes:
             - www:/usr/local/fzoc/www
@@ -18,7 +18,7 @@ services:
 
     # Serveur PHP-FPM pour l'interprétation des scripts PHP
     fpm:
-        image: ${BUILD_VAR_GLOBAL_REGISTRY_URL}/fpm:${BUILD_VAR_GLOBAL_VERSION}
+        image: docker/php
         restart: always
         volumes:
             - www:/usr/local/fzoc/www
@@ -29,7 +29,7 @@ services:
 
     # Serveur de base de données
     db:
-        image: ${BUILD_VAR_GLOBAL_REGISTRY_URL}/db:${BUILD_VAR_GLOBAL_VERSION}
+        image: docker/db
         restart: always
         volumes: 
             - db_data:/var/lib/mysql
