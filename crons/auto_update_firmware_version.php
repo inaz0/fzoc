@@ -96,9 +96,9 @@ foreach( $all_firmware_res as $value_firm ){
                                             
                                             $bdd_connexion->rollBack();
                                         }
-                                        
+                                        $state_dir_of_ufbt = '/home/inazo/fz_'. $value_firm[ 'firmware_ufbt_path' ].'_release';
                                         //-- lancer les update ufbt via un task runner dédié idem que pour les compils
-                                        file_put_contents($task_file_for_udpate, 'ufbt update --index-url='.$value_firm['firmware_url_update' ].PHP_EOL ,FILE_APPEND);
+                                        file_put_contents($task_file_for_udpate, 'ufbt dotenv_create --state-dir '.$state_dir_of_ufbt.' && ufbt update --index-url='.$value_firm['firmware_url_update' ].' && rm .env '.PHP_EOL ,FILE_APPEND);
                                     }
                                 }
                             }
@@ -138,8 +138,9 @@ foreach( $all_firmware_res as $value_firm ){
                                             
                                             $sql_udpate_firmware_version_req->execute( [ 'firm_date' => date('Y-m-d H:i:s', $value_json->versions[0]->timestamp), 'firm_version_id' => $sql_dev_firmware_res[0]['firmware_version_id'] ]  );
 
+                                            $state_dir_of_ufbt = '/home/inazo/fz_'. $value_firm[ 'firmware_ufbt_path' ].'_dev';
                                             //-- lancer les update ufbt via un task runner dédié idem que pour les compils
-                                            file_put_contents($task_file_for_udpate, 'ufbt update --channel=dev --index-url='.$value_firm['firmware_url_update' ].PHP_EOL ,FILE_APPEND);
+                                            file_put_contents($task_file_for_udpate, 'ufbt dotenv_create --state-dir '.$state_dir_of_ufbt.' && cd '.$path_to_ufbt.' && source bin/activate && ufbt update --channel=dev --index-url='.$value_firm['firmware_url_update' ].' && rm .env && deactivate '.PHP_EOL ,FILE_APPEND);
                                         }			
                                     }		
                                 }
