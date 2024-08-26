@@ -3,5 +3,8 @@ config.php
 
 #gits repo
 /gits/*
+/faps/*
+/tasks_update/*
+/tasks/*
 
 draft
