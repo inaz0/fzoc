@@ -88,19 +88,8 @@ table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-colum
 }
 .secondary_info a:after {
 
-  top: -8px;
-  right: -3px;
-  content: "\1f855";
-  font-size: 0.8em;
-}
-
-.secondary_info a:before{
-
-  
-    top: -3px;
-    right: -3px;
-    content: " ";
-    border: 4px solid white;
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+  margin: 0px 3px 0px 5px;
 }
 
 
