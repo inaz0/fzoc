@@ -4,8 +4,7 @@
 
 # Bash to execute update for ufbt for each firmware
 
-#lister les fichier
-#pour chaque lancer le activate avant
-#a la fin de chaque delete le fichier
-
 find ../tasks_update -type f -exec bash {} \;
+
+# on nettoie à la fin : 
+find ../tasks_update -type f -exec rm {} \;
