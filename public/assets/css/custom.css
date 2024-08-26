@@ -78,6 +78,23 @@ table.dataTable.stripe > tbody > tr:nth-child(2n+1), table.dataTable.order-colum
     margin-right: 10px;
 }
 
+.secondary_info a{
+  color: #2f2f2f;
+}
+
+.secondary_info a:hover{
+  color: #2f2f2f;
+  text-decoration: none;
+}
+.secondary_info a:after {
+  position: absolute;
+  top: -8px;
+  right: -3px;
+  content: "\1f855";
+  font-size: 0.8em;
+}
+
+
 a.link_for_download{
 
     color: #2f2f2f;
