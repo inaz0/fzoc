@@ -1,6 +1,6 @@
 <?php
 
-require_once('config.php');
+require_once('../config.php');
 
 //-- on va parcourir notre dossier pour réaliser les compilations
 $pending_task = scandir( $task_list );
@@ -37,7 +37,7 @@ foreach( $pending_task ?? [] as $task_waiting ){
             }
 
             //-- on supprime le répertoire clonné il n'est plus utile
-            shell_exec( 'rm -rf gits/'.$correct_compiled_path );
+            shell_exec( 'rm -rf ../gits/'.$correct_compiled_path );
         }
         else{
 
