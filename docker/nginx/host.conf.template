@@ -21,7 +21,7 @@ server {
     add_header "X-Content-Type-Options" "nosniff" always;
     add_header "Referrer-Policy" "no-referrer" always;
     add_header "Permissions-Policy" "geolocation=(),midi=(),sync-xhr=(self),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()" always;
-    add_header "Content-Security-Policy" "default-src 'self'; script-src 'report-sample' 'self' 'unsafe-inline'; style-src 'report-sample' 'self' 'unsafe-inline'; object-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; frame-src 'self' blob:; img-src 'self' blob: data:; manifest-src 'self'; media-src 'self'; worker-src blob:;" always;
+    add_header "Content-Security-Policy" "default-src 'self'; script-src 'report-sample' 'self' 'unsafe-inline' https://challenges.cloudflare.com/turnstile/v0/; style-src 'report-sample' 'self' 'unsafe-inline'; object-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; frame-src 'self' blob:; img-src 'self' blob: data:; manifest-src 'self'; media-src 'self'; worker-src blob:;" always;
 
     location ~* \.(jpg|jpeg|png|gif|svg|ico|css|js|json)$ {
         add_header "Cache-Control" "no-cache, must-revalidate";

@@ -12,6 +12,7 @@ RUN mkdir -p /usr/local/fzoc/ufbt && cd /usr/local/fzoc/ && python3 -m venv ufbt
 RUN chmod 777 -R /usr/local/fzoc/ufbt
 RUN docker-php-ext-install pdo pdo_mysql
 
+
 FROM build
 
 #USER www-data

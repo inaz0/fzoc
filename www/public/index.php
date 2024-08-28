@@ -10,7 +10,16 @@
  * Buy me a coffee: https://buymeacoffee.com/inazo
  */
 
-require_once('../config.php');
+//-- si jamais on a pas le config.php on peut prendre le example notamment pour docker
+if( !is_file( '../config.php' ) ){
+
+    require_once( '../config_example.php' );
+}
+else{
+
+    require_once( '../config.php' );
+}
+
 
 $lang          = 'fr';
 $is_fr_current = 'current';
@@ -20,7 +29,7 @@ $cloudflare_turnstile = '';
 $cloudflare_api       = '<script type="text/javascript" src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>';
 $captcha_is_solved    = false;
 
-if( $is_active_cloudflaire_turnstile === true ){
+if( $is_active_cloudflare_turnstile === true ){
 
     $cloudflare_turnstile = '<div class="cf-turnstile" data-sitekey="'. $cloudflare_turnstile_sitekey .'"></div>';
 }
@@ -193,7 +202,7 @@ try{
     if( count($_POST) > 0 && array_key_exists('git_url', $_POST) && array_key_exists('firmware_target', $_POST) && array_key_exists('git_branch', $_POST) && array_key_exists('compil', $_POST) ){
 
         //-- 0 si on a cloudflare turnstile d'activé on va contrôler
-        if( $is_active_cloudflaire_turnstile === true ){
+        if( $is_active_cloudflare_turnstile === true ){
 
             //-- 1 récupérer le .fam et le contrôler
             $curl = curl_init();
