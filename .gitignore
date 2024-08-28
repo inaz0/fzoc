@@ -13,3 +13,5 @@ config.php
 /ufbt/*
 draft
 .env
+/cerbot/*
+!/cerbot/.keep
