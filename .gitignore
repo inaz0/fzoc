@@ -2,13 +2,13 @@
 config.php
 
 #gits repo
-/gits/*
-/faps/*
-/tasks_update/*.sh
-/tasks_update/result/*
-/tasks_update/running/*
-/tasks/*
-/public/faps/*
+/www/gits/*
+/www/faps/*
+/www/tasks_update/*.sh
+/www/tasks_update/result/*
+/www/tasks_update/running/*
+/www/tasks/*
+/www/public/faps/*
 
 draft
 .env
