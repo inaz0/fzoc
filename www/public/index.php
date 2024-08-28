@@ -29,7 +29,7 @@ $cloudflare_turnstile = '';
 $cloudflare_api       = '<script type="text/javascript" src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>';
 $captcha_is_solved    = false;
 
-if( $is_active_cloudflare_turnstile === true ){
+if( $is_active_cloudflare_turnstile === "true" ){
 
     $cloudflare_turnstile = '<div class="cf-turnstile" data-sitekey="'. $cloudflare_turnstile_sitekey .'"></div>';
 }
