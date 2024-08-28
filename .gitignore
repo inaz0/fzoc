@@ -4,7 +4,9 @@ config.php
 #gits repo
 /gits/*
 /faps/*
-/tasks_update/*
+/tasks_update/*.sh
+/tasks_update/result/*
+/tasks_update/running/*
 /tasks/*
 
 draft
