@@ -114,7 +114,7 @@ $translation  = [
         ],
         'success'                 => 'The compilation will start soon, refresh the page regularly to see the result appear below.',
         'title_table_app'         => 'Compiled applications',
-        'date_format'             => 'Y-m-d H:i:s',
+        'date_format'             => 'Y/m/d<b\r>H\hi',
         'compilation_this_month'  => 'Compilation this month',
         'most_firmware'           => 'The more for the firmware:',
         'compilation_since_start' => 'Compilation from the beginning',

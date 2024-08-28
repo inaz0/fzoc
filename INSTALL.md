@@ -27,13 +27,13 @@ Add this following line in cron: (depend of your docker version the name was fzo
 
 ```
 # Every minutes check for compilatio task
-* * * * * docker exec fzoc_fpm_1 php /usr/local/fzoc/www/crons/task_runner.php
+* * * * * docker exec fzoc_fpm_1 php /usr/local/fzoc/www/crons/task_runner.php >/dev/null 2>&1
 
 # Every hours check for firmware update
-0 * * * * docker exec fzoc_fpm_1 sh /usr/local/fzoc/www/crons/update_ufbt.sh
+0 * * * * docker exec fzoc_fpm_1 sh /usr/local/fzoc/www/crons/update_ufbt.sh >/dev/null 2>&1
 
 # Every hours check for outdated application
-0 * * * * docker exec fzoc_fpm_1 php /usr/local/fzoc/www/crons/task_delete.php
+0 * * * * docker exec fzoc_fpm_1 php /usr/local/fzoc/www/crons/task_delete.php >/dev/null 2>&1
 ```
 
 To finish run the command to up the application (depend on your docker version maybe "docker compose" or "docker-compose")
