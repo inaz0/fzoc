@@ -1,12 +1,7 @@
 FROM php:8.3-fpm AS build
-#FROM php:8.3-fpm-alpine AS build
-
-#RUN \
-#    apk update && apk add curl mysql-client python3 py3-pip git python3-dev scons-pyc
 RUN \
     apt update && apt install -y curl mariadb-client python3 python3-venv python3-pip git python3-dev
 
-#&& pip3 install --upgrade pip  && pip3 install -U setuptools && pip3 install SCons
 
 RUN docker-php-ext-install pdo pdo_mysql
 

@@ -38,6 +38,10 @@ foreach( $pending_task ?? [] as $task_waiting ){
 
             //-- on supprime le répertoire clonné il n'est plus utile
             shell_exec( 'rm -rf ../gits/'.$correct_compiled_path );
+
+            //-- on retire la tache et le fichier result don nous n'avons plus besoin
+            shell_exec( 'rm -rf '.$task_list.'running/'.$task_waiting);
+            shell_exec( 'rm -rf '.$result_file);
         }
         else{
 
