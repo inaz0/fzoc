@@ -9,9 +9,6 @@ config.php
 /www/tasks_update/running/*
 /www/tasks/*
 /www/public/faps/*
-
+/ufbt/*
 draft
 .env
-www/gits/11adf012d1eff6c8d74586027f8ce029/1724827873/new
-www/gits/11adf012d1eff6c8d74586027f8ce029/1724827979/new
-www/gits/94959242be52cd388d9516592ef27e3b/1724767366/new
