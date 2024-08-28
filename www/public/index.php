@@ -386,7 +386,7 @@ if( $form_is_valid === true ){
                   
                         //-- on va ajouter la demande de compilation à la file d'attente
                         //-- @todo à compléter avec les infos firmware
-                        $state_dir_of_ufbt = '/home/inazo/fz_'. $sql_firmware_info_res[ 0 ][ 'firmware_ufbt_path' ];
+                        $state_dir_of_ufbt = $path_to_ufbt.'/fz_'. $sql_firmware_info_res[ 0 ][ 'firmware_ufbt_path' ];
 
                         //-- si la branch est la dev on change la branch à utiliser
                         if( $_POST[ 'git_branch' ] === 2 ){
@@ -397,12 +397,13 @@ if( $form_is_valid === true ){
                         else{
 
                             $state_dir_of_ufbt .= '_release';
+                            $ufbt_args          = '';
                         }
 
                         //-- list des commandes qui vont être jouées par le task runner, plus simple à maintenir et faire évoluer
                         $task_detail = [
                             'cd '.$path_to_ufbt,
-                            'source bin/activate',
+                            '. bin/activate',
                             'cd '. $destination_dir .'/new ',
                             'ufbt dotenv_create --state-dir '.$state_dir_of_ufbt.' ',
                           // to put every morning  'ufbt update '. $ufbt_args .' --index-url='. $sql_firmware_info_res[0][ 'firmware_url_update' ] .' ',

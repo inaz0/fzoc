@@ -44,3 +44,102 @@ ALTER TABLE `fzco_depend` ADD CONSTRAINT `fzco_depend_fk0` FOREIGN KEY (`depend_
 ALTER TABLE `fzco_depend` ADD CONSTRAINT `fzco_depend_fk1` FOREIGN KEY (`depend_firmware_version_id`) REFERENCES `fzco_firmware_version`(`firmware_version_id`);
 ALTER TABLE `fzco_compiled` ADD CONSTRAINT `fzco_compiled_fk0` FOREIGN KEY (`compiled_firmware_version_id`) REFERENCES `fzco_firmware_version`(`firmware_version_id`);
 ALTER TABLE `fzco_compiled` ADD CONSTRAINT `fzco_compiled_fk1` FOREIGN KEY (`compiled_application_id`) REFERENCES `fzco_application`(`application_id`);
+
+
+# File for update the database, on the first version is init File
+
+INSERT INTO `fzco_firmware` VALUES 
+(1,
+'Official',
+'https://update.flipperzero.one/firmware/directory.json',
+'https://github.com/flipperdevices/flipperzero-firmware',
+1,
+'official');
+
+INSERT INTO `fzco_firmware` VALUES 
+(2,
+'Momentum',
+'https://up.momentum-fw.dev/firmware/directory.json',
+'https://github.com/Next-Flip/Momentum-Firmware',
+1,
+'momentum');
+
+INSERT INTO `fzco_firmware_version` VALUES (
+    1,
+	'2024-07-24 09:59:00',
+	'release',
+	'0.104.0',
+	1
+);
+
+INSERT INTO `fzco_firmware_version` VALUES (
+    2,
+	'2024-07-24 09:59:00',
+	'dev',
+	'dev-ofw',
+	1
+);
+
+INSERT INTO `fzco_firmware_version` VALUES (
+    3,
+	'2024-07-29 02:59:00',
+	'release',
+	'mntm-005',
+	1
+);
+
+INSERT INTO `fzco_firmware_version` VALUES (
+    4,
+	'2024-07-29 02:59:00',
+	'dev',
+	'mntm-dev',
+	1
+);
+
+INSERT INTO `fzco_depend` VALUES (1,1);
+INSERT INTO `fzco_depend` VALUES (1,2);
+INSERT INTO `fzco_depend` VALUES (2,3);
+INSERT INTO `fzco_depend` VALUES (2,4);
+
+
+-- ajout de la version 105 du firmware officiel le 21-08-2024
+INSERT INTO `fzco_firmware_version` VALUES (
+    5,
+	'2024-08-15 03:59:00',
+	'release',
+	'0.105.0',
+	1
+);
+
+INSERT INTO `fzco_depend` VALUES (1,5);
+UPDATE fzco_firmware_version SET firmware_version_is_active = 0 WHERE firmware_version_id=1;
+
+-- ajout du firmware unleashed le 21-08-2024
+INSERT INTO `fzco_firmware` VALUES 
+(3,
+'Unleashed',
+'https://up.unleashedflip.com/directory.json',
+'https://github.com/DarkFlippers/unleashed-firmware/',
+1,
+'unleashed');
+
+INSERT INTO `fzco_firmware_version` VALUES (
+    6,
+	'2024-08-18 12:59:00',
+	'release',
+	'unlshd-077',
+	1
+);
+
+
+INSERT INTO `fzco_firmware_version` VALUES (
+    7,
+	'2024-08-18 12:59:00',
+	'dev',
+	'unlshd-077',
+	1
+);
+
+
+INSERT INTO `fzco_depend` VALUES (3,6);
+INSERT INTO `fzco_depend` VALUES (3,7);

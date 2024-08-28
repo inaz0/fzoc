@@ -1,6 +1,6 @@
 <?php
 
-require_once('../config.php');
+require_once(__DIR__.'/../config.php');
 
 //-- on va parcourir notre dossier pour réaliser les compilations
 $pending_task = scandir( $task_list );
@@ -16,7 +16,7 @@ foreach( $pending_task ?? [] as $task_waiting ){
         if( rename( $task_list.$task_waiting, $task_list.'running/'.$task_waiting ) ) {
 
             $result_file = $task_list.'result/'.str_replace('.sh','',$task_waiting).'.result';
-            shell_exec( 'bash '.$task_list.'running/'.$task_waiting .' > '.$result_file );
+            shell_exec( 'sh '.$task_list.'running/'.$task_waiting .' > '.$result_file );
 
             //-- on récupère le contenu du resutl si on trouve "Found nothing to build" on le met en "build impossible"
             //-- update le status pour chaque tache
