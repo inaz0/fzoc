@@ -23,7 +23,7 @@
 
 Copy the dotenv.example to .env and complete it, just need normaly database information and cloudflare if need.
 
-Add this following line in cron:
+Add this following line in cron: (depend of your docker version the name was fzoc_fpm_1 or fzoc-fpm-1)
 
 ```
 # Every minutes check for compilatio task
@@ -46,7 +46,7 @@ docker-compose up -d
 
 Copier le fichier dotenv.example vers .env et modifiez les informations nécessaire, le plus souvent la base de données et les informations de cloudflaire
 
-Ajouter les crons suivante :
+Ajouter les crons suivante : (en fonction de votre version de docker le nom sera soit fzoc_fpm_1 soit fzoc-fpm-1)
 
 ```
 # Every minutes check for compilatio task
