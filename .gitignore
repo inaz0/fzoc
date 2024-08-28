@@ -8,6 +8,7 @@ config.php
 /tasks_update/result/*
 /tasks_update/running/*
 /tasks/*
+/public/faps/*
 
 draft
 .env
