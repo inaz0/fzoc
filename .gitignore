@@ -9,6 +9,7 @@ config.php
 /www/tasks_update/running/*
 /www/tasks/*
 /www/public/faps/*
+!/www/public/faps/.keep
 /ufbt/*
 draft
 .env
