@@ -1,6 +1,14 @@
 <?php
+//-- si jamais on a pas le config.php on peut prendre le example notamment pour docker
+if( !is_file( '../config.php' ) ){
 
-require_once(__DIR__.'/../config.php');
+    require_once( '../config_example.php' );
+}
+else{
+
+    require_once( '../config.php' );
+}
+
 
 
 //-- on va récupérer les firmwares

@@ -1,6 +1,15 @@
 <?php
 
-require_once('../config.php');
+//-- si jamais on a pas le config.php on peut prendre le example notamment pour docker
+if( !is_file( '../config.php' ) ){
+
+    require_once( '../config_example.php' );
+}
+else{
+
+    require_once( '../config.php' );
+}
+
 
 
 $sql_update_compiled_req = ' UPDATE fzco_compiled SET compiled_status="deleted" WHERE compiled_firmware_version_id=:firm_version AND compiled_application_id=:app_id AND compiled_date=:comp_date ';
