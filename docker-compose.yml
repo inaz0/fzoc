@@ -30,7 +30,7 @@ services:
         restart: always
         volumes:
             - "./www:/usr/local/fzoc/www:rw"
-            - "./ufbt:/usr/local/fzoc/ufbt:rw"
+       #     - "./ufbt:/usr/local/fzoc/ufbt:rw"
         depends_on: 
             - db
         env_file:
