@@ -1,0 +1,21 @@
+#nginx
+EXPOSE_PORT=8090
+
+#FPM
+FPM_HOST=fpm
+FPM_PORT=9000
+
+
+#database
+BDD_USERNAME=fzco
+BDD_NAME=fzco
+BDD_PASSWORD=fake_data
+
+
+#UFBT - do not change if used in docker
+UFBT_PATH=/usr/local/fzoc/ufbt/
+
+#CAPTCHA
+IS_ACTIVE_CLOUDFLARE_TURNSTILE=false
+CLOUDFLARE_TURNSTILE_SITEKEY=fake
+CLOUDFLARE_TURNSTILE_SERVERKEY=fake

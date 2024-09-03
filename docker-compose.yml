@@ -1,0 +1,45 @@
+version: "3.3"
+services:
+
+    # Serveur de base de données
+    db:
+        build: docker/db
+        container_name: db_fzoc
+        restart: always
+        volumes: 
+            - db_data:/var/lib/mysql
+        env_file:
+            - .env
+
+    # Serveur d'application datalizr
+    http:
+        build: docker/nginx
+        restart: always
+        volumes:
+            - "./www:/usr/local/fzoc/www:rw"
+        depends_on: 
+            - fpm
+        env_file:
+            - .env
+        ports:
+            - "127.0.0.1:$EXPOSE_PORT:80"
+
+    # Serveur PHP-FPM pour l'interprétation des scripts PHP
+    fpm:
+        build: docker/php
+        restart: always
+        volumes:
+            - "./www:/usr/local/fzoc/www:rw"
+       #     - "./ufbt:/usr/local/fzoc/ufbt:rw"
+        depends_on: 
+            - db
+        env_file:
+            - .env
+
+
+
+# Volumes
+volumes:
+    www:
+    ufbt:
+    db_data:

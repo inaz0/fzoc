@@ -1,0 +1,11 @@
+Checking for tar..yes
+Checking if downloaded toolchain tgz exists..no
+Checking curl..yes
+Downloading toolchain:
+done
+Removing old toolchain..done
+Unpacking toolchain to '/usr/local/fzoc/ufbt/fz_momentum_release/toolchain':
+################################################################################ 100.0%
+linking toolchain to 'current'..done
+Cleaning up..done
+scons: Entering directory `/usr/local/fzoc/ufbt/fz_momentum_release/current/scripts/ufbt'

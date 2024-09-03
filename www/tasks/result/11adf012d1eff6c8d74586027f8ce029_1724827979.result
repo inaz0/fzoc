@@ -1,0 +1,18 @@
+scons: Entering directory `/usr/local/fzoc/ufbt/fz_momentum_release/current/scripts/ufbt'
+	ICONS	/usr/local/fzoc/ufbt/fz_momentum_release/build/apple_ble_spam/apple_ble_spam_icons.c
+	CC	/usr/local/fzoc/www/gits/11adf012d1eff6c8d74586027f8ce029/1724827979/new/lib/continuity/continuity.c
+	CDB	/usr/local/fzoc/www/gits/11adf012d1eff6c8d74586027f8ce029/1724827979/new/.vscode/compile_commands.json
+[33m2024-08-28 06:53:10,273 [WARNING] apple_ble_spam_icons: ignoring duplicate icon I_SmallArrowDown_3x5[0m
+[33m2024-08-28 06:53:10,273 [WARNING] apple_ble_spam_icons: ignoring duplicate icon I_SmallArrowUp_3x5[0m
+	AR	/usr/local/fzoc/ufbt/fz_momentum_release/build/apple_ble_spam/continuity
+	RANLIB	/usr/local/fzoc/ufbt/fz_momentum_release/build/apple_ble_spam/continuity
+	CC	/usr/local/fzoc/ufbt/fz_momentum_release/build/apple_ble_spam/apple_ble_spam_icons.c
+	CC	/usr/local/fzoc/www/gits/11adf012d1eff6c8d74586027f8ce029/1724827979/new/apple_ble_spam.c
+	LINK	/usr/local/fzoc/ufbt/fz_momentum_release/build/apple_ble_spam_d.elf
+	APPMETA	/usr/local/fzoc/ufbt/fz_momentum_release/build/apple_ble_spam.fap
+	INSTALL	/usr/local/fzoc/www/gits/11adf012d1eff6c8d74586027f8ce029/1724827979/new/dist/debug/apple_ble_spam_d.elf
+	FAP	/usr/local/fzoc/ufbt/fz_momentum_release/build/apple_ble_spam.fap
+	FASTFAP	/usr/local/fzoc/ufbt/fz_momentum_release/build/apple_ble_spam.fap
+	INSTALL	/usr/local/fzoc/www/gits/11adf012d1eff6c8d74586027f8ce029/1724827979/new/dist/apple_ble_spam.fap
+	APPCHK	/usr/local/fzoc/ufbt/fz_momentum_release/build/apple_ble_spam.fap
+		Target: 7, API: 72.1
