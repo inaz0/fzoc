@@ -659,6 +659,7 @@ if( $form_is_valid === true ){
         <script type="text/javascript" >
         $( document ).ready(function() {
             let table = new DataTable('#list_of_applications', {
+	        order:[],
                 paging: true,
                 searching: true,
                 ordering: true,
