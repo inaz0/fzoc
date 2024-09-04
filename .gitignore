@@ -7,6 +7,8 @@ config.php
 /www/tasks_update/*.sh
 /www/tasks_update/result/*
 /www/tasks_update/running/*
+!/www/tasks_update/result/.keep
+!/www/tasks_update/running/.keep
 !/www/tasks_update/.keep
 /www/tasks/*
 !/www/tasks/.keep
