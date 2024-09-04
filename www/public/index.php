@@ -750,7 +750,7 @@ if( $form_is_valid === true ){
         <a href="https://www.youtube.com/@kanjian_fr" target="_blank"><img src="assets/images/icons8-youtube-48.png" alt="Youtube" /></a>
         <a href="https://www.instagram.com/kanjian_fr/" target="_blank"><img src="assets/images/icons8-instagram-48.png" alt="Instagram" /></a>
         <a href="https://kanjianfr.etsy.com/" target="_blank"><img src="assets/images/icons8-etsy-48.png" alt="Etsy" /></a>
-        <a href="https://github.com/inaz0/" target="_blank"><img src="assets/images/icons8-github-48.png" alt="GitHub" /></a>
+        <a href="https://github.com/inaz0/fzoc" target="_blank"><img src="assets/images/icons8-github-48.png" alt="GitHub" /></a>
       </p>
       <p>
         <a id="showLegalMentions"><?php echo $translation[ $lang ][ 'bottom_site' ][ 'link_legal' ]; ?></a>
