@@ -12,6 +12,8 @@ config.php
 !/www/tasks_update/.keep
 /www/tasks/*
 !/www/tasks/.keep
+!/www/tasks/result/.keep
+!/www/tasks/running/.keep
 /www/public/faps/*
 !/www/public/faps/.keep
 /ufbt/*
