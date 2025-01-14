@@ -752,7 +752,7 @@ if( $form_is_valid === true ){
         <a href="https://twitter.com/bsmt_nevers" target="_blank"><img src="assets/images/icons8-twitter-48.png" alt="Twitter" /></a>
         <a href="https://www.youtube.com/@kanjian_fr" target="_blank"><img src="assets/images/icons8-youtube-48.png" alt="Youtube" /></a>
         <a href="https://www.instagram.com/kanjian_fr/" target="_blank"><img src="assets/images/icons8-instagram-48.png" alt="Instagram" /></a>
-        <a href="https://shop.kanjian.fr target="_blank"><img src="assets/images/mon.png" alt="Shop Kanjian" /></a>
+        <a href="https://shop.kanjian.fr" target="_blank"><img src="assets/images/mon.png" alt="Shop Kanjian" /></a>
         <a href="https://github.com/inaz0/" target="_blank"><img src="assets/images/icons8-github-48.png" alt="GitHub" /></a>
       </p>
       <p>
