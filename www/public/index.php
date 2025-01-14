@@ -583,6 +583,7 @@ if( $form_is_valid === true ){
             INNER JOIN fzco_firmware_version ON fzco_firmware_version.firmware_version_id = fzco_compiled.compiled_firmware_version_id
             INNER JOIN fzco_depend ON fzco_depend.depend_firmware_version_id = fzco_firmware_version.firmware_version_id
             INNER JOIN fzco_firmware ON fzco_firmware.firmware_id = fzco_depend.depend_firmware_id
+	    ORDER BY compiled_date DESC
         ');
 
         $sql_all_application_compiled->execute();
@@ -660,7 +661,7 @@ if( $form_is_valid === true ){
         <script type="text/javascript" >
         $( document ).ready(function() {
             let table = new DataTable('#list_of_applications', {
-                order:[[1,'desc']],
+	        order:[],
                 paging: true,
                 searching: true,
                 ordering: true,
@@ -696,7 +697,11 @@ if( $form_is_valid === true ){
                 {
                     className: 'status_datatable',
                     targets: 2
-                }
+                },
+		{
+		    targets: 1,
+		    orderable: false
+		}
                 ],
                 language: {
                     info: "<?php echo $translation[ $lang ][ 'data_table' ][ 'info' ]; ?>",
