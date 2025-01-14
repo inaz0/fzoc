@@ -67,7 +67,7 @@ Une fois votre application compilée vous n'avez plus qu'à la copier sur votre 
 
 ☕Soutenez moi via : https://www.buymeacoffee.com/inazo
 
-🛒Ma boutique Etsy : https://kanjianfr.etsy.com
+🛒Ma boutique : https://shop.kanjian.fr
 
 🧺Retrouvez ma boutique de goodies sur : https://kanjian.myspreadshop.fr/
 
