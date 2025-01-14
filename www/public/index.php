@@ -80,6 +80,7 @@ $translation  = [
             'status_pending'    => 'la compilation est en cours.',
             'status_success'    => 'le fap a été compilé, il est téléchargeable durant 30 jours.',
             'status_deleted'    => 'le fap a été supprimé automatiquement au bout de 30 jours.',
+            'status_error'    => 'compilation impossible du a une erreur dans le code de l\'application.',
             'status_impossible' => 'Impossible de compiler l\'application, en général c\'est un app_id déjà intégré au firmware officiel.',
         
         ],
@@ -124,6 +125,7 @@ $translation  = [
             'status_pending'    => 'compilation is in progress.',
             'status_success'    => 'the fap has been compiled, it is downloadable for 30 days.',
             'status_deleted'    => 'the fap was automatically deleted after 30 days.',
+            'status_error'      => 'Unable to compile due to error in application\'s code.',
             'status_impossible' => 'Unable to compile the application, usually it is an app_id already integrated into the official firmware.',
         
         ],
@@ -709,6 +711,7 @@ if( $form_is_valid === true ){
             <span class="pending">pending</span> : <?php echo $translation[ $lang ][ 'legend' ][ 'status_pending' ]; ?><br />
             <span class="success">success</span> : <?php echo $translation[ $lang ][ 'legend' ][ 'status_success' ]; ?><br />
             <span class="deleted">deleted</span> : <?php echo $translation[ $lang ][ 'legend' ][ 'status_deleted' ]; ?><br />
+            <span class="error">error</span> : <?php echo $translation[ $lang ][ 'legend' ][ 'status_error' ]; ?><br />
             <span class="impossible">impossible</span> : <?php echo $translation[ $lang ][ 'legend' ][ 'status_impossible' ]; ?><br />
         </p>
     </div>
@@ -744,7 +747,7 @@ if( $form_is_valid === true ){
         <a href="https://twitter.com/bsmt_nevers" target="_blank"><img src="assets/images/icons8-twitter-48.png" alt="Twitter" /></a>
         <a href="https://www.youtube.com/@kanjian_fr" target="_blank"><img src="assets/images/icons8-youtube-48.png" alt="Youtube" /></a>
         <a href="https://www.instagram.com/kanjian_fr/" target="_blank"><img src="assets/images/icons8-instagram-48.png" alt="Instagram" /></a>
-        <a href="https://kanjianfr.etsy.com/" target="_blank"><img src="assets/images/icons8-etsy-48.png" alt="Etsy" /></a>
+        <a href="https://shop.kanjian.fr target="_blank"><img src="assets/images/mon.png" alt="Shop Kanjian" /></a>
         <a href="https://github.com/inaz0/" target="_blank"><img src="assets/images/icons8-github-48.png" alt="GitHub" /></a>
       </p>
       <p>
@@ -808,7 +811,6 @@ $( document ).ready(function() {
 	    Twitter logo: <a target="_blank" href="https://icons8.com/icon/13963/twitter">Twitter</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
 	    Youtube logo: <a target="_blank" href="https://icons8.com/icon/13983/youtube">YouTube</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
         Instagram logo : <a target="_blank" href="https://icons8.com/icon/Xy10Jcu1L2Su/instagram">Instagram</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
-        Etsy logo : <a target="_blank" href="https://icons8.com/icon/MQ-HLKLCGrJn/etsy">Etsy</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
         Download logo: <a target="_blank" href="https://icons8.com/icon/103169/downloading-updates">Download</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a><br />
         GitHub logo: <a target="_blank" href="https://icons8.com/icon/AZOZNnY73haj/github">GitHub</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
     </p>    
