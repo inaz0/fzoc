@@ -347,11 +347,12 @@ if( $form_is_valid === true ){
             if( count($banned_application_list) > 0 ){
 
                 foreach( $banned_application_list as $banned_word ){
-var_dump($banned_word);
+
                     if( preg_match('/'.$banned_word.'/i', $the_app_name) || preg_match('/'.$banned_word.'/i', $_POST['git_url']) ) {
 
-                        $message = $translation[ $lang ]['error']['git_url_error'].'not allowed';    
+                        $message = $translation[ $lang ]['error']['git_url_error'];    
                         $compilation_is_possible = false;
+                        $form_is_valid = false;
                     }
                 }
             }
