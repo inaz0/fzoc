@@ -19,3 +19,6 @@ UFBT_PATH=/usr/local/fzoc/ufbt/
 IS_ACTIVE_CLOUDFLARE_TURNSTILE=false
 CLOUDFLARE_TURNSTILE_SITEKEY=fake
 CLOUDFLARE_TURNSTILE_SERVERKEY=fake
+
+#If this words are in application name it's not allowed to be compile
+BANNED_APPLICATION_WORDS=jam,jamming,jammer
