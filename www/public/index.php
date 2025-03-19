@@ -339,6 +339,23 @@ if( $form_is_valid === true ){
                 $the_app_name = $matches[ 7 ][ 0 ];
             }
 
+            $banned_application_list = explode(',', getenv('BANNED_APPLICATION_WORDS', true));
+
+            $compilation_is_possible = true;
+
+            //-- if the list is not empty
+            if( count($banned_application_list) > 0 ){
+
+                foreach( $banned_application_list as $banned_word ){
+var_dump($banned_word);
+                    if( preg_match('/'.$banned_word.'/i', $the_app_name) || preg_match('/'.$banned_word.'/i', $_POST['git_url']) ) {
+
+                        $message = $translation[ $lang ]['error']['git_url_error'].'not allowed';    
+                        $compilation_is_possible = false;
+                    }
+                }
+            }
+
             //-- 2 contrôler que le repo est présent ou non en base
             $sql_application_check = $bdd_connexion->prepare('
                 SELECT application_id 
@@ -346,118 +363,121 @@ if( $form_is_valid === true ){
                 WHERE application_url_git = :git_url 
             ');
 
-            try{
+            if( $compilation_is_possible === true ){
 
-                $sql_application_check->execute( [ 'git_url' => $_POST[ 'git_url' ] ] );
-                $sql_application_check_res = $sql_application_check->fetchAll();
+                try{
 
-                if( is_array($sql_application_check_res) ){
+                    $sql_application_check->execute( [ 'git_url' => $_POST[ 'git_url' ] ] );
+                    $sql_application_check_res = $sql_application_check->fetchAll();
 
-                    $starting_time_process  = time();
-                    $generate_part_dest_dir = hash( 'md5', $_POST['git_url'] ).'/'.$starting_time_process;
-                    $destination_dir        =  __DIR__.'/../gits/'.$generate_part_dest_dir;
+                    if( is_array($sql_application_check_res) ){
 
-                    //-- création d'un dossier pour cloner
-                    mkdir( $destination_dir, 0777, true );
-                    
-                    //-- création de l'application
-                    if( count($sql_application_check_res) === 0 ){
+                        $starting_time_process  = time();
+                        $generate_part_dest_dir = hash( 'md5', $_POST['git_url'] ).'/'.$starting_time_process;
+                        $destination_dir        =  __DIR__.'/../gits/'.$generate_part_dest_dir;
 
-                        $sql_add_application = $bdd_connexion->prepare('
-                        INSERT INTO fzco_application (application_name, application_appid,application_url_git)
-                         VALUES ( :app_name, :app_id, :app_url_git )');
+                        //-- création d'un dossier pour cloner
+                        mkdir( $destination_dir, 0777, true );
+                        
+                        //-- création de l'application
+                        if( count($sql_application_check_res) === 0 ){
 
-                        $sql_add_application->execute( [ 'app_name' => $the_app_name, 'app_id' => $the_app_id, 'app_url_git' => $_POST['git_url'] ] );
+                            $sql_add_application = $bdd_connexion->prepare('
+                            INSERT INTO fzco_application (application_name, application_appid,application_url_git)
+                            VALUES ( :app_name, :app_id, :app_url_git )');
 
-                        $application_id = $bdd_connexion->lastInsertId();
-                    }
-                    else{
+                            $sql_add_application->execute( [ 'app_name' => $the_app_name, 'app_id' => $the_app_id, 'app_url_git' => $_POST['git_url'] ] );
 
-                        $application_id = $sql_application_check_res[ 0 ];
-                    }
-                    
-                    //-- new pour pouvoir maitriser le nom du répo...
-                    shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' new && chmod -R 777 '.__DIR__.'/../gits/');
-
-                    //-- on va récupérer les informations du firmware
-                    //-- 2 contrôler que le repo est présent ou non en base
-                    $sql_firmware_info = $bdd_connexion->prepare('
-                        SELECT * 
-                        FROM fzco_firmware 
-                        INNER JOIN fzco_depend ON depend_firmware_id = fzco_firmware.firmware_id
-                        INNER JOIN fzco_firmware_version ON fzco_depend.depend_firmware_version_id = fzco_firmware_version.firmware_version_id 
-                        WHERE firmware_id = :firmware_id AND firmware_version_type = :version_type AND firmware_version_is_active = 1 AND firmware_is_active = 1
-                    ');
-
-                    $sql_firmware_info->execute( [ 'firmware_id' => $_POST['firmware_target'], 'version_type' => $version_type[ $_POST[ 'git_branch' ] ] ] );
-                    
-                    $sql_firmware_info_res = $sql_firmware_info->fetchAll();
-
-                    if( is_array($sql_firmware_info_res) && count($sql_firmware_info_res) === 1 ){
-                  
-                        //-- on va ajouter la demande de compilation à la file d'attente
-                        //-- @todo à compléter avec les infos firmware
-                        $state_dir_of_ufbt = $path_to_ufbt.'/fz_'. $sql_firmware_info_res[ 0 ][ 'firmware_ufbt_path' ];
-
-                        //-- si la branch est la dev on change la branch à utiliser
-                        if( $_POST[ 'git_branch' ] === 2 ){
-
-                            $state_dir_of_ufbt .= '_dev' ;
-                            $ufbt_args          = '--channel dev';
+                            $application_id = $bdd_connexion->lastInsertId();
                         }
                         else{
 
-                            $state_dir_of_ufbt .= '_release';
-                            $ufbt_args          = '';
+                            $application_id = $sql_application_check_res[ 0 ];
                         }
+                        
+                        //-- new pour pouvoir maitriser le nom du répo...
+                        shell_exec( 'cd '.escapeshellarg($destination_dir).' && git clone '.escapeshellarg( $_POST[ 'git_url' ]) .' new && chmod -R 777 '.__DIR__.'/../gits/');
 
-                        //-- list des commandes qui vont être jouées par le task runner, plus simple à maintenir et faire évoluer
-                        $task_detail = [
-                            'cd '.$path_to_ufbt,
-                            '. bin/activate',
-                            'cd '. $destination_dir .'/new ',
-                            'ufbt dotenv_create --state-dir '.$state_dir_of_ufbt.' ',
-                            'ufbt update '. $ufbt_args .' --index-url='. $sql_firmware_info_res[0][ 'firmware_url_update' ] .' ',
-                            'ufbt ',
-                            'mkdir -p '.$fap_path.$generate_part_dest_dir.'/ ',
-                            'mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/',
-                            //'rm -rf '.$destination_dir.'/',
-                        ];
+                        //-- on va récupérer les informations du firmware
+                        //-- 2 contrôler que le repo est présent ou non en base
+                        $sql_firmware_info = $bdd_connexion->prepare('
+                            SELECT * 
+                            FROM fzco_firmware 
+                            INNER JOIN fzco_depend ON depend_firmware_id = fzco_firmware.firmware_id
+                            INNER JOIN fzco_firmware_version ON fzco_depend.depend_firmware_version_id = fzco_firmware_version.firmware_version_id 
+                            WHERE firmware_id = :firmware_id AND firmware_version_type = :version_type AND firmware_version_is_active = 1 AND firmware_is_active = 1
+                        ');
 
-                        file_put_contents($task_list. '/'. str_replace('/','_',$generate_part_dest_dir) .'.sh', implode(' && ', $task_detail ) );
+                        $sql_firmware_info->execute( [ 'firmware_id' => $_POST['firmware_target'], 'version_type' => $version_type[ $_POST[ 'git_branch' ] ] ] );
+                        
+                        $sql_firmware_info_res = $sql_firmware_info->fetchAll();
 
-                        //-- on change les droits pour que le task runner puisse le consommer
-                        chmod( $task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 0755);
+                        if( is_array($sql_firmware_info_res) && count($sql_firmware_info_res) === 1 ){
+                    
+                            //-- on va ajouter la demande de compilation à la file d'attente
+                            //-- @todo à compléter avec les infos firmware
+                            $state_dir_of_ufbt = $path_to_ufbt.'/fz_'. $sql_firmware_info_res[ 0 ][ 'firmware_ufbt_path' ];
 
-                        //-- il faut insert en base que l'action va se jouer
-                        $sql_add_compiled = $bdd_connexion->prepare('
-                        INSERT INTO fzco_compiled (compiled_firmware_version_id, compiled_application_id,compiled_date,compiled_path_fap,compiled_status)
-                        VALUES ( :compiled_firmware_version_id, :compiled_application_id, :compiled_date, :compiled_path_fap, "pending" )');
+                            //-- si la branch est la dev on change la branch à utiliser
+                            if( $_POST[ 'git_branch' ] === 2 ){
 
-                        //@todo reprendre le bon id du firmware
-                        $sql_add_compiled->execute( [ 
-                            'compiled_firmware_version_id' => $sql_firmware_info_res[ 0 ][ 'firmware_version_id' ],
-                            'compiled_application_id'      => $application_id[ 0 ],
-                            'compiled_date'                => date('Y-m-d H:i:s', $starting_time_process), 
-                            'compiled_path_fap'            => $generate_part_dest_dir 
-                            ] );
+                                $state_dir_of_ufbt .= '_dev' ;
+                                $ufbt_args          = '--channel dev';
+                            }
+                            else{
 
+                                $state_dir_of_ufbt .= '_release';
+                                $ufbt_args          = '';
+                            }
+
+                            //-- list des commandes qui vont être jouées par le task runner, plus simple à maintenir et faire évoluer
+                            $task_detail = [
+                                'cd '.$path_to_ufbt,
+                                '. bin/activate',
+                                'cd '. $destination_dir .'/new ',
+                                'ufbt dotenv_create --state-dir '.$state_dir_of_ufbt.' ',
+                                'ufbt update '. $ufbt_args .' --index-url='. $sql_firmware_info_res[0][ 'firmware_url_update' ] .' ',
+                                'ufbt ',
+                                'mkdir -p '.$fap_path.$generate_part_dest_dir.'/ ',
+                                'mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/',
+                                //'rm -rf '.$destination_dir.'/',
+                            ];
+
+                            file_put_contents($task_list. '/'. str_replace('/','_',$generate_part_dest_dir) .'.sh', implode(' && ', $task_detail ) );
+
+                            //-- on change les droits pour que le task runner puisse le consommer
+                            chmod( $task_list.'/'.str_replace('/','_',$generate_part_dest_dir).'.sh', 0755);
+
+                            //-- il faut insert en base que l'action va se jouer
+                            $sql_add_compiled = $bdd_connexion->prepare('
+                            INSERT INTO fzco_compiled (compiled_firmware_version_id, compiled_application_id,compiled_date,compiled_path_fap,compiled_status)
+                            VALUES ( :compiled_firmware_version_id, :compiled_application_id, :compiled_date, :compiled_path_fap, "pending" )');
+
+                            //@todo reprendre le bon id du firmware
+                            $sql_add_compiled->execute( [ 
+                                'compiled_firmware_version_id' => $sql_firmware_info_res[ 0 ][ 'firmware_version_id' ],
+                                'compiled_application_id'      => $application_id[ 0 ],
+                                'compiled_date'                => date('Y-m-d H:i:s', $starting_time_process), 
+                                'compiled_path_fap'            => $generate_part_dest_dir 
+                                ] );
+
+                        }
+                        //@todo mettre le message que la compile va bientot commmencer
+                        $form_is_valid = true;
+                        $message       = $translation[ $lang ][ 'success' ];
                     }
-                    //@todo mettre le message que la compile va bientot commmencer
-                    $form_is_valid = true;
-                    $message       = $translation[ $lang ][ 'success' ];
                 }
-            }
-            catch(PDOException $e){
+                catch(PDOException $e){
 
-                if( $debug === true ){
+                    if( $debug === true ){
 
-                    echo $e->getMessage();
+                        echo $e->getMessage();
+                    }
+
+                    echo 'Error application listing';
+
+                    die();
                 }
-
-                echo 'Error application listing';
-
-                die();
             }
         }
         else{
