@@ -324,7 +324,7 @@ if( $form_is_valid === true ){
     if( $response_code_curl === 200 ){
 
         //-- on va checker la structure du fam
-        if( preg_match_all( '/(\s*)?(App\()\s*(appid=")([a-z0-9_-]*)(",)\s*(name=")(.*)(",)(.*)\s*/mi', $response_curl, $matches )){
+        if( preg_match_all( '/(\s*)?(App\()\s*(appid=")([a-z0-9_-]*)(",)(.*)\s*(name=")(.*)(",)(.*)\s*/mi', $response_curl, $matches )){
 
             $the_app_id   = '';
             $the_app_name = '';
@@ -334,9 +334,9 @@ if( $form_is_valid === true ){
                 $the_app_id = $matches[ 4 ][ 0 ];
             }
 
-            if( is_array( $matches[ 7 ] ) && count( $matches[ 7 ] ) > 0 ){
+            if( is_array( $matches[ 8 ] ) && count( $matches[ 8 ] ) > 0 ){
 
-                $the_app_name = $matches[ 7 ][ 0 ];
+                $the_app_name = $matches[ 8 ][ 0 ];
             }
 
             $banned_application_list = explode(',', getenv('BANNED_APPLICATION_WORDS', true));
@@ -431,6 +431,21 @@ if( $form_is_valid === true ){
                                 $ufbt_args          = '';
                             }
 
+                            //-- 2 contrôler que le repo est présent ou non en base
+                            $sql_application_check = $bdd_connexion->prepare('
+                                 SELECT application_appid
+                                 FROM fzco_application
+                                 WHERE application_url_git = :git_url
+                            ');
+
+			    $sql_application_check->execute( [ 'git_url' => $_POST[ 'git_url' ] ] );
+        	            $sql_application_check_res = $sql_application_check->fetchAll();
+	
+	                    if( is_array($sql_application_check_res) ){
+
+				$application_fap_name = $sql_application_check_res[ 0 ][0];
+			    }
+
                             //-- list des commandes qui vont être jouées par le task runner, plus simple à maintenir et faire évoluer
                             $task_detail = [
                                 'cd '.$path_to_ufbt,
@@ -440,7 +455,7 @@ if( $form_is_valid === true ){
                                 'ufbt update '. $ufbt_args .' --index-url='. $sql_firmware_info_res[0][ 'firmware_url_update' ] .' ',
                                 'ufbt ',
                                 'mkdir -p '.$fap_path.$generate_part_dest_dir.'/ ',
-                                'mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/',
+                                'mv '.$destination_dir.'/new/dist/*.fap '.$fap_path.$generate_part_dest_dir.'/'. $application_fap_name.'.fap',
                                 //'rm -rf '.$destination_dir.'/',
                             ];
 

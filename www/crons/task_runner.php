@@ -35,11 +35,13 @@ foreach( $pending_task ?? [] as $task_waiting ){
             $check_result          = file_get_contents( $result_file );
             $correct_compiled_path = str_replace( ['_', '.sh'], ['/',''] , $task_waiting );
 
+		var_dump($check_result);
+
             if( preg_match('/Found nothing to build/iu', $check_result) ){
 
                 $sql_update_compiled->execute( ['new_status' => 'impossible', 'compiled_path' => $correct_compiled_path ] );
             } 
-            else if( preg_match('/errors/iu', $check_result) ){
+            else if( preg_match('/error/iu', $check_result) || preg_match('/Failed parsing manifest/iu', $check_result) ){
 
                 $sql_update_compiled->execute( ['new_status' => 'error', 'compiled_path' => $correct_compiled_path ] );
             }
@@ -59,5 +61,8 @@ foreach( $pending_task ?? [] as $task_waiting ){
 
             echo 'error move';
         }
-    }  
+    }
+    else{
+		//echo 'error dir: '.$task_list.$task_waiting.PHP_EOL;
+    }
 }
