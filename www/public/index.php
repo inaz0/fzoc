@@ -1,5 +1,8 @@
 <?php
 
+//-- pour stocker les messages de soumissions
+session_start();
+
 /*
  * Author: Inazo
  * Website: https://www.kanjian.fr
@@ -501,6 +504,19 @@ if( $form_is_valid === true ){
             echo 'error fam';
         }
     }
+}
+
+if( $message !== '' && !isset($_SESSION['message']) ){
+
+    $_SESSION['message'] = $message;
+    header('Location: /index.php');
+    exit();
+}
+
+if( !empty($_SESSION['message']) ){
+
+    $message = $_SESSION['message'];
+    unset($_SESSION['message']);
 }
 
 ?>
