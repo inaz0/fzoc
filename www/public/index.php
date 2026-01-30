@@ -506,14 +506,29 @@ if( $form_is_valid === true ){
     }
 }
 
-if( $message !== '' && !isset($_SESSION['message']) ){
+if( $message !== '' && !isset($_SESSION['message']) && count($_POST) > 0 ){
+
+    if( $form_is_valid === true ){
+
+        $success = 1;
+    }
 
     $_SESSION['message'] = $message;
-    header('Location: /index.php');
+    header('Location: /index.php?success='.$success);
     exit();
 }
 
 if( !empty($_SESSION['message']) ){
+
+    if( array_key_exists('success', $_GET) ){
+
+	$success = intval( $_GET['success'] );
+    }
+
+    if( $success === 1 ){
+
+      $form_is_valid = true;
+    }
 
     $message = $_SESSION['message'];
     unset($_SESSION['message']);
