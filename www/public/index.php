@@ -508,6 +508,8 @@ if( $form_is_valid === true ){
 
 if( $message !== '' && !isset($_SESSION['message']) && count($_POST) > 0 ){
 
+    $success = 0;
+
     if( $form_is_valid === true ){
 
         $success = 1;
