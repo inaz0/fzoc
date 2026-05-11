@@ -4,7 +4,7 @@ FlipperZero Online Compiler!
 
 [ENG]
 
-My interpreted version of flipc.org, originally created by [Derek Jamison](https://github.com/jamisonderek), you can install it on your machines or server.
+My interpreted version of flipc, originally created by [Derek Jamison](https://github.com/jamisonderek), you can install it on your machines or server.
 
 An online version is available here: [fzoc.kanjian.fr](https://fzoc.kanjian.fr)
 
@@ -21,7 +21,7 @@ Once your application is compiled you just have to copy it to your Flipper Zero.
 
 [FR]
 
-Ma version interprété de flipc.org, créé à l'origine par [Derek Jamison](https://github.com/jamisonderek), vous pouvez l'installer sur vos machines ou serveur.
+Ma version interprété de flipc, créé à l'origine par [Derek Jamison](https://github.com/jamisonderek), vous pouvez l'installer sur vos machines ou serveur.
 
 Une version en ligne est présente ici : [fzoc.kanjian.fr](https://fzoc.kanjian.fr)
 
